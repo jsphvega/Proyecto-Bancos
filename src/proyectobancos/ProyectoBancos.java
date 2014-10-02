@@ -1,21 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectobancos;
 
+import proyectobancos.Vistas.VentanaPrincipal;
+
 /**
- *
- * @author Joseph
+ * Método constructor del proyecto.
+ * @author Joseph Vega
+ * @author Lucia Solis
+ * @author Miller Ruiz
  */
 public class ProyectoBancos {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        //Instancia al primer método
+        VentanaPrincipal VT = new VentanaPrincipal();
+        VT.show();
     }
     
 }
