@@ -7,8 +7,9 @@
 package proyectobancos;
 
 /**
- *
- * @author Miller
+ * @author Joseph Vega
+ * @author Lucia Solis
+ * @author Miller Ruiz
  */
 import static java.lang.Thread.sleep;
 import java.text.SimpleDateFormat;

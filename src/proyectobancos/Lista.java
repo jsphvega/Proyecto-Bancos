@@ -7,8 +7,9 @@
 package proyectobancos;
 
 /**
- *
- * @author Miller
+ * @author Joseph Vega
+ * @author Lucia Solis
+ * @author Miller Ruiz
  */
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
