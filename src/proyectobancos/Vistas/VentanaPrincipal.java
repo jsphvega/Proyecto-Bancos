@@ -4,7 +4,7 @@ import java.util.Calendar;
 import javax.swing.JCheckBox;
 import javax.swing.table.DefaultTableModel;
 import proyectobancos.Constantes.Parametros;
-import proyectobancos.Reloj;
+import proyectobancos.Administradores.Reloj;
 
 
 /**
