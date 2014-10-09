@@ -23,16 +23,18 @@ public class Reloj extends Thread {
         this.hora = hora;
     }
     
+    @Override
     public void run (){
         while (true){
             Date hoy = new Date();
             SimpleDateFormat s = new SimpleDateFormat("HH:mm:ss");
             hora.setText(s.format(hoy));
-        try {
-            sleep(1000);
-        }catch (Exception ex){
-        
-        }
+            
+            try {
+                sleep(1000);
+            }catch (Exception ex){
+
+            }
         }
         
     }

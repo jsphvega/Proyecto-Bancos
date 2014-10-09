@@ -1,7 +1,9 @@
 package proyectobancos.Vistas;
 
 import java.awt.Image;
+import java.text.SimpleDateFormat;
 import java.util.Calendar; //Importa el calendario
+import java.util.Date;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel; //Importa modelo genérico de tablas.
@@ -24,8 +26,13 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     //Permite crear una tabla generica para modificar datos facilmente
     DefaultTableModel CajaEmpleados = new DefaultTableModel();
     
+//    Date hoy = new Date();
+//            SimpleDateFormat s = new SimpleDateFormat("HH:mm:ss");
+//            hoy.setMinutes(hoy.getMinutes() + 1);
+//            lblVentana3.setText(s.format(hoy));
+    
     /**
-     * Método xonstructor de la clase
+     * Método constructor de la clase
      */
     public VentanaPrincipal() { 
         initComponents();
@@ -81,8 +88,6 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         tblCajaEmpleados.setModel(CajaEmpleados);
     }
     
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -96,6 +101,12 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         lblTiquete = new javax.swing.JLabel();
         lblVentana1 = new javax.swing.JLabel();
         lblVentana2 = new javax.swing.JLabel();
+        lblVentana3 = new javax.swing.JLabel();
+        lblVentana4 = new javax.swing.JLabel();
+        lblVentana5 = new javax.swing.JLabel();
+        lblVentana6 = new javax.swing.JLabel();
+        lblVentana7 = new javax.swing.JLabel();
+        lblVentana8 = new javax.swing.JLabel();
         Caja = new javax.swing.JScrollPane();
         tblCajaEmpleados = new javax.swing.JTable();
         lblFondoMenu = new javax.swing.JLabel();
@@ -111,51 +122,104 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().add(lblLogo);
         lblLogo.setBounds(540, 10, 150, 150);
 
-        lblHora.setForeground(new java.awt.Color(255, 255, 0));
+        lblHora.setForeground(new java.awt.Color(255, 255, 255));
         lblHora.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblHora.setText("hora");
         getContentPane().add(lblHora);
-        lblHora.setBounds(50, 10, 70, 20);
+        lblHora.setBounds(55, 10, 70, 20);
 
-        lblHoraTitulo.setForeground(new java.awt.Color(255, 255, 0));
+        lblHoraTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblHoraTitulo.setText("HORA:");
         getContentPane().add(lblHoraTitulo);
-        lblHoraTitulo.setBounds(10, 10, 40, 20);
+        lblHoraTitulo.setBounds(15, 10, 40, 20);
 
-        lblFecha.setForeground(new java.awt.Color(255, 255, 0));
+        lblFecha.setForeground(new java.awt.Color(255, 255, 255));
         lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFecha.setText("fecha");
         getContentPane().add(lblFecha);
-        lblFecha.setBounds(50, 35, 70, 20);
+        lblFecha.setBounds(55, 35, 70, 20);
 
-        lblFechaTitulo.setForeground(new java.awt.Color(255, 255, 0));
+        lblFechaTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblFechaTitulo.setText("FECHA:");
         getContentPane().add(lblFechaTitulo);
-        lblFechaTitulo.setBounds(10, 35, 40, 20);
+        lblFechaTitulo.setBounds(15, 35, 40, 20);
 
         btnLiberar.setBackground(new java.awt.Color(255, 204, 51));
-        btnLiberar.setText("Liberar Cajas");
+        btnLiberar.setText("Asignar Cajas");
         getContentPane().add(btnLiberar);
         btnLiberar.setBounds(540, 170, 150, 30);
 
         lblTiquete.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblTiquete.setForeground(new java.awt.Color(255, 255, 255));
         lblTiquete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTiquete.setText("Tiquete");
+        lblTiquete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblTiquete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 lblTiqueteMouseReleased(evt);
             }
         });
         getContentPane().add(lblTiquete);
-        lblTiquete.setBounds(303, 310, 220, 120);
+        lblTiquete.setBounds(20, 300, 220, 120);
 
         lblVentana1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
         getContentPane().add(lblVentana1);
-        lblVentana1.setBounds(5, 5, 123, 56);
+        lblVentana1.setBounds(8, 5, 123, 56);
 
         lblVentana2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
         getContentPane().add(lblVentana2);
-        lblVentana2.setBounds(290, 300, 246, 140);
+        lblVentana2.setBounds(10, 290, 246, 140);
+
+        lblVentana3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblVentana3.setForeground(new java.awt.Color(255, 255, 255));
+        lblVentana3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblVentana3.setText("Configuración");
+        lblVentana3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblVentana3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lblVentana3MouseReleased(evt);
+            }
+        });
+        getContentPane().add(lblVentana3);
+        lblVentana3.setBounds(137, 10, 110, 42);
+
+        lblVentana4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
+        getContentPane().add(lblVentana4);
+        lblVentana4.setBounds(130, 5, 123, 56);
+
+        lblVentana5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblVentana5.setForeground(new java.awt.Color(255, 255, 255));
+        lblVentana5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblVentana5.setText("Gráficos");
+        lblVentana5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblVentana5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lblVentana5MouseReleased(evt);
+            }
+        });
+        getContentPane().add(lblVentana5);
+        lblVentana5.setBounds(137, 65, 110, 42);
+
+        lblVentana6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
+        getContentPane().add(lblVentana6);
+        lblVentana6.setBounds(130, 60, 123, 56);
+
+        lblVentana7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblVentana7.setForeground(new java.awt.Color(255, 255, 255));
+        lblVentana7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblVentana7.setText("Tabla Dinámica");
+        lblVentana7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblVentana7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lblVentana7MouseReleased(evt);
+            }
+        });
+        getContentPane().add(lblVentana7);
+        lblVentana7.setBounds(13, 65, 110, 42);
+
+        lblVentana8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
+        getContentPane().add(lblVentana8);
+        lblVentana8.setBounds(8, 60, 123, 56);
 
         Caja.setEnabled(false);
 
@@ -209,8 +273,19 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
 
     private void lblTiqueteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTiqueteMouseReleased
         //Aqui llama lo de miller
-        
     }//GEN-LAST:event_lblTiqueteMouseReleased
+
+    private void lblVentana3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVentana3MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblVentana3MouseReleased
+
+    private void lblVentana5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVentana5MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblVentana5MouseReleased
+
+    private void lblVentana7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVentana7MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblVentana7MouseReleased
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -248,6 +323,12 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblTiquete;
     private javax.swing.JLabel lblVentana1;
     private javax.swing.JLabel lblVentana2;
+    private javax.swing.JLabel lblVentana3;
+    private javax.swing.JLabel lblVentana4;
+    private javax.swing.JLabel lblVentana5;
+    private javax.swing.JLabel lblVentana6;
+    private javax.swing.JLabel lblVentana7;
+    private javax.swing.JLabel lblVentana8;
     private javax.swing.JTable tblCajaEmpleados;
     // End of variables declaration//GEN-END:variables
 }
