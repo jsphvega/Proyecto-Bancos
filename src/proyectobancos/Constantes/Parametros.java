@@ -1,12 +1,10 @@
 package proyectobancos.Constantes;
 
-import java.awt.Image;
-
 public class Parametros {
     
-    private int Cajas;
-    private String NombreBanco;
-    private Image FotoBanco;
+    private int Cajas = 7;
+    private String NombreBanco = "Mi banco";
+    private String FotoBanco = "C:\\Users\\Joseph\\Pictures\\Abstractas\\Paisaje #02.jpg";
 
     public String getNombreBanco() {
         return NombreBanco;
@@ -16,11 +14,11 @@ public class Parametros {
         this.NombreBanco = NombreBanco;
     }
 
-    public Image getFotoBanco() {
+    public String getFotoBanco() {
         return FotoBanco;
     }
 
-    public void setFotoBanco(Image FotoBanco) {
+    public void setFotoBanco(String FotoBanco) {
         this.FotoBanco = FotoBanco;
     }
 
