@@ -16,7 +16,7 @@ import proyectobancos.Administradores.Reloj;
  * @author Lucia Solis
  * @author Miller Ruiz
  */
-public class VentanaPrincipal extends javax.swing.JFrame {
+public final class VentanaPrincipal extends javax.swing.JFrame {
     
     //Clase que contiene los parámetros de la clase
     Parametros pa = new Parametros();
@@ -32,13 +32,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
         TiempoVentana(); //Asigna la hora y fecha del sistema
         InicioTablaClientes(); //Inicializa la tabla con las cajas disponibles
-        
-        //Asigna el titulo y el logo
+        FotoTituloVentana(); //Asigna el titulo y el logo    
+    }
+    
+    /**
+     * Método que asigna el titulo y el logo
+     */
+    public void FotoTituloVentana(){
         this.setTitle(pa.getNombreBanco().toUpperCase() + ", bienvenidos!!");
         try {
             ImageIcon icon = new ImageIcon(pa.getFotoBanco());
             Icon icono = new ImageIcon(icon.getImage()
-                    .getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+                    .getScaledInstance(150, 150, Image.SCALE_DEFAULT));
             lblLogo.setIcon(icono);
         } catch (Exception ex) { }
     }
@@ -76,53 +81,81 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         tblCajaEmpleados.setModel(CajaEmpleados);
     }
     
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         lblLogo = new javax.swing.JLabel();
         lblHora = new javax.swing.JLabel();
-        lblFecha = new javax.swing.JLabel();
         lblHoraTitulo = new javax.swing.JLabel();
+        lblFecha = new javax.swing.JLabel();
         lblFechaTitulo = new javax.swing.JLabel();
         btnLiberar = new javax.swing.JButton();
+        lblTiquete = new javax.swing.JLabel();
+        lblVentana1 = new javax.swing.JLabel();
+        lblVentana2 = new javax.swing.JLabel();
         Caja = new javax.swing.JScrollPane();
         tblCajaEmpleados = new javax.swing.JTable();
         lblFondoMenu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Principal");
-        setMaximumSize(new java.awt.Dimension(730, 440));
-        setMinimumSize(new java.awt.Dimension(730, 440));
+        setMaximumSize(new java.awt.Dimension(700, 465));
+        setMinimumSize(new java.awt.Dimension(700, 465));
         setResizable(false);
         getContentPane().setLayout(null);
+
+        lblLogo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(lblLogo);
-        lblLogo.setBounds(10, 10, 100, 100);
+        lblLogo.setBounds(540, 10, 150, 150);
 
         lblHora.setForeground(new java.awt.Color(255, 255, 0));
+        lblHora.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblHora.setText("hora");
         getContentPane().add(lblHora);
-        lblHora.setBounds(410, 320, 70, 30);
-
-        lblFecha.setForeground(new java.awt.Color(255, 255, 0));
-        lblFecha.setText("fecha");
-        getContentPane().add(lblFecha);
-        lblFecha.setBounds(380, 360, 70, 30);
+        lblHora.setBounds(50, 10, 70, 20);
 
         lblHoraTitulo.setForeground(new java.awt.Color(255, 255, 0));
         lblHoraTitulo.setText("HORA:");
         getContentPane().add(lblHoraTitulo);
-        lblHoraTitulo.setBounds(340, 320, 40, 30);
+        lblHoraTitulo.setBounds(10, 10, 40, 20);
+
+        lblFecha.setForeground(new java.awt.Color(255, 255, 0));
+        lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblFecha.setText("fecha");
+        getContentPane().add(lblFecha);
+        lblFecha.setBounds(50, 35, 70, 20);
 
         lblFechaTitulo.setForeground(new java.awt.Color(255, 255, 0));
         lblFechaTitulo.setText("FECHA:");
         getContentPane().add(lblFechaTitulo);
-        lblFechaTitulo.setBounds(330, 360, 40, 30);
+        lblFechaTitulo.setBounds(10, 35, 40, 20);
 
         btnLiberar.setBackground(new java.awt.Color(255, 204, 51));
         btnLiberar.setText("Liberar Cajas");
         getContentPane().add(btnLiberar);
-        btnLiberar.setBounds(580, 0, 150, 30);
+        btnLiberar.setBounds(540, 170, 150, 30);
+
+        lblTiquete.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblTiquete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTiquete.setText("Tiquete");
+        lblTiquete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lblTiqueteMouseReleased(evt);
+            }
+        });
+        getContentPane().add(lblTiquete);
+        lblTiquete.setBounds(303, 310, 220, 120);
+
+        lblVentana1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
+        getContentPane().add(lblVentana1);
+        lblVentana1.setBounds(5, 5, 123, 56);
+
+        lblVentana2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
+        getContentPane().add(lblVentana2);
+        lblVentana2.setBounds(290, 300, 246, 140);
 
         Caja.setEnabled(false);
 
@@ -161,18 +194,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
 
         getContentPane().add(Caja);
-        Caja.setBounds(580, 30, 150, 410);
+        Caja.setBounds(540, 200, 150, 235);
 
         lblFondoMenu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoPrincipal.jpg"))); // NOI18N
         lblFondoMenu.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         lblFondoMenu.setIconTextGap(0);
         getContentPane().add(lblFondoMenu);
-        lblFondoMenu.setBounds(-55, -5, 640, 450);
+        lblFondoMenu.setBounds(0, -5, 700, 450);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblTiqueteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTiqueteMouseReleased
+        //Aqui llama lo de miller
+        
+    }//GEN-LAST:event_lblTiqueteMouseReleased
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -207,6 +245,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblHoraTitulo;
     private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblTiquete;
+    private javax.swing.JLabel lblVentana1;
+    private javax.swing.JLabel lblVentana2;
     private javax.swing.JTable tblCajaEmpleados;
     // End of variables declaration//GEN-END:variables
 }
