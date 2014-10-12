@@ -23,25 +23,38 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     DefaultTableModel CajaEmpleados = new DefaultTableModel();
     
     /**
-     * Método constructor de la clase
+     * Método constructor de la clase.
      */
     public VentanaPrincipal() { 
         initComponents();
         
         setTiempoVentana(); //Asigna la hora y fecha del sistema
         InicioTablaClientes(); //Inicializa la tabla con las cajas disponibles
-        setInfoBancos(); //Asigna el titulo y el logo    
+        setInfoBancos(); //Asigna el titulo y el logo 
     }
     
     /**
-     * Método que asigna el titulo y el logo
+     * Método que se encarga de asignar en la lista un nuevo valor.
+     */
+    private String AsignarUsuarios(){
+        /**
+         * LUUUUUUUUUUUUUCCCCCCCCCCIIIIIIIIIIIIIIIIIIIIIAAAAAAAAAAAAAA
+         * necesito que aqui ud vaya a consultar las 5 listas y si existe alguen 
+         * en espera que me lo retorne. si no existe nadie solo envia null 
+         * porque la tabla misma deja ese campo en vacío.
+         */
+        return null;
+    }
+    
+    /**
+     * Método que asigna el titulo y el logo.
      */
     private void setInfoBancos(){
         this.setTitle(Pa.getNombreBanco().toUpperCase() + ", bienvenidos!!");
     }
     
     /**
-     * Método que controla la fecha y la hora del sistema en tiempo real
+     * Método que controla la fecha y la hora del sistema en tiempo real.
      */
     private void setTiempoVentana(){
         //Procesos de calculo de la fecha
@@ -55,7 +68,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     }
     
     /**
-     * Método que inicializa la tabla con las cajas correspondientes
+     * Método que inicializa la tabla con las cajas correspondientes.
      */
     private void InicioTablaClientes(){
         CajaEmpleados = (DefaultTableModel) tblCajaEmpleados.getModel();
@@ -74,7 +87,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     }
     
     /**
-     * Método que libera los datos de la tabla para dejar ingresar mas usuarios
+     * Método que libera los datos de la tabla para dejar ingresar mas usuarios.
      */
     private void LiberarTabla(){
         
@@ -86,11 +99,15 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
             
             //Condicion que revisa si la fila se debe liberar
             if (Boolean.parseBoolean(Check)){
-                //llama al proceso de nuevos clientes
-                //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                String Dato = AsignarUsuarios();
                 
-                //Asigna en False de nuevo la fila
-                tblCajaEmpleados.setValueAt(false, i, 2);
+                //llama al proceso de nuevos clientes
+                tblCajaEmpleados.setValueAt(Dato, i, 1);
+                
+                if (Dato != null){
+                    //Asigna en False de nuevo la fila
+                    tblCajaEmpleados.setValueAt(false, i, 2);
+                }
             }
         }
     }
@@ -116,8 +133,6 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         lblFondoTabla = new javax.swing.JLabel();
         lblTiquete = new javax.swing.JLabel();
         lblFondoTiquete = new javax.swing.JLabel();
-        VentanaRegistroCliente = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         btnLiberar = new javax.swing.JButton();
         Caja = new javax.swing.JScrollPane();
         tblCajaEmpleados = new javax.swing.JTable();
@@ -125,6 +140,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Principal");
+        setMaximumSize(new java.awt.Dimension(700, 445));
         setMinimumSize(new java.awt.Dimension(700, 445));
         setResizable(false);
         getContentPane().setLayout(null);
@@ -133,6 +149,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         lblListaClientes.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         getContentPane().add(lblListaClientes);
         lblListaClientes.setBounds(295, 30, 210, 360);
+        lblListaClientes.getAccessibleContext().setAccessibleName("");
 
         lblLista1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
         getContentPane().add(lblLista1);
@@ -241,22 +258,6 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().add(lblFondoTiquete);
         lblFondoTiquete.setBounds(10, 268, 246, 140);
 
-        VentanaRegistroCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        VentanaRegistroCliente.setForeground(new java.awt.Color(255, 255, 255));
-        VentanaRegistroCliente.setText("Registrar Cliente");
-        VentanaRegistroCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                VentanaRegistroClienteMouseClicked(evt);
-            }
-        });
-        getContentPane().add(VentanaRegistroCliente);
-        VentanaRegistroCliente.setBounds(20, 120, 100, 50);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 120, 120, 50);
-
         btnLiberar.setBackground(new java.awt.Color(255, 204, 51));
         btnLiberar.setText("Liberar Cajas");
         btnLiberar.addActionListener(new java.awt.event.ActionListener() {
@@ -329,19 +330,24 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Abre la ventana de Tabla");
     }//GEN-LAST:event_lblTablaMouseReleased
 
+    /**
+     * Método que permite liberar la tabla para permitir ingresar nuevos 
+     * usuarios a las cajas
+     * @param evt 
+     */
     private void btnLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarActionPerformed
         LiberarTabla();
     }//GEN-LAST:event_btnLiberarActionPerformed
 
+    /**
+     * Método que llama a la ventana de nuevo tiquete para poder ingresar a un
+     * nuevo usuario.
+     * @param evt 
+     */
     private void lblTiqueteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTiqueteMouseReleased
-        JOptionPane.showMessageDialog(null, "Abre la ventana de Tiquete");
+        VentanaRegistroClientes VRC = new VentanaRegistroClientes();
+        VRC.show();
     }//GEN-LAST:event_lblTiqueteMouseReleased
-
-    private void VentanaRegistroClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VentanaRegistroClienteMouseClicked
-        // TODO add your handling code here:
-        VentanaRegistroClientes cliente = new VentanaRegistroClientes ();
-        cliente.setVisible(true);
-    }//GEN-LAST:event_VentanaRegistroClienteMouseClicked
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -369,9 +375,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane Caja;
-    private javax.swing.JLabel VentanaRegistroCliente;
     private javax.swing.JButton btnLiberar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblConfiguracion;
     private javax.swing.JLabel lblFecha1;
     private javax.swing.JLabel lblFecha2;
