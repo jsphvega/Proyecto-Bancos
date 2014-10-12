@@ -50,9 +50,9 @@ public final class VentanaRegistroClientes extends javax.swing.JFrame {
         Calendar Cal = Calendar.getInstance();
         String fecha = Cal.get(Cal.DATE) + "/" + (Cal.get(Cal.MONTH) + 1) + "/" + Cal.get(Cal.YEAR);
         jLabel2.setText(fecha);
-        
+
         administradorCorreo = new AdministradorCorreo();
-        
+
     }
 
     /**
@@ -399,7 +399,7 @@ public final class VentanaRegistroClientes extends javax.swing.JFrame {
                     Clientes cliente = new Clientes(Nombre, Correo, "Corporativos", Fecha, Hora);
                     Corporativos.queue(cliente);
                     sizeCorporativos = Corporativos.getTotalSize();
-                } else if (jCheckClienteRegular.isSelected()) {
+                } else { //Si no elije la categoria, se toma como regular
                     Prioridad = "Regulares";
                     Clientes cliente = new Clientes(Nombre, Correo, "Regulares", Fecha, Hora);
                     Regulares.queue(cliente);
@@ -411,12 +411,12 @@ public final class VentanaRegistroClientes extends javax.swing.JFrame {
                 administradorCorreo.enviarCorreoConfirmacion(Correo, Nombre, "A12", "C:\\Users\\RUBEN\\Dropbox\\Horarios buses MUSOC.jpg");
 
                 //EnviarEmail.sendMail(Nombre, Correo, Fecha, Hora);
-                System.out.println("se mando un correo");
+                //System.out.println("se mando un correo");
                 JOptionPane.showMessageDialog(null, "Datos Guardados");
 
                 setVisible(false);
             } else {
-                JOptionPane.showMessageDialog(null, "El correo no es valido valido");
+                JOptionPane.showMessageDialog(null, "El correo no es válido");
             }
         } catch (IOException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Ocurrio un error al ingresar los datos");
