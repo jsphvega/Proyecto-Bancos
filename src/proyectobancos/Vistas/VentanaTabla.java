@@ -1,5 +1,6 @@
 package proyectobancos.Vistas;
 
+import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
 import proyectobancos.Administradores.MergeSort;
 import proyectobancos.Constantes.Parametros;
@@ -23,8 +24,22 @@ public class VentanaTabla extends javax.swing.JFrame {
      */
     public VentanaTabla() {
         initComponents();
+        setInfoBancos();
+        
+        //Se modifica la Tabla
+        BarraTablaEstadistica.setOpaque(false);
+        BarraTablaEstadistica.getViewport().setOpaque(false);
+        tblTablaEstadistica.setBackground(new Color(0, 0, 0, 200));
     }
 
+    /**
+     * Método que asigna el titulo y el logo.
+     */
+    private void setInfoBancos(){
+        this.setTitle(Pa.getTitle());
+        this.setIconImage(Pa.getIcon());
+    }
+    
     /**
      * Método que permite asignar los datos de la lista en la tabla para su 
      * visualización.
@@ -81,6 +96,7 @@ public class VentanaTabla extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         lblCambio = new javax.swing.JLabel();
         lblBusqueda = new javax.swing.JLabel();
         lblFondoBusqueda = new javax.swing.JLabel();
@@ -90,12 +106,17 @@ public class VentanaTabla extends javax.swing.JFrame {
         lblFondoMenu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Tabla de Estadisticas");
         setMaximumSize(new java.awt.Dimension(700, 470));
         setMinimumSize(new java.awt.Dimension(700, 470));
         setPreferredSize(new java.awt.Dimension(700, 470));
         setResizable(false);
         getContentPane().setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 204, 51));
+        jLabel1.setText("Tabla de Estadisticas");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(10, 10, 441, 58);
 
         lblCambio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/cambiarTipoBusqueda.fw.png"))); // NOI18N
         lblCambio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -130,16 +151,22 @@ public class VentanaTabla extends javax.swing.JFrame {
         getContentPane().add(btnSalir);
         btnSalir.setBounds(570, 410, 120, 23);
 
+        tblTablaEstadistica.setForeground(new java.awt.Color(255, 255, 255));
         tblTablaEstadistica.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
                 "Nombre", "Correo", "Prioridad", "Fecha", "Hora"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                true, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -155,7 +182,7 @@ public class VentanaTabla extends javax.swing.JFrame {
         BarraTablaEstadistica.setViewportView(tblTablaEstadistica);
 
         getContentPane().add(BarraTablaEstadistica);
-        BarraTablaEstadistica.setBounds(10, 70, 680, 330);
+        BarraTablaEstadistica.setBounds(10, 80, 680, 320);
 
         lblFondoMenu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoPrincipal.jpg"))); // NOI18N
@@ -232,6 +259,7 @@ public class VentanaTabla extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane BarraTablaEstadistica;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblBusqueda;
     private javax.swing.JLabel lblCambio;
     private javax.swing.JLabel lblFondoBusqueda;
