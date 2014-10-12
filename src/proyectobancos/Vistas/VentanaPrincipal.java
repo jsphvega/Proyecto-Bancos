@@ -1,5 +1,6 @@
 package proyectobancos.Vistas;
 
+import java.awt.Color;
 import java.util.Calendar; //Importa el calendario
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel; //Importa modelo genérico de tablas.
@@ -28,7 +29,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() { 
         initComponents();
         
-        setTiempoVentana(); //Asigna la hora y fecha del sistema
+        setVentana(); //Asigna la hora y fecha del sistema
         InicioTablaClientes(); //Inicializa la tabla con las cajas disponibles
         setInfoBancos(); //Asigna el titulo y el logo 
     }
@@ -56,7 +57,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Método que controla la fecha y la hora del sistema en tiempo real.
      */
-    private void setTiempoVentana(){
+    private void setVentana(){
         //Procesos de calculo de la fecha
         Calendar Cal= Calendar.getInstance();
         lblFecha1.setText(Cal.get(Calendar.DATE) + "/" + (Cal.get(Calendar.MONTH)+1)
@@ -65,6 +66,15 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         //Procesos de calculo de la hora en tiempo real
         Reloj hora = new Reloj(lblHora2);
         hora.start();
+        
+        //Se modifica el TextArea
+        BarraListaClientes.setOpaque(false);
+        BarraListaClientes.getViewport().setOpaque(false);
+        BarraListaClientes.setBorder(null);
+        BarraListaClientes.setViewportBorder(null);
+
+        txtListaClientes.setBorder(null);
+        txtListaClientes.setBackground(new Color(0, 0, 0, 0));
     }
     
     /**
@@ -112,8 +122,6 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
                     txtListaClientes.setText(Dato + "\n" + 
                             txtListaClientes.getText());
                 }
-                    txtListaClientes.setText(Dato + "\n" + 
-                            txtListaClientes.getText());
             }
         }
     }
@@ -157,6 +165,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         txtListaClientes.setColumns(20);
         txtListaClientes.setRows(5);
         txtListaClientes.setEnabled(false);
+        txtListaClientes.setOpaque(false);
         BarraListaClientes.setViewportView(txtListaClientes);
 
         getContentPane().add(BarraListaClientes);
