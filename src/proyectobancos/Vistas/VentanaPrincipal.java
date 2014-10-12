@@ -73,9 +73,25 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         tblCajaEmpleados.setModel(CajaEmpleados);
     }
     
+    /**
+     * Método que libera los datos de la tabla para dejar ingresar mas usuarios
+     */
     private void LiberarTabla(){
+        
+        //Ciclo que revisa cada campo de la tabla para comprobar si lo libera.
         for (int i=0; i<Pa.getCajas(); i++){
             
+            //Almacena el dato de la columna "Libre"
+            String Check = String.valueOf(tblCajaEmpleados.getValueAt(i, 2));
+            
+            //Condicion que revisa si la fila se debe liberar
+            if (Boolean.parseBoolean(Check)){
+                //llama al proceso de nuevos clientes
+                //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                
+                //Asigna en False de nuevo la fila
+                tblCajaEmpleados.setValueAt(false, i, 2);
+            }
         }
     }
     
