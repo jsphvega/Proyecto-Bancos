@@ -5,15 +5,13 @@ import javax.swing.ImageIcon;
 
 public class Parametros {
     
-<<<<<<< HEAD
-    private int Cajas = 100;
-=======
+
     //Constantes
     private String tipoBusqueda = "Nombre";
     
     //Variables
     private int Cajas = 13;
->>>>>>> origin/master
+
     private String NombreBanco = "Mi banco";
     private String FotoBanco = "C:\\Users\\Joseph\\Pictures\\Abstractas\\Paisaje #02.jpg";
 
