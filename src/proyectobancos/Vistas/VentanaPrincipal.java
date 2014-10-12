@@ -116,6 +116,8 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         lblFondoTabla = new javax.swing.JLabel();
         lblTiquete = new javax.swing.JLabel();
         lblFondoTiquete = new javax.swing.JLabel();
+        VentanaRegistroCliente = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         btnLiberar = new javax.swing.JButton();
         Caja = new javax.swing.JScrollPane();
         tblCajaEmpleados = new javax.swing.JTable();
@@ -123,7 +125,6 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Principal");
-        setMaximumSize(new java.awt.Dimension(700, 445));
         setMinimumSize(new java.awt.Dimension(700, 445));
         setResizable(false);
         getContentPane().setLayout(null);
@@ -132,7 +133,6 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         lblListaClientes.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         getContentPane().add(lblListaClientes);
         lblListaClientes.setBounds(295, 30, 210, 360);
-        lblListaClientes.getAccessibleContext().setAccessibleName("");
 
         lblLista1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
         getContentPane().add(lblLista1);
@@ -241,6 +241,22 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().add(lblFondoTiquete);
         lblFondoTiquete.setBounds(10, 268, 246, 140);
 
+        VentanaRegistroCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        VentanaRegistroCliente.setForeground(new java.awt.Color(255, 255, 255));
+        VentanaRegistroCliente.setText("Registrar Cliente");
+        VentanaRegistroCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VentanaRegistroClienteMouseClicked(evt);
+            }
+        });
+        getContentPane().add(VentanaRegistroCliente);
+        VentanaRegistroCliente.setBounds(20, 120, 100, 50);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(10, 120, 120, 50);
+
         btnLiberar.setBackground(new java.awt.Color(255, 204, 51));
         btnLiberar.setText("Liberar Cajas");
         btnLiberar.addActionListener(new java.awt.event.ActionListener() {
@@ -321,6 +337,12 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Abre la ventana de Tiquete");
     }//GEN-LAST:event_lblTiqueteMouseReleased
 
+    private void VentanaRegistroClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VentanaRegistroClienteMouseClicked
+        // TODO add your handling code here:
+        VentanaRegistroClientes cliente = new VentanaRegistroClientes ();
+        cliente.setVisible(true);
+    }//GEN-LAST:event_VentanaRegistroClienteMouseClicked
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -347,7 +369,9 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane Caja;
+    private javax.swing.JLabel VentanaRegistroCliente;
     private javax.swing.JButton btnLiberar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblConfiguracion;
     private javax.swing.JLabel lblFecha1;
     private javax.swing.JLabel lblFecha2;
