@@ -97,7 +97,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     }
     
     /**
-     * Método que libera los datos de la tabla para dejar ingresar mas usuarios.
+     * Método que acomoda los datos de la tabla para dejar ingresar mas usuarios.
      */
     private void AplicarEnTabla(){
         
@@ -350,12 +350,17 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Abre la ventana de Graficos");
     }//GEN-LAST:event_lblGraficosMouseReleased
 
+    /**
+     * Método que permite ver la tabla de clientes de las cajas.
+     * @param evt 
+     */
     private void lblTablaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTablaMouseReleased
-        JOptionPane.showMessageDialog(null, "Abre la ventana de Tabla");
+        VentanaTabla VT = new VentanaTabla();
+        VT.show();
     }//GEN-LAST:event_lblTablaMouseReleased
 
     /**
-     * Método que permite liberar la tabla para permitir ingresar nuevos 
+     * Método que permite acomodar la tabla para permitir ingresar nuevos 
      * usuarios a las cajas
      * @param evt 
      */

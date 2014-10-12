@@ -1,14 +1,12 @@
 package proyectobancos.Vistas;
+import proyectobancos.Administradores.Lista;
 import java.awt.HeadlessException;
-import java.awt.Image;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import proyectobancos.Administradores.Clientes;
 import proyectobancos.Administradores.CorreoClientes;
