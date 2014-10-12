@@ -5,6 +5,16 @@ public class Parametros {
     private int Cajas = 13;
     private String NombreBanco = "Mi banco";
     private String FotoBanco = "C:\\Users\\Joseph\\Pictures\\Abstractas\\Paisaje #02.jpg";
+    
+    private String tipoBusqueda = "Nombre";
+
+    public String getTipoBusqueda() {
+        return tipoBusqueda;
+    }
+
+    public void setTipoBusqueda(String tipoBusqueda) {
+        this.tipoBusqueda = tipoBusqueda;
+    }
 
     public String getNombreBanco() {
         return NombreBanco;

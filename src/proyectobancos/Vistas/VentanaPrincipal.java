@@ -51,7 +51,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
      * Método que asigna el titulo y el logo.
      */
     private void setInfoBancos(){
-        this.setTitle(Pa.getNombreBanco().toUpperCase() + ", bienvenidos!!");
+        this.setTitle(Pa.getNombreBanco().toUpperCase() + ", Bienvenidos!!");
     }
     
     /**
@@ -342,10 +342,18 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método que permite ver las configuraciones del programa.
+     * @param evt 
+     */
     private void lblConfiguracionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConfiguracionMouseReleased
         JOptionPane.showMessageDialog(null, "Abre la ventana de Configuracion");
     }//GEN-LAST:event_lblConfiguracionMouseReleased
 
+    /**
+     * Método que permite ver los gráficos de clientes de las cajas.
+     * @param evt 
+     */
     private void lblGraficosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGraficosMouseReleased
         JOptionPane.showMessageDialog(null, "Abre la ventana de Graficos");
     }//GEN-LAST:event_lblGraficosMouseReleased
@@ -361,7 +369,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
 
     /**
      * Método que permite acomodar la tabla para permitir ingresar nuevos 
-     * usuarios a las cajas
+     * usuarios a las cajas.
      * @param evt 
      */
     private void btnLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarActionPerformed
