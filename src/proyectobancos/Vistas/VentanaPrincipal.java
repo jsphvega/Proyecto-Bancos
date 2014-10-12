@@ -89,7 +89,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Método que libera los datos de la tabla para dejar ingresar mas usuarios.
      */
-    private void LiberarTabla(){
+    private void AplicarEnTabla(){
         
         //Ciclo que revisa cada campo de la tabla para comprobar si lo libera.
         for (int i=0; i<Pa.getCajas(); i++){
@@ -104,10 +104,16 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
                 //llama al proceso de nuevos clientes
                 tblCajaEmpleados.setValueAt(Dato, i, 1);
                 
-                if (Dato != null){
+                if (Dato != null){                    
                     //Asigna en False de nuevo la fila
                     tblCajaEmpleados.setValueAt(false, i, 2);
+                    
+                    //Asigna los datos en la nueva lista
+                    txtListaClientes.setText(Dato + "\n" + 
+                            txtListaClientes.getText());
                 }
+                    txtListaClientes.setText(Dato + "\n" + 
+                            txtListaClientes.getText());
             }
         }
     }
@@ -116,10 +122,12 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblListaClientes = new javax.swing.JLabel();
-        lblLista1 = new javax.swing.JLabel();
-        lblLista2 = new javax.swing.JLabel();
-        lblLista3 = new javax.swing.JLabel();
+        BarraListaClientes = new javax.swing.JScrollPane();
+        txtListaClientes = new javax.swing.JTextArea();
+        lblFondoTiquete1 = new javax.swing.JLabel();
+        lblFondoTiquete2 = new javax.swing.JLabel();
+        lblFondoTiquete3 = new javax.swing.JLabel();
+        lblFondoTiquete4 = new javax.swing.JLabel();
         lblHora1 = new javax.swing.JLabel();
         lblHora2 = new javax.swing.JLabel();
         lblFecha1 = new javax.swing.JLabel();
@@ -134,34 +142,41 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         lblTiquete = new javax.swing.JLabel();
         lblFondoTiquete = new javax.swing.JLabel();
         btnLiberar = new javax.swing.JButton();
-        Caja = new javax.swing.JScrollPane();
+        BarraCajaEmpleados = new javax.swing.JScrollPane();
         tblCajaEmpleados = new javax.swing.JTable();
         lblFondoMenu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Principal");
-        setMaximumSize(new java.awt.Dimension(700, 445));
         setMinimumSize(new java.awt.Dimension(700, 445));
         setResizable(false);
         getContentPane().setLayout(null);
 
-        lblListaClientes.setForeground(new java.awt.Color(255, 255, 255));
-        lblListaClientes.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(lblListaClientes);
-        lblListaClientes.setBounds(295, 30, 210, 360);
-        lblListaClientes.getAccessibleContext().setAccessibleName("");
+        BarraListaClientes.setEnabled(false);
 
-        lblLista1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
-        getContentPane().add(lblLista1);
-        lblLista1.setBounds(280, 10, 246, 140);
+        txtListaClientes.setColumns(20);
+        txtListaClientes.setRows(5);
+        txtListaClientes.setEnabled(false);
+        BarraListaClientes.setViewportView(txtListaClientes);
 
-        lblLista2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
-        getContentPane().add(lblLista2);
-        lblLista2.setBounds(280, 139, 246, 140);
+        getContentPane().add(BarraListaClientes);
+        BarraListaClientes.setBounds(285, 10, 230, 395);
 
-        lblLista3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
-        getContentPane().add(lblLista3);
-        lblLista3.setBounds(280, 268, 246, 140);
+        lblFondoTiquete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
+        getContentPane().add(lblFondoTiquete1);
+        lblFondoTiquete1.setBounds(277, -60, 246, 140);
+
+        lblFondoTiquete2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
+        getContentPane().add(lblFondoTiquete2);
+        lblFondoTiquete2.setBounds(277, 69, 246, 140);
+
+        lblFondoTiquete3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
+        getContentPane().add(lblFondoTiquete3);
+        lblFondoTiquete3.setBounds(277, 198, 246, 140);
+
+        lblFondoTiquete4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
+        getContentPane().add(lblFondoTiquete4);
+        lblFondoTiquete4.setBounds(277, 327, 246, 140);
 
         lblHora1.setForeground(new java.awt.Color(255, 255, 255));
         lblHora1.setText("HORA:");
@@ -243,7 +258,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         lblTiquete.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblTiquete.setForeground(new java.awt.Color(255, 255, 255));
         lblTiquete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTiquete.setLabelFor(Caja);
+        lblTiquete.setLabelFor(BarraCajaEmpleados);
         lblTiquete.setText("Tiquete");
         lblTiquete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblTiquete.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -268,7 +283,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().add(btnLiberar);
         btnLiberar.setBounds(540, 10, 150, 30);
 
-        Caja.setEnabled(false);
+        BarraCajaEmpleados.setEnabled(false);
 
         tblCajaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -297,15 +312,15 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         tblCajaEmpleados.setGridColor(new java.awt.Color(255, 204, 51));
         tblCajaEmpleados.setSelectionBackground(new java.awt.Color(255, 204, 51));
         tblCajaEmpleados.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        Caja.setViewportView(tblCajaEmpleados);
+        BarraCajaEmpleados.setViewportView(tblCajaEmpleados);
         if (tblCajaEmpleados.getColumnModel().getColumnCount() > 0) {
             tblCajaEmpleados.getColumnModel().getColumn(0).setResizable(false);
             tblCajaEmpleados.getColumnModel().getColumn(1).setResizable(false);
             tblCajaEmpleados.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        getContentPane().add(Caja);
-        Caja.setBounds(540, 45, 150, 360);
+        getContentPane().add(BarraCajaEmpleados);
+        BarraCajaEmpleados.setBounds(540, 45, 150, 360);
 
         lblFondoMenu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoPrincipal.jpg"))); // NOI18N
@@ -336,7 +351,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarActionPerformed
-        LiberarTabla();
+        AplicarEnTabla();
     }//GEN-LAST:event_btnLiberarActionPerformed
 
     /**
@@ -347,6 +362,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     private void lblTiqueteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTiqueteMouseReleased
         VentanaRegistroClientes VRC = new VentanaRegistroClientes();
         VRC.show();
+        AplicarEnTabla();
     }//GEN-LAST:event_lblTiqueteMouseReleased
 
     public static void main(String args[]) {
@@ -374,7 +390,8 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane Caja;
+    private javax.swing.JScrollPane BarraCajaEmpleados;
+    private javax.swing.JScrollPane BarraListaClientes;
     private javax.swing.JButton btnLiberar;
     private javax.swing.JLabel lblConfiguracion;
     private javax.swing.JLabel lblFecha1;
@@ -384,16 +401,17 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblFondoMenu;
     private javax.swing.JLabel lblFondoTabla;
     private javax.swing.JLabel lblFondoTiquete;
+    private javax.swing.JLabel lblFondoTiquete1;
+    private javax.swing.JLabel lblFondoTiquete2;
+    private javax.swing.JLabel lblFondoTiquete3;
+    private javax.swing.JLabel lblFondoTiquete4;
     private javax.swing.JLabel lblGraficos;
     private javax.swing.JLabel lblHora1;
     private javax.swing.JLabel lblHora2;
     private javax.swing.JLabel lblHoraFechaFondo;
-    private javax.swing.JLabel lblLista1;
-    private javax.swing.JLabel lblLista2;
-    private javax.swing.JLabel lblLista3;
-    private javax.swing.JLabel lblListaClientes;
     private javax.swing.JLabel lblTabla;
     private javax.swing.JLabel lblTiquete;
     private javax.swing.JTable tblCajaEmpleados;
+    private javax.swing.JTextArea txtListaClientes;
     // End of variables declaration//GEN-END:variables
 }
