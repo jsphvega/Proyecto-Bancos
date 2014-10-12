@@ -6,10 +6,24 @@
 
 package proyectobancos.Administradores;
 
+import proyectobancos.Administradores.estructuras.ListaSimplementeEnlazadaGenerica;
+
 /**
  *
  * @author Lucia
  */
 public class AdministradorPrincipal {
+    
+    ListaSimplementeEnlazadaGenerica<Clientes> listaClientes;
+
+    public AdministradorPrincipal() {
+        listaClientes = new ListaSimplementeEnlazadaGenerica<>();
+    }
+    
+    public void agregarCliente(){
+        
+    }
+    
+    
     
 }
