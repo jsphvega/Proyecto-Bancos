@@ -76,7 +76,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         //Se modifica la Tabla
         BarraCajaEmpleados.setOpaque(false);
         BarraCajaEmpleados.getViewport().setOpaque(false);
-        tblCajaEmpleados.setBackground(Color.BLACK);
+        tblCajaEmpleados.setBackground(new Color(255, 255, 255, 255));
     }
     
     /**
@@ -284,7 +284,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().add(lblFondoTiquete);
         lblFondoTiquete.setBounds(10, 268, 246, 140);
 
-        btnLiberar.setBackground(new java.awt.Color(255, 204, 51));
+        btnLiberar.setBackground(new java.awt.Color(255, 255, 255));
         btnLiberar.setText("Liberar Cajas");
         btnLiberar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,7 +296,6 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
 
         BarraCajaEmpleados.setEnabled(false);
 
-        tblCajaEmpleados.setForeground(new java.awt.Color(255, 255, 255));
         tblCajaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -321,9 +320,8 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         tblCajaEmpleados.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        tblCajaEmpleados.setGridColor(new java.awt.Color(255, 204, 51));
-        tblCajaEmpleados.setSelectionBackground(new java.awt.Color(255, 204, 51));
-        tblCajaEmpleados.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tblCajaEmpleados.setGridColor(new java.awt.Color(0, 0, 0));
+        tblCajaEmpleados.setSelectionBackground(new java.awt.Color(0, 0, 0));
         BarraCajaEmpleados.setViewportView(tblCajaEmpleados);
         if (tblCajaEmpleados.getColumnModel().getColumnCount() > 0) {
             tblCajaEmpleados.getColumnModel().getColumn(0).setResizable(false);

@@ -138,30 +138,30 @@ public class VentanaTabla extends javax.swing.JFrame {
         lblHora2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblHora2.setText("hora");
         getContentPane().add(lblHora2);
-        lblHora2.setBounds(55, 10, 70, 20);
+        lblHora2.setBounds(55, 15, 70, 20);
 
         lblHora1.setForeground(new java.awt.Color(255, 255, 255));
         lblHora1.setText("HORA:");
         getContentPane().add(lblHora1);
-        lblHora1.setBounds(15, 10, 40, 20);
+        lblHora1.setBounds(15, 15, 40, 20);
 
         lblFecha2.setForeground(new java.awt.Color(255, 255, 255));
         lblFecha2.setText("FECHA:");
         getContentPane().add(lblFecha2);
-        lblFecha2.setBounds(15, 35, 40, 20);
+        lblFecha2.setBounds(15, 40, 40, 20);
 
         lblFecha1.setForeground(new java.awt.Color(255, 255, 255));
         lblFecha1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFecha1.setText("fecha");
         getContentPane().add(lblFecha1);
-        lblFecha1.setBounds(55, 35, 70, 20);
+        lblFecha1.setBounds(55, 40, 70, 20);
 
         lblHoraFechaFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
         getContentPane().add(lblHoraFechaFondo);
-        lblHoraFechaFondo.setBounds(8, 5, 123, 56);
+        lblHoraFechaFondo.setBounds(8, 10, 123, 56);
 
         lblSubTitulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        lblSubTitulo.setForeground(new java.awt.Color(255, 204, 51));
+        lblSubTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblSubTitulo.setText("Tabla de Estadisticas");
         getContentPane().add(lblSubTitulo);
         lblSubTitulo.setBounds(160, 15, 331, 44);
@@ -189,7 +189,7 @@ public class VentanaTabla extends javax.swing.JFrame {
         getContentPane().add(lblFondoBusqueda);
         lblFondoBusqueda.setBounds(510, 10, 123, 56);
 
-        btnSalir.setBackground(new java.awt.Color(255, 204, 51));
+        btnSalir.setBackground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Volver al menú");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,7 +202,8 @@ public class VentanaTabla extends javax.swing.JFrame {
         tblTablaEstadistica.setForeground(new java.awt.Color(255, 255, 255));
         tblTablaEstadistica.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
                 "Nombre", "Correo", "Prioridad", "Fecha", "Hora"
@@ -217,10 +218,9 @@ public class VentanaTabla extends javax.swing.JFrame {
             }
         });
         tblTablaEstadistica.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        tblTablaEstadistica.setGridColor(new java.awt.Color(255, 204, 51));
+        tblTablaEstadistica.setGridColor(new java.awt.Color(0, 0, 0));
         tblTablaEstadistica.setOpaque(false);
-        tblTablaEstadistica.setSelectionBackground(new java.awt.Color(255, 204, 51));
-        tblTablaEstadistica.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tblTablaEstadistica.setSelectionBackground(new java.awt.Color(0, 0, 0));
         tblTablaEstadistica.getTableHeader().setReorderingAllowed(false);
         BarraTablaEstadistica.setViewportView(tblTablaEstadistica);
 
@@ -228,8 +228,8 @@ public class VentanaTabla extends javax.swing.JFrame {
         BarraTablaEstadistica.setBounds(10, 80, 680, 320);
 
         lblFondoMenu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoPrincipal.jpg"))); // NOI18N
-        lblFondoMenu.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/bgPrincipal.png"))); // NOI18N
+        lblFondoMenu.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lblFondoMenu.setIconTextGap(0);
         getContentPane().add(lblFondoMenu);
         lblFondoMenu.setBounds(0, -5, 700, 450);
