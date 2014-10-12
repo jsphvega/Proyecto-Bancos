@@ -1,7 +1,10 @@
 package proyectobancos.Vistas;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.util.Calendar; //Importa el calendario
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel; //Importa modelo genérico de tablas.
 
@@ -32,7 +35,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         setVentana(); //Asigna la hora y fecha del sistema
         InicioTablaClientes(); //Inicializa la tabla con las cajas disponibles
         setInfoBancos(); //Asigna el titulo y el logo 
-    }
+    }   
     
     /**
      * Método que se encarga de asignar en la lista un nuevo valor.
@@ -51,7 +54,8 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
      * Método que asigna el titulo y el logo.
      */
     private void setInfoBancos(){
-        this.setTitle(Pa.getNombreBanco().toUpperCase() + ", Bienvenidos!!");
+        this.setTitle(Pa.getTitle());
+        this.setIconImage(Pa.getIcon());
     }
     
     /**
@@ -70,11 +74,12 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         //Se modifica el TextArea
         BarraListaClientes.setOpaque(false);
         BarraListaClientes.getViewport().setOpaque(false);
-        BarraListaClientes.setBorder(null);
-        BarraListaClientes.setViewportBorder(null);
-
-        txtListaClientes.setBorder(null);
         txtListaClientes.setBackground(new Color(0, 0, 0, 0));
+        
+        //Se modifica la Tabla
+        BarraCajaEmpleados.setOpaque(false);
+        BarraCajaEmpleados.getViewport().setOpaque(false);
+        tblCajaEmpleados.setBackground(Color.BLACK);
     }
     
     /**
@@ -169,7 +174,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         BarraListaClientes.setViewportView(txtListaClientes);
 
         getContentPane().add(BarraListaClientes);
-        BarraListaClientes.setBounds(285, 10, 230, 395);
+        BarraListaClientes.setBounds(285, 0, 230, 420);
 
         lblFondoTiquete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
         getContentPane().add(lblFondoTiquete1);
@@ -294,6 +299,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
 
         BarraCajaEmpleados.setEnabled(false);
 
+        tblCajaEmpleados.setForeground(new java.awt.Color(255, 255, 255));
         tblCajaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
