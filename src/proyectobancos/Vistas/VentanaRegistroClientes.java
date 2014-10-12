@@ -39,7 +39,7 @@ public final class VentanaRegistroClientes extends javax.swing.JFrame {
         Cajas = new Lista();
         DisponibilidadCajas = new Lista();
         
-        EnviarEmail = new CorreoClientes("correo server","contrase;a",imagen,imagen,"Correo Confirmacion");
+        EnviarEmail = new CorreoClientes("miller.ruizurbina@gmail.com","17042007",imagen,imagen,"Correo Confirmacion");
         initComponents();
         getContentPane().setBackground(new java.awt.Color(255,255,255));
         setResizable(false);
