@@ -1,10 +1,7 @@
 package proyectobancos.Vistas;
 
 import java.awt.Color;
-import java.awt.Image;
 import java.util.Calendar; //Importa el calendario
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel; //Importa modelo genérico de tablas.
 

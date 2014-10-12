@@ -1,8 +1,10 @@
 package proyectobancos.Vistas;
 
 import java.awt.Color;
+import java.util.Calendar;
 import javax.swing.table.DefaultTableModel;
 import proyectobancos.Administradores.MergeSort;
+import proyectobancos.Administradores.Reloj;
 import proyectobancos.Constantes.Parametros;
 
 /**
@@ -25,11 +27,7 @@ public class VentanaTabla extends javax.swing.JFrame {
     public VentanaTabla() {
         initComponents();
         setInfoBancos();
-        
-        //Se modifica la Tabla
-        BarraTablaEstadistica.setOpaque(false);
-        BarraTablaEstadistica.getViewport().setOpaque(false);
-        tblTablaEstadistica.setBackground(new Color(0, 0, 0, 200));
+        setVentana();
     }
 
     /**
@@ -52,6 +50,25 @@ public class VentanaTabla extends javax.swing.JFrame {
          * en la lista. La forma de asignar datos ya la aplique en otro proceso, 
          * entonces es solo copiar y pegar algunas cosas.
          */
+    }
+    
+    /**
+     * Método que controla la fecha y la hora del sistema en tiempo real.
+     */
+    private void setVentana(){
+        //Procesos de calculo de la fecha
+        Calendar Cal= Calendar.getInstance();
+        lblFecha1.setText(Cal.get(Calendar.DATE) + "/" + (Cal.get(Calendar.MONTH)+1)
+                + "/" + Cal.get(Calendar.YEAR));
+        
+        //Procesos de calculo de la hora en tiempo real
+        Reloj hora = new Reloj(lblHora2);
+        hora.start();
+        
+        //Se modifica la Tabla
+        BarraTablaEstadistica.setOpaque(false);
+        BarraTablaEstadistica.getViewport().setOpaque(false);
+        tblTablaEstadistica.setBackground(new Color(0,0,0,100));
     }
     
     /**
@@ -96,7 +113,12 @@ public class VentanaTabla extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblHora2 = new javax.swing.JLabel();
+        lblHora1 = new javax.swing.JLabel();
+        lblFecha2 = new javax.swing.JLabel();
+        lblFecha1 = new javax.swing.JLabel();
+        lblHoraFechaFondo = new javax.swing.JLabel();
+        lblSubTitulo = new javax.swing.JLabel();
         lblCambio = new javax.swing.JLabel();
         lblBusqueda = new javax.swing.JLabel();
         lblFondoBusqueda = new javax.swing.JLabel();
@@ -112,11 +134,37 @@ public class VentanaTabla extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 204, 51));
-        jLabel1.setText("Tabla de Estadisticas");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 10, 441, 58);
+        lblHora2.setForeground(new java.awt.Color(255, 255, 255));
+        lblHora2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblHora2.setText("hora");
+        getContentPane().add(lblHora2);
+        lblHora2.setBounds(55, 10, 70, 20);
+
+        lblHora1.setForeground(new java.awt.Color(255, 255, 255));
+        lblHora1.setText("HORA:");
+        getContentPane().add(lblHora1);
+        lblHora1.setBounds(15, 10, 40, 20);
+
+        lblFecha2.setForeground(new java.awt.Color(255, 255, 255));
+        lblFecha2.setText("FECHA:");
+        getContentPane().add(lblFecha2);
+        lblFecha2.setBounds(15, 35, 40, 20);
+
+        lblFecha1.setForeground(new java.awt.Color(255, 255, 255));
+        lblFecha1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblFecha1.setText("fecha");
+        getContentPane().add(lblFecha1);
+        lblFecha1.setBounds(55, 35, 70, 20);
+
+        lblHoraFechaFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
+        getContentPane().add(lblHoraFechaFondo);
+        lblHoraFechaFondo.setBounds(8, 5, 123, 56);
+
+        lblSubTitulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblSubTitulo.setForeground(new java.awt.Color(255, 204, 51));
+        lblSubTitulo.setText("Tabla de Estadisticas");
+        getContentPane().add(lblSubTitulo);
+        lblSubTitulo.setBounds(160, 15, 331, 44);
 
         lblCambio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/cambiarTipoBusqueda.fw.png"))); // NOI18N
         lblCambio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -154,19 +202,14 @@ public class VentanaTabla extends javax.swing.JFrame {
         tblTablaEstadistica.setForeground(new java.awt.Color(255, 255, 255));
         tblTablaEstadistica.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Nombre", "Correo", "Prioridad", "Fecha", "Hora"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -259,11 +302,16 @@ public class VentanaTabla extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane BarraTablaEstadistica;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblBusqueda;
     private javax.swing.JLabel lblCambio;
+    private javax.swing.JLabel lblFecha1;
+    private javax.swing.JLabel lblFecha2;
     private javax.swing.JLabel lblFondoBusqueda;
     private javax.swing.JLabel lblFondoMenu;
+    private javax.swing.JLabel lblHora1;
+    private javax.swing.JLabel lblHora2;
+    private javax.swing.JLabel lblHoraFechaFondo;
+    private javax.swing.JLabel lblSubTitulo;
     private javax.swing.JTable tblTablaEstadistica;
     // End of variables declaration//GEN-END:variables
 }
