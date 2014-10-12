@@ -17,7 +17,7 @@ import proyectobancos.Administradores.Reloj;
 public final class VentanaPrincipal extends javax.swing.JFrame {
     
     //Clase que contiene los parámetros de la clase
-    Parametros pa = new Parametros();
+    Parametros Pa = new Parametros();
     
     //Permite crear una tabla generica para modificar datos facilmente
     DefaultTableModel CajaEmpleados = new DefaultTableModel();
@@ -28,22 +28,22 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() { 
         initComponents();
         
-        TiempoVentana(); //Asigna la hora y fecha del sistema
+        setTiempoVentana(); //Asigna la hora y fecha del sistema
         InicioTablaClientes(); //Inicializa la tabla con las cajas disponibles
-        FotoTituloVentana(); //Asigna el titulo y el logo    
+        setInfoBancos(); //Asigna el titulo y el logo    
     }
     
     /**
      * Método que asigna el titulo y el logo
      */
-    public void FotoTituloVentana(){
-        this.setTitle(pa.getNombreBanco().toUpperCase() + ", bienvenidos!!");
+    private void setInfoBancos(){
+        this.setTitle(Pa.getNombreBanco().toUpperCase() + ", bienvenidos!!");
     }
     
     /**
      * Método que controla la fecha y la hora del sistema en tiempo real
      */
-    public final void TiempoVentana(){
+    private void setTiempoVentana(){
         //Procesos de calculo de la fecha
         Calendar Cal= Calendar.getInstance();
         lblFecha1.setText(Cal.get(Calendar.DATE) + "/" + (Cal.get(Calendar.MONTH)+1)
@@ -65,12 +65,18 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         Dato[2] = false;
         
         //Ciclo qur asigna cada campo a la tabla
-        for (int i = 1; i <= pa.getCajas(); i++){
+        for (int i = 1; i <= Pa.getCajas(); i++){
             Dato[0] = i;
             CajaEmpleados.addRow(Dato);        
         }
         
         tblCajaEmpleados.setModel(CajaEmpleados);
+    }
+    
+    private void LiberarTabla(){
+        for (int i=0; i<Pa.getCajas(); i++){
+            
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -292,7 +298,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_lblTablaMouseReleased
 
     private void btnLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarActionPerformed
-        
+        LiberarTabla();
     }//GEN-LAST:event_btnLiberarActionPerformed
 
     private void lblTiqueteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTiqueteMouseReleased
