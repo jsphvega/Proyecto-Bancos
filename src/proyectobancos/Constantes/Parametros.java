@@ -2,7 +2,7 @@ package proyectobancos.Constantes;
 
 public class Parametros {
     
-    private int Cajas = 13;
+    private int Cajas = 100;
     private String NombreBanco = "Mi banco";
     private String FotoBanco = "C:\\Users\\Joseph\\Pictures\\Abstractas\\Paisaje #02.jpg";
     
