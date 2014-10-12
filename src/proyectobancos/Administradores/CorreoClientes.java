@@ -88,77 +88,20 @@ public class CorreoClientes {
             return false;
         }        
     }
-    //constructor del correo para la asignacion de la caja
-//    public boolean sendMail(String caja, String cliente, String destinatario){
-//        this.destinatario = destinatario;
-//        try
-//        {
-//            Properties props = new Properties();
-//            props.put("mail.smtp.host", "smtp.gmail.com");
-//            props.setProperty("mail.smtp.starttls.enable", "true");
-//            props.setProperty("mail.smtp.port", "587");
-//            props.setProperty("mail.smtp.user", usuarioCorreo);
-//            props.setProperty("mail.smtp.auth", "true");
-//
-//            Session session = Session.getDefaultInstance(props, null);
-//            BodyPart texto = new MimeBodyPart();
-//            texto.setText( "Estimado cliente "+cliente+" por favor pase a la " + caja);//Mensaje por defecto para que el cliente pase a la caja asignada
-//
-//            BodyPart adjunto = new MimeBodyPart();
-//            if (!rutaArchivo.equals("")){
-//                 adjunto.setDataHandler(
-//                    new DataHandler(new FileDataSource(rutaArchivo)));
-//                adjunto.setFileName(nombreArchivo);                
-//            }
-//
-//            MimeMultipart multiParte = new MimeMultipart();
-//            multiParte.addBodyPart(texto);
-//            if (!rutaArchivo.equals("")){
-//                multiParte.addBodyPart(adjunto);
-//            }
-//
-//            MimeMessage message = new MimeMessage(session);
-//            message.setFrom(new InternetAddress(usuarioCorreo));
-//            message.addRecipient(
-//                Message.RecipientType.TO,
-//                new InternetAddress(destinatario));
-//                message.setSubject(asunto);
-//            message.setContent(multiParte);
-//
-//            Transport t = session.getTransport("smtp");
-//            t.connect(usuarioCorreo, password);
-//            t.sendMessage(message, message.getAllRecipients());
-//            t.close();
-//            return true;
-//        }
-//        catch (Exception e)
-//        {
-//            e.printStackTrace();
-//            return false;
-//        }        
-//    }
+    
 //    
-   public boolean sendMail(String caja, String cliente, String destinatario){
+    public boolean sendMail(String caja, String cliente, String destinatario){
         this.destinatario = destinatario;
         try
         {
             Properties props = new Properties();
-            
-            props.setProperty("mail.transport.protocol", "smtp");   
-            props.setProperty("mail.host", "smtp.live.com"); 
-            props.put("mail.smtp.starttls.enable", "true");  
-            props.put("mail.smtp.auth", "true");   
-            //props.put("mail.smtp.port", "587");   
-            props.put("smtp.starttls.enable", "true");
-            props.put("mail.smtp.socketFactory.fallback", "false");   
-            props.setProperty("mail.smtp.quitwait", "false");
-            
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.setProperty("mail.smtp.starttls.enable", "true");
+            props.setProperty("mail.smtp.port", "587");
             props.setProperty("mail.smtp.user", usuarioCorreo);
-            
-            
+            props.setProperty("mail.smtp.auth", "true"); 
+              
             Session session = Session.getDefaultInstance(props, null);
-            session.setDebug(true);
-            
             BodyPart texto = new MimeBodyPart();
             texto.setText( "Estimado cliente "+cliente+" por favor pase a la " + caja);//Mensaje por defecto para que el cliente pase a la caja asignada
 
@@ -184,8 +127,8 @@ public class CorreoClientes {
             message.setContent(multiParte);
 
             Transport t = session.getTransport("smtp");
-            //t.connect(usuarioCorreo, password);
-            t.connect("smtp.live.com", 25, usuarioCorreo, password);
+            t.connect(usuarioCorreo, password);
+            //t.connect("smtp.live.com", 25, usuarioCorreo, password);
             t.sendMessage(message, message.getAllRecipients());
             t.close();
             return true;

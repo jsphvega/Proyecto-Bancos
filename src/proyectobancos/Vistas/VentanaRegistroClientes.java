@@ -419,9 +419,10 @@ public final class VentanaRegistroClientes extends javax.swing.JFrame {
                 }
                 Clientes cliente = new Clientes (Nombre,Correo,Prioridad,Fecha,Hora);
                 Clientes.queue(cliente);
-                System.out.println("se mando mail");
-                JOptionPane.showMessageDialog(null,"Datos Guardados");
                 EnviarEmail.sendMail(Nombre, Correo, Fecha, Hora);
+                System.out.println("se mando un correo");
+                JOptionPane.showMessageDialog(null,"Datos Guardados");
+                
                 hide();
             }
             else{
