@@ -40,6 +40,8 @@ public class AdministradorCorreo {
     private String cuerpoCorreoConfirmacionParte2;
     private String cuerpoCorreoConfirmacionParte3;
     
+    private String rutaImagen = getClass().getResource("/proyectobancos/Imagenes/bgPrincipal.png").getPath();
+    
     private String cuerpoCorreoTurno;
 
     public AdministradorCorreo() {
@@ -82,7 +84,7 @@ public class AdministradorCorreo {
         this.toEmail = correoDestino;
         cuerpoCorreoConfirmacionParte1 += nombre + "<br><br>";
         cuerpoCorreoConfirmacionParte1 += cuerpoCorreoConfirmacionParte2 + tiquete + "<br><br>" + cuerpoCorreoConfirmacionParte3;
-        return generateAndSendEmail(session, toEmail, asuntoConfirmacion, cuerpoCorreoConfirmacionParte1, rutaImagen);
+        return generateAndSendEmail(session, toEmail, asuntoConfirmacion, cuerpoCorreoConfirmacionParte1, this.rutaImagen);
     }
 
     public boolean enviarCorreoTurno(String correoDestino, String rutaImagen) {
