@@ -335,7 +335,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         BarraCajaEmpleados.setBounds(540, 45, 150, 360);
 
         lblFondoMenu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoPrincipal.jpg"))); // NOI18N
+        lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/bgPrincipal.png"))); // NOI18N
         lblFondoMenu.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         lblFondoMenu.setIconTextGap(0);
         getContentPane().add(lblFondoMenu);

@@ -395,7 +395,7 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="2"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/proyectobancos/Imagenes/FondoPrincipal.jpg"/>
+          <Image iconType="3" name="/proyectobancos/Imagenes/bgPrincipal.png"/>
         </Property>
         <Property name="verticalAlignment" type="int" value="3"/>
         <Property name="iconTextGap" type="int" value="0"/>
