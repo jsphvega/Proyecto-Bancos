@@ -145,7 +145,12 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         lblFechaTitulo.setBounds(15, 35, 40, 20);
 
         btnLiberar.setBackground(new java.awt.Color(255, 204, 51));
-        btnLiberar.setText("Asignar Cajas");
+        btnLiberar.setText("Liberar Cajas");
+        btnLiberar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLiberarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnLiberar);
         btnLiberar.setBounds(540, 170, 150, 30);
 
@@ -286,6 +291,10 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     private void lblVentana7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVentana7MouseReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_lblVentana7MouseReleased
+
+    private void btnLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarActionPerformed
+        
+    }//GEN-LAST:event_btnLiberarActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
