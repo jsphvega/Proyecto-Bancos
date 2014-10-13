@@ -1,6 +1,6 @@
 package proyectobancos;
 
-import proyectobancos.Vistas.VentanaPrincipal;
+import proyectobancos.Vistas.VentanaConfiguracion;
 
 /**
  * Método constructor del proyecto.
@@ -12,8 +12,7 @@ public class ProyectoBancos {
 
     public static void main(String[] args) {
         //Instancia al primer método
-        VentanaPrincipal VT = new VentanaPrincipal();
-        VT.show();
-    }
-    
+        VentanaConfiguracion VC = new VentanaConfiguracion();
+        VC.show();
+    } 
 }

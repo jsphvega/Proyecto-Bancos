@@ -7,13 +7,12 @@ public class Parametros {
     
 
     //Constantes
-    private String tipoBusqueda = "Nombre";
+    private static String tipoBusqueda = "Nombre";
     
     //Variables
-    private int Cajas = 13;
-
-    private String NombreBanco = "Mi banco";
-    private String FotoBanco = "C:\\Users\\Joseph\\Pictures\\Abstractas\\Paisaje #02.jpg";
+    private static int Cajas;
+    private static String NombreBanco;
+    private static String FotoBanco;
 
     /**
      * Return la variable TipoBusqueda. 
