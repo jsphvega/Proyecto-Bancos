@@ -348,7 +348,15 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
      * @param evt 
      */
     private void lblConfiguracionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConfiguracionMouseReleased
-        JOptionPane.showMessageDialog(null, "Abre la ventana de Configuracion");
+        String[] Anterior = new String[3];
+        Anterior[0] = String.valueOf(Pa.getCajas());
+        Anterior[1] = Pa.getFotoBanco();
+        Anterior[2] = Pa.getNombreBanco();
+        
+        VentanaConfiguracion VC = new VentanaConfiguracion();
+        VC.show();
+        
+        this.repaint();
     }//GEN-LAST:event_lblConfiguracionMouseReleased
 
     /**

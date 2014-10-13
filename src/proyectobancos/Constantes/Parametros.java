@@ -8,9 +8,9 @@ public class Parametros {
     private static String tipoBusqueda = "Nombre";
     
     //Variables
-    private static int Cajas;
-    private static String NombreBanco;
-    private static String FotoBanco;
+    private static int Cajas = 0;
+    private static String NombreBanco = "";
+    private static String FotoBanco = "";
 
     /**
      * Return la variable TipoBusqueda. 
@@ -24,8 +24,8 @@ public class Parametros {
      * Modifica la variable TipoBusqueda. 
      * @param tipoBusqueda
      */
-    public void setTipoBusqueda(String tipoBusqueda) {
-        this.tipoBusqueda = tipoBusqueda;
+    public static void setTipoBusqueda(String tipoBusqueda) {
+        Parametros.tipoBusqueda = tipoBusqueda;
     }
     
     /**
@@ -41,7 +41,7 @@ public class Parametros {
      * @param NombreBanco
      */
     public void setNombreBanco(String NombreBanco) {
-        this.NombreBanco = NombreBanco;
+        Parametros.NombreBanco = NombreBanco;
     }
 
     /**
@@ -57,7 +57,7 @@ public class Parametros {
      * @param FotoBanco 
      */
     public void setFotoBanco(String FotoBanco) {
-        this.FotoBanco = FotoBanco;
+        Parametros.FotoBanco = FotoBanco;
     }
 
     /**
@@ -73,7 +73,7 @@ public class Parametros {
      * @param Cajas 
      */
     public void setCajas(int Cajas) {
-        this.Cajas = Cajas;
+        Parametros.Cajas = Cajas;
     }
     
     /**
