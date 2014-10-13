@@ -11,14 +11,27 @@ import proyectobancos.Administradores.Reloj;
 import proyectobancos.Constantes.Parametros;
 
 public class VentanaConfiguracion extends javax.swing.JFrame {
-    JFileChooser elemento = new JFileChooser();  //Crea un objeto de dialogo JFileChooser
+    String Direccion;
     
-    Parametros PA = new Parametros();
+    Parametros Pa = new Parametros();
     
     public VentanaConfiguracion() {     
         initComponents();
         
         setVentana();
+        
+        jspCantidad.setValue(Pa.getCajas());
+        
+        lblSubtitulo.setText(Pa.getNombreBanco());
+        //Convierte la imagen
+        ImageIcon fot = new ImageIcon(Pa.getFotoBanco()); 
+        Icon icono = new ImageIcon(fot.getImage().getScaledInstance(400, 
+                400, Image.SCALE_DEFAULT));
+
+        //Asigna la imagen
+        lblLogo.setIcon(icono); 
+        
+        Direccion = Pa.getFotoBanco();
     }
     
     /**
@@ -47,7 +60,6 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         lblHoraFechaFondo = new javax.swing.JLabel();
         btnLogo = new javax.swing.JButton();
         lblLogo = new javax.swing.JLabel();
-        lblCantidad = new javax.swing.JLabel();
         jspCantidad = new javax.swing.JSpinner();
         btnNombre = new javax.swing.JButton();
         BarraNombre = new javax.swing.JScrollPane();
@@ -68,7 +80,6 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         lblSubtitulo.setFont(new java.awt.Font("Candara", 1, 28)); // NOI18N
         lblSubtitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblSubtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSubtitulo.setText("...");
         getContentPane().add(lblSubtitulo);
         lblSubtitulo.setBounds(10, 10, 680, 33);
 
@@ -111,14 +122,6 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         lblLogo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(lblLogo);
         lblLogo.setBounds(380, 50, 300, 300);
-
-        lblCantidad.setBackground(new java.awt.Color(255, 255, 255));
-        lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCantidad.setText("Cambiar Numero de Cajas");
-        lblCantidad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        lblCantidad.setOpaque(true);
-        getContentPane().add(lblCantidad);
-        lblCantidad.setBounds(20, 230, 200, 24);
 
         jspCantidad.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
         jspCantidad.setToolTipText("");
@@ -182,6 +185,8 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnLogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoActionPerformed
+        JFileChooser elemento = new JFileChooser();  //Crea un objeto de dialogo JFileChooser
+
         //Formatos de los iconos
         elemento.setFileFilter(new FileNameExtensionFilter("Archivo JPG","jpg"));
         elemento.setFileFilter(new FileNameExtensionFilter("Archivo PNG","png"));
@@ -195,6 +200,7 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
             try {
                 //Obtener ruta y nombre al hacer click
                 String file = elemento.getSelectedFile().getPath();  
+                Direccion = file;
                 
                 //Convierte la imagen
                 ImageIcon fot = new ImageIcon(file); 
@@ -217,19 +223,19 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Debe haber más de 1 caja");   
         } else if (lblSubtitulo.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Nombre incorrecto");   
-        } else if (elemento.getSelectedFile().toPath().equals("")) {
+        } else if (Direccion.equals("")) {
             JOptionPane.showMessageDialog(null,"Logo incorrecto");
         } else {
             
             if (JOptionPane.showConfirmDialog(null,
-                    "¿Desea Guardar los siguientes elementos?\n"
-                    + "Nombre: " + lblSubtitulo.getText()
-                    + "Logo: " + elemento.getSelectedFile().toPath()
-                    + "Cajas: " + jspCantidad.getValue()) == JOptionPane.OK_OPTION){
+                    "¿Desea Guardar los siguientes elementos?"
+                    + "\nNombre: " + lblSubtitulo.getText()
+                    + "\nLogo: " + Direccion
+                    + "\nCajas: " + jspCantidad.getValue()) == JOptionPane.OK_OPTION){
 
-                PA.setCajas((int) jspCantidad.getValue());
-                PA.setNombreBanco(txtNombre.getText());
-                PA.setFotoBanco(elemento.getSelectedFile().getPath());
+                Pa.setCajas((int) jspCantidad.getValue());
+                Pa.setNombreBanco(txtNombre.getText());
+                Pa.setFotoBanco(Direccion);
 
                 VentanaPrincipal VT = new VentanaPrincipal();
                 VT.show();
@@ -268,10 +274,8 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaConfiguracion().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new VentanaConfiguracion().setVisible(true);
         });
     }
 
@@ -281,7 +285,6 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
     private javax.swing.JButton btnLogo;
     private javax.swing.JButton btnNombre;
     private javax.swing.JSpinner jspCantidad;
-    private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblFecha1;
     private javax.swing.JLabel lblFecha2;
     private javax.swing.JLabel lblFondoMenu;
