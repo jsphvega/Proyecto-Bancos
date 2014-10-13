@@ -17,6 +17,12 @@ public class Constantes {
     public static final int PRIORIDAD_MUJER_EMBARAZADA=3;
     public static final int PRIORIDAD_CLIENTE_CORPORATIVO=4;
     public static final int PRIORIDAD_CLIENTE_REGULAR=5;
+    public static final int MODO_SIMULACION_DETENIDA=0;
+    public static final int MODO_SIMULACION_ACTIVADA=1;
+    
+    public static final int ESTADO_CLIENTE_EN_ESPERA = 0;
+    public static final int ESTADO_CLIENTE_EN_CAJA = 1;
+    public static final int ESTADO_CLIENTE_ATENDIDO = 2;
     
     public static final String CATEGORIA_DISCAPACITADO = "D";
     public static final String CATEGORIA_ADULTO_MAYOR = "A";

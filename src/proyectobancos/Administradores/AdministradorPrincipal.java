@@ -6,7 +6,6 @@
 package proyectobancos.Administradores;
 
 import java.util.PriorityQueue;
-import static proyectobancos.Administradores.AdministradorCorreo.generateAndSendEmail;
 import proyectobancos.Administradores.estructuras.ClienteComparable;
 import proyectobancos.Administradores.estructuras.ListaSimplementeEnlazadaGenerica;
 import proyectobancos.Administradores.estructuras.NodoGenericoSimple;
@@ -21,6 +20,7 @@ public class AdministradorPrincipal {
     private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaClientes;
     private AdministradorCorreo administradorCorreo;
     private PriorityQueue<ClienteComparable> colaPrioridad;
+    
 
     private int totalClientesDiscapacitados;
     private int totalClientesAdultoMayor;
@@ -28,10 +28,12 @@ public class AdministradorPrincipal {
     private int totalClientesCorporativos;
     private int totalClientesRegulares;
     private int totalClientes;
+    
+    private int modoSimulacion;
 
     private static AdministradorPrincipal INSTANCE = null;
 
-    public AdministradorPrincipal() {
+    private AdministradorPrincipal() {
         crearEstructuras();
         iniciarContadores();
 
@@ -44,6 +46,7 @@ public class AdministradorPrincipal {
         totalClientesCorporativos = 0;
         totalClientesRegulares = 0;
         totalClientes = 0;
+        modoSimulacion = Constantes.MODO_SIMULACION_DETENIDA;
     }
 
     @Override
@@ -76,6 +79,10 @@ public class AdministradorPrincipal {
                 }
             }
         }
+    }
+    
+    public void activarSimulacion(){
+        modoSimulacion = Constantes.MODO_SIMULACION_ACTIVADA;
     }
 
     public boolean enviarCorreoConfirmacion(String correoDestino, String nombre, String tiquete, String rutaImagen) {

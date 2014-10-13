@@ -18,6 +18,8 @@ import proyectobancos.Constantes.Parametros;
  * @author Miller Ruiz
  */
 public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
+    
+    
 
     /**
      * Creates new form VentanaClientes
@@ -34,6 +36,20 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
         Calendar Cal = Calendar.getInstance();
         String fecha = Cal.get(Cal.DATE) + "/" + (Cal.get(Cal.MONTH) + 1) + "/" + Cal.get(Cal.YEAR);
         jLabelFecha.setText(fecha);
+
+        limpiarDatos();
+
+    }
+
+    public void limpiarDatos() {
+        NombreCliente.setText("");
+        CorreoCliente.setText("");
+
+        jCheckClienteCorporativo.setSelected(false);
+        jCheckClienteMayor.setSelected(false);
+        jCheckClienteEmbarazada.setSelected(false);
+        jCheckClienteDiscapacitado.setSelected(false);
+        jCheckClienteRegular.setSelected(false);
 
     }
 
@@ -109,8 +125,8 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
                 CorreoClienteActionPerformed(evt);
             }
         });
-        getContentPane().add(CorreoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 370, 30));
-        getContentPane().add(NombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 370, 30));
+        getContentPane().add(CorreoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 300, 30));
+        getContentPane().add(NombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 300, 30));
 
         jCheckClienteDiscapacitado.setBackground(new java.awt.Color(0, 0, 0));
         jCheckClienteDiscapacitado.setForeground(new java.awt.Color(255, 255, 255));
@@ -163,10 +179,10 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
         getContentPane().add(jCheckClienteRegular, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 270, 150, 30));
 
         lblFondoTiquete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
-        getContentPane().add(lblFondoTiquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, 140));
+        getContentPane().add(lblFondoTiquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, 140));
 
         lblFondoTiquete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
-        getContentPane().add(lblFondoTiquete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, -1, 140));
+        getContentPane().add(lblFondoTiquete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 110, 140));
 
         BotonCancelarEnvio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         BotonCancelarEnvio.setForeground(new java.awt.Color(255, 255, 255));
@@ -197,8 +213,7 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
         getContentPane().add(jLabelCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 230, 120, 30));
 
         VentanaRegistroCliente2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
-        VentanaRegistroCliente2.setText("jLabel1");
-        getContentPane().add(VentanaRegistroCliente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 140, 30));
+        getContentPane().add(VentanaRegistroCliente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 130, 30));
 
         jLabelNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelNombre.setForeground(new java.awt.Color(255, 255, 255));
@@ -250,10 +265,6 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabelNombreMouseClicked
 
-    private void jLabelCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCorreoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabelCorreoMouseClicked
-
     private void BotonCancelarEnvioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonCancelarEnvioMouseReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonCancelarEnvioMouseReleased
@@ -271,15 +282,19 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
         } else if (Nombre.trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite su nombre por favor");
             return;
+        }else if (!jCheckClienteCorporativo.isSelected() & !jCheckClienteDiscapacitado.isSelected() & 
+                !jCheckClienteEmbarazada.isSelected() & !jCheckClienteMayor.isSelected() & !jCheckClienteRegular.isSelected()){
+            JOptionPane.showMessageDialog(null, "Elija una categoría por favor");
+            return;
         }
 
         Correo = CorreoCliente.getText();
         Hora = jLabelHora.getText();
         Fecha = jLabelFecha.getText();
-        
+
         if (jCheckClienteDiscapacitado.isSelected()) {
             codigo = AdministradorPrincipal.getInstance().getNextCodigoDiscapacitados();
-            AdministradorPrincipal.getInstance().agregarClienteCategoriaDiscapacitado(Nombre,Correo,codigo,Fecha,Hora);
+            AdministradorPrincipal.getInstance().agregarClienteCategoriaDiscapacitado(Nombre, Correo, codigo, Fecha, Hora);
         } else if (jCheckClienteMayor.isSelected()) {
             codigo = AdministradorPrincipal.getInstance().getNextCodigoAdultoMayor();
             AdministradorPrincipal.getInstance().agregarClienteCategoriaAdultoMayor(Nombre, Correo, codigo, Fecha, Hora);
@@ -293,7 +308,7 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
             codigo = AdministradorPrincipal.getInstance().getNextCodigoClienteRegular();
             AdministradorPrincipal.getInstance().agregarClienteCategoriaRegulares(Nombre, Correo, codigo, Fecha, Hora);
         }
-        
+
         AdministradorPrincipal.getInstance().enviarCorreoConfirmacion(Correo, Nombre, codigo, Parametros.getRutaFotoBanco());
 
         //EnviarEmail.sendMail(Nombre, Correo, Fecha, Hora);
@@ -353,6 +368,10 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
     private void CorreoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorreoClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CorreoClienteActionPerformed
+
+    private void jLabelCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCorreoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelCorreoMouseClicked
 
     public static boolean ValidarCorreo(String email) {
         Pattern pattern = Pattern.compile(PatronEmail);

@@ -5,6 +5,8 @@
  */
 package proyectobancos.Administradores.estructuras;
 
+import proyectobancos.Constantes.Constantes;
+
 /**
  *
  * @author Lucia Con base en el ejemplo de:
@@ -15,6 +17,7 @@ public class ClienteComparable implements Comparable<ClienteComparable> {
     private int prioridad;
     private int posicion;
     private String nombre, correo, codigo, fecha, hora;
+    private int estado;
 
     public ClienteComparable(int prioridad, int posicion, String nombre, String correo, String codigo, String fecha, String hora) {
         this.prioridad = prioridad;
@@ -24,6 +27,7 @@ public class ClienteComparable implements Comparable<ClienteComparable> {
         this.codigo = codigo;
         this.fecha = fecha;
         this.hora = hora;
+        this.estado = Constantes.ESTADO_CLIENTE_EN_ESPERA;
     }
 
     @Override

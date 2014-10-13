@@ -5,6 +5,7 @@ import proyectobancos.Administradores.estructuras.ClienteComparable;
 import proyectobancos.Administradores.estructuras.ListaSimplementeEnlazadaGenerica;
 import proyectobancos.Administradores.estructuras.NodoGenericoSimple;
 import proyectobancos.Vistas.VentanaConfiguracion;
+import proyectobancos.Vistas.VentanaPrincipal;
 
 /**
  * Método constructor del proyecto.
@@ -14,12 +15,17 @@ import proyectobancos.Vistas.VentanaConfiguracion;
  * @author Miller Ruiz
  */
 public class ProyectoBancos {
-
+    
     public static void main(String[] args) {
         //Instancia al primer método
-        VentanaConfiguracion VC = new VentanaConfiguracion();
-        VC.show();
-
+        
+        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+        ventanaPrincipal.setVisible(false);
+        
+        VentanaConfiguracion ventanaConfiguracion = new VentanaConfiguracion(ventanaPrincipal);
+        ventanaConfiguracion.setVisible(true);
+        ventanaPrincipal.setVentanaConfiguracion(ventanaConfiguracion);
+        
         ListaSimplementeEnlazadaGenerica<ClienteComparable> listaClientes = AdministradorPrincipal.getInstance().getListaClientes();
         
         String nextCodigoDiscapacitados = AdministradorPrincipal.getInstance().getNextCodigoDiscapacitados();
@@ -57,6 +63,6 @@ public class ProyectoBancos {
             }
             System.out.println();
         }
-
+        
     }
 }

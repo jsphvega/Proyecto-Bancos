@@ -1,5 +1,6 @@
 package proyectobancos.Vistas;
 
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.util.Calendar;
 import javax.swing.Icon;
@@ -13,11 +14,14 @@ import proyectobancos.Constantes.Parametros;
 public class VentanaConfiguracion extends javax.swing.JFrame {
     String Direccion;
     
-    Parametros Pa = new Parametros();
+    private Parametros Pa = new Parametros();
+    private VentanaPrincipal ventanaPrincipal;
     
-    public VentanaConfiguracion() {     
+    public VentanaConfiguracion(VentanaPrincipal ventanaPrincipal) {     
         initComponents();
         
+        
+        this.ventanaPrincipal = ventanaPrincipal;
         setVentana();
         
         jspCantidad.setValue(Pa.getCajas());
@@ -33,6 +37,33 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         
         Direccion = Pa.getRutaFotoBanco();
     }
+
+    public VentanaConfiguracion() throws HeadlessException {
+        
+        initComponents();
+        
+        ventanaPrincipal = null;
+        
+        setVentana();
+        
+        
+        
+        jspCantidad.setValue(Pa.getCajas());
+        
+        lblSubtitulo.setText(Pa.getNombreBanco());
+        //Convierte la imagen
+        ImageIcon fot = new ImageIcon(Pa.getRutaFotoBanco()); 
+        Icon icono = new ImageIcon(fot.getImage().getScaledInstance(400, 
+                400, Image.SCALE_DEFAULT));
+
+        //Asigna la imagen
+        lblLogo.setIcon(icono); 
+        
+        Direccion = Pa.getRutaFotoBanco();
+        
+    }
+    
+    
     
     /**
      * Método que controla la fecha y la hora del sistema en tiempo real.
@@ -60,6 +91,7 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         lblHoraFechaFondo = new javax.swing.JLabel();
         btnLogo = new javax.swing.JButton();
         lblLogo = new javax.swing.JLabel();
+        lblCantidad = new javax.swing.JLabel();
         jspCantidad = new javax.swing.JSpinner();
         btnNombre = new javax.swing.JButton();
         BarraNombre = new javax.swing.JScrollPane();
@@ -80,6 +112,7 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         lblSubtitulo.setFont(new java.awt.Font("Candara", 1, 28)); // NOI18N
         lblSubtitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblSubtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSubtitulo.setText("...");
         getContentPane().add(lblSubtitulo);
         lblSubtitulo.setBounds(10, 10, 680, 33);
 
@@ -122,6 +155,14 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         lblLogo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(lblLogo);
         lblLogo.setBounds(380, 50, 300, 300);
+
+        lblCantidad.setBackground(new java.awt.Color(255, 255, 255));
+        lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCantidad.setText("Cambiar Numero de Cajas");
+        lblCantidad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lblCantidad.setOpaque(true);
+        getContentPane().add(lblCantidad);
+        lblCantidad.setBounds(20, 230, 200, 24);
 
         jspCantidad.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
         jspCantidad.setToolTipText("");
@@ -237,9 +278,11 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
                 Pa.setNombreBanco(txtNombre.getText());
                 Pa.setFotoBanco(Direccion);
 
-                VentanaPrincipal VT = new VentanaPrincipal();
-                VT.show();
-                this.dispose();
+                ventanaPrincipal.actulizarCajas();
+                
+                setVisible(false);
+                ventanaPrincipal.setVisible(true);
+                
                 
             } else {
                 JOptionPane.showMessageDialog(null, "Reintente su modificación "
@@ -248,36 +291,36 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaConfiguracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaConfiguracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaConfiguracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaConfiguracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new VentanaConfiguracion().setVisible(true);
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(VentanaConfiguracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(VentanaConfiguracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(VentanaConfiguracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(VentanaConfiguracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(() -> {
+//            new VentanaConfiguracion().setVisible(true);
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane BarraNombre;
@@ -285,6 +328,7 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
     private javax.swing.JButton btnLogo;
     private javax.swing.JButton btnNombre;
     private javax.swing.JSpinner jspCantidad;
+    private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblFecha1;
     private javax.swing.JLabel lblFecha2;
     private javax.swing.JLabel lblFondoMenu;
