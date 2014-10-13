@@ -5,7 +5,9 @@
  */
 package proyectobancos.Administradores;
 
+import java.util.PriorityQueue;
 import static proyectobancos.Administradores.AdministradorCorreo.generateAndSendEmail;
+import proyectobancos.Administradores.estructuras.ClienteComparable;
 import proyectobancos.Administradores.estructuras.ListaSimplementeEnlazadaGenerica;
 import proyectobancos.Constantes.Constantes;
 
@@ -17,6 +19,7 @@ public class AdministradorPrincipal {
 
     ListaSimplementeEnlazadaGenerica<Clientes> listaClientes;
     private AdministradorCorreo administradorCorreo;
+    PriorityQueue<ClienteComparable> colaPrioridad;
 
     private int totalClientesDiscapacitados;
     private int totalClientesAdultoMayor;
@@ -29,6 +32,7 @@ public class AdministradorPrincipal {
 
     private AdministradorPrincipal() {
         crearEstructuras();
+        iniciarContadores();
 
     }
 
@@ -49,6 +53,7 @@ public class AdministradorPrincipal {
     private void crearEstructuras() {
         listaClientes = new ListaSimplementeEnlazadaGenerica<>();
         administradorCorreo = new AdministradorCorreo();
+        colaPrioridad = new PriorityQueue();
     }
 
     public static AdministradorPrincipal getInstance() {
@@ -106,5 +111,15 @@ public class AdministradorPrincipal {
 
     public void agregarClienteCategoriaDiscapacitado(String Nombre, String Correo, String codigo, String Fecha, String Hora) {
         
+        ClienteComparable nuevoCliente = new ClienteComparable(
+                Constantes.PRIORIDAD_DISCAPACITADO, totalClientes,
+                Nombre,
+                Correo,
+                codigo,
+                Fecha,
+                Hora);
+
+        colaPrioridad.add(nuevoCliente);
+        totalClientes++;
     }
 }
