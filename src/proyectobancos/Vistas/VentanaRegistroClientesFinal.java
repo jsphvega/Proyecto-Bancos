@@ -1,20 +1,13 @@
 package proyectobancos.Vistas;
 
-import java.awt.HeadlessException;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
-import proyectobancos.Administradores.AdministradorCorreo;
 import proyectobancos.Administradores.AdministradorPrincipal;
-import proyectobancos.Administradores.Clientes;
-import proyectobancos.Administradores.Lista;
-import proyectobancos.Administradores.Queue;
 import proyectobancos.Administradores.Reloj;
 import proyectobancos.Constantes.Constantes;
+import proyectobancos.Constantes.Parametros;
 
 /**
  * Clase que va a mostrar la ventana principal de acuerdo a las configuraciones
@@ -68,7 +61,6 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
         jCheckClienteRegular = new javax.swing.JCheckBox();
         lblFondoTiquete = new javax.swing.JLabel();
         lblFondoTiquete1 = new javax.swing.JLabel();
-        lblFondoTiquete2 = new javax.swing.JLabel();
         BotonCancelarEnvio = new javax.swing.JLabel();
         VentanaRegistroCliente1 = new javax.swing.JLabel();
         jLabelCorreo = new javax.swing.JLabel();
@@ -83,50 +75,42 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
         setTitle("Menú Principal");
         setMinimumSize(new java.awt.Dimension(700, 445));
         setResizable(false);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         NombreVentana.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        NombreVentana.setForeground(new java.awt.Color(204, 0, 0));
+        NombreVentana.setForeground(new java.awt.Color(255, 255, 255));
         NombreVentana.setText("Atención al cliente");
         NombreVentana.setToolTipText("");
-        getContentPane().add(NombreVentana);
-        NombreVentana.setBounds(180, 10, 550, 40);
+        getContentPane().add(NombreVentana, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 550, 40));
 
         lblHora1.setForeground(new java.awt.Color(255, 255, 255));
         lblHora1.setText("HORA:");
-        getContentPane().add(lblHora1);
-        lblHora1.setBounds(15, 10, 40, 20);
+        getContentPane().add(lblHora1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 10, 40, 20));
 
         jLabelHora.setForeground(new java.awt.Color(255, 255, 255));
         jLabelHora.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelHora.setText("hora");
-        getContentPane().add(jLabelHora);
-        jLabelHora.setBounds(55, 10, 70, 20);
+        getContentPane().add(jLabelHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 10, 70, 20));
 
         jLabelFecha.setForeground(new java.awt.Color(255, 255, 255));
         jLabelFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelFecha.setText("fecha");
-        getContentPane().add(jLabelFecha);
-        jLabelFecha.setBounds(55, 35, 70, 20);
+        getContentPane().add(jLabelFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 35, 70, 20));
 
         lblFecha2.setForeground(new java.awt.Color(255, 255, 255));
         lblFecha2.setText("FECHA:");
-        getContentPane().add(lblFecha2);
-        lblFecha2.setBounds(15, 35, 40, 20);
+        getContentPane().add(lblFecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 35, 40, 20));
 
         lblHoraFechaFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
-        getContentPane().add(lblHoraFechaFondo);
-        lblHoraFechaFondo.setBounds(8, 5, 123, 56);
+        getContentPane().add(lblHoraFechaFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 5, -1, -1));
 
         CorreoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CorreoClienteActionPerformed(evt);
             }
         });
-        getContentPane().add(CorreoCliente);
-        CorreoCliente.setBounds(160, 230, 370, 30);
-        getContentPane().add(NombreCliente);
-        NombreCliente.setBounds(160, 180, 370, 30);
+        getContentPane().add(CorreoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 370, 30));
+        getContentPane().add(NombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 370, 30));
 
         jCheckClienteDiscapacitado.setBackground(new java.awt.Color(0, 0, 0));
         jCheckClienteDiscapacitado.setForeground(new java.awt.Color(255, 255, 255));
@@ -136,8 +120,7 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
                 jCheckClienteDiscapacitadoActionPerformed(evt);
             }
         });
-        getContentPane().add(jCheckClienteDiscapacitado);
-        jCheckClienteDiscapacitado.setBounds(540, 150, 150, 30);
+        getContentPane().add(jCheckClienteDiscapacitado, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, 150, 30));
 
         jCheckClienteMayor.setBackground(new java.awt.Color(0, 0, 0));
         jCheckClienteMayor.setForeground(new java.awt.Color(255, 255, 255));
@@ -147,8 +130,7 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
                 jCheckClienteMayorActionPerformed(evt);
             }
         });
-        getContentPane().add(jCheckClienteMayor);
-        jCheckClienteMayor.setBounds(540, 180, 150, 30);
+        getContentPane().add(jCheckClienteMayor, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, 150, 30));
 
         jCheckClienteEmbarazada.setBackground(new java.awt.Color(0, 0, 0));
         jCheckClienteEmbarazada.setForeground(new java.awt.Color(255, 255, 255));
@@ -158,8 +140,7 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
                 jCheckClienteEmbarazadaActionPerformed(evt);
             }
         });
-        getContentPane().add(jCheckClienteEmbarazada);
-        jCheckClienteEmbarazada.setBounds(540, 210, 150, 30);
+        getContentPane().add(jCheckClienteEmbarazada, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 150, 30));
 
         jCheckClienteCorporativo.setBackground(new java.awt.Color(0, 0, 0));
         jCheckClienteCorporativo.setForeground(new java.awt.Color(255, 255, 255));
@@ -169,8 +150,7 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
                 jCheckClienteCorporativoActionPerformed(evt);
             }
         });
-        getContentPane().add(jCheckClienteCorporativo);
-        jCheckClienteCorporativo.setBounds(540, 240, 150, 30);
+        getContentPane().add(jCheckClienteCorporativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, 150, 30));
 
         jCheckClienteRegular.setBackground(new java.awt.Color(0, 0, 0));
         jCheckClienteRegular.setForeground(new java.awt.Color(255, 255, 255));
@@ -180,20 +160,13 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
                 jCheckClienteRegularActionPerformed(evt);
             }
         });
-        getContentPane().add(jCheckClienteRegular);
-        jCheckClienteRegular.setBounds(540, 270, 150, 30);
+        getContentPane().add(jCheckClienteRegular, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 270, 150, 30));
 
         lblFondoTiquete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
-        getContentPane().add(lblFondoTiquete);
-        lblFondoTiquete.setBounds(150, 150, 246, 140);
+        getContentPane().add(lblFondoTiquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, 140));
 
         lblFondoTiquete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
-        getContentPane().add(lblFondoTiquete1);
-        lblFondoTiquete1.setBounds(380, 150, 246, 140);
-
-        lblFondoTiquete2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
-        getContentPane().add(lblFondoTiquete2);
-        lblFondoTiquete2.setBounds(610, 170, 246, 120);
+        getContentPane().add(lblFondoTiquete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, -1, 140));
 
         BotonCancelarEnvio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         BotonCancelarEnvio.setForeground(new java.awt.Color(255, 255, 255));
@@ -208,28 +181,24 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
                 BotonCancelarEnvioMouseReleased(evt);
             }
         });
-        getContentPane().add(BotonCancelarEnvio);
-        BotonCancelarEnvio.setBounds(400, 330, 120, 50);
+        getContentPane().add(BotonCancelarEnvio, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, 120, 50));
 
         VentanaRegistroCliente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
-        getContentPane().add(VentanaRegistroCliente1);
-        VentanaRegistroCliente1.setBounds(400, 330, 130, 60);
+        getContentPane().add(VentanaRegistroCliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, 130, 60));
 
         jLabelCorreo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelCorreo.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelCorreo.setText("Correo Electronico");
+        jLabelCorreo.setText("Correo electrónico");
         jLabelCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelCorreoMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabelCorreo);
-        jLabelCorreo.setBounds(40, 230, 120, 30);
+        getContentPane().add(jLabelCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 230, 120, 30));
 
         VentanaRegistroCliente2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
         VentanaRegistroCliente2.setText("jLabel1");
-        getContentPane().add(VentanaRegistroCliente2);
-        VentanaRegistroCliente2.setBounds(30, 230, 120, 30);
+        getContentPane().add(VentanaRegistroCliente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 140, 30));
 
         jLabelNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelNombre.setForeground(new java.awt.Color(255, 255, 255));
@@ -239,12 +208,10 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
                 jLabelNombreMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabelNombre);
-        jLabelNombre.setBounds(50, 180, 90, 30);
+        getContentPane().add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 180, 90, 30));
 
         VentanaRegistroCliente3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
-        getContentPane().add(VentanaRegistroCliente3);
-        VentanaRegistroCliente3.setBounds(30, 180, 120, 30);
+        getContentPane().add(VentanaRegistroCliente3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 120, 30));
 
         BotonEnviar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         BotonEnviar.setForeground(new java.awt.Color(255, 255, 255));
@@ -259,20 +226,17 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
                 BotonEnviarMouseReleased(evt);
             }
         });
-        getContentPane().add(BotonEnviar);
-        BotonEnviar.setBounds(270, 330, 120, 50);
+        getContentPane().add(BotonEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 120, 50));
 
         VentanaRegistroCliente5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
         VentanaRegistroCliente5.setText("jLabel1");
-        getContentPane().add(VentanaRegistroCliente5);
-        VentanaRegistroCliente5.setBounds(270, 330, 130, 60);
+        getContentPane().add(VentanaRegistroCliente5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 130, 60));
 
         lblFondoMenu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoPrincipal.jpg"))); // NOI18N
+        lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/bgPrincipal.jpg"))); // NOI18N
         lblFondoMenu.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         lblFondoMenu.setIconTextGap(0);
-        getContentPane().add(lblFondoMenu);
-        lblFondoMenu.setBounds(0, -5, 700, 430);
+        getContentPane().add(lblFondoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -5, 710, 430));
 
         pack();
         setLocationRelativeTo(null);
@@ -296,7 +260,6 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
 
     private void BotonEnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonEnviarMouseClicked
         // TODO add your handling code here:
-        String nl = System.getProperty("line.separator");//Ingresa Saltos entre lineas
 
         Nombre = NombreCliente.getText();
 
@@ -313,32 +276,29 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
         Correo = CorreoCliente.getText();
         Hora = jLabelHora.getText();
         Fecha = jLabelFecha.getText();
-        int Prioridad = Constantes.PRIORIDAD_CLIENTE_REGULAR;
+        
         if (jCheckClienteDiscapacitado.isSelected()) {
             codigo = AdministradorPrincipal.getInstance().getNextCodigoDiscapacitados();
-            Prioridad = Constantes.PRIORIDAD_DISCAPACITADO;
             AdministradorPrincipal.getInstance().agregarClienteCategoriaDiscapacitado(Nombre,Correo,codigo,Fecha,Hora);
         } else if (jCheckClienteMayor.isSelected()) {
             codigo = AdministradorPrincipal.getInstance().getNextCodigoAdultoMayor();
-            Prioridad = Constantes.PRIORIDAD_ADULTO_MAYOR;
+            AdministradorPrincipal.getInstance().agregarClienteCategoriaAdultoMayor(Nombre, Correo, codigo, Fecha, Hora);
         } else if (jCheckClienteEmbarazada.isSelected()) {
             codigo = AdministradorPrincipal.getInstance().getNextCodigoEmbarazada();
-            Prioridad = Constantes.PRIORIDAD_MUJER_EMBARAZADA;
+            AdministradorPrincipal.getInstance().agregarClienteCategoriaMujerEmbarazada(Nombre, Correo, codigo, Fecha, Hora);
         } else if (jCheckClienteCorporativo.isSelected()) {
             codigo = AdministradorPrincipal.getInstance().getNextCodigoCorporativo();
-            Prioridad = Constantes.PRIORIDAD_CLIENTE_CORPORATIVO;
+            AdministradorPrincipal.getInstance().agregarClienteCategoriaCorporativos(Nombre, Correo, codigo, Fecha, Hora);
         } else { //Si no elije la categoria, se toma como regular
             codigo = AdministradorPrincipal.getInstance().getNextCodigoClienteRegular();
-            Prioridad = Constantes.PRIORIDAD_CLIENTE_REGULAR;
+            AdministradorPrincipal.getInstance().agregarClienteCategoriaRegulares(Nombre, Correo, codigo, Fecha, Hora);
         }
         
-        
+        AdministradorPrincipal.getInstance().enviarCorreoConfirmacion(Correo, Nombre, codigo, Parametros.getRutaFotoBanco());
 
-        AdministradorPrincipal.getInstance().enviarCorreoConfirmacion(Correo, Nombre, codigo, "C:\\Users\\RUBEN\\Dropbox\\Horarios buses MUSOC.jpg");
-
-                //EnviarEmail.sendMail(Nombre, Correo, Fecha, Hora);
+        //EnviarEmail.sendMail(Nombre, Correo, Fecha, Hora);
         //System.out.println("se mando un correo");
-        JOptionPane.showMessageDialog(null, "Datos Guardados");
+        JOptionPane.showMessageDialog(null, "Cliente asignado");
 
         setVisible(false);
 
@@ -451,7 +411,6 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
     private javax.swing.JLabel lblFondoMenu;
     private javax.swing.JLabel lblFondoTiquete;
     private javax.swing.JLabel lblFondoTiquete1;
-    private javax.swing.JLabel lblFondoTiquete2;
     private javax.swing.JLabel lblHora1;
     private javax.swing.JLabel lblHoraFechaFondo;
     // End of variables declaration//GEN-END:variables

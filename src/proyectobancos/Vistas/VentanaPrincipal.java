@@ -23,6 +23,8 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     //Permite crear una tabla generica para modificar datos facilmente
     DefaultTableModel CajaEmpleados = new DefaultTableModel();
     
+    VentanaRegistroClientesFinal VRC = new VentanaRegistroClientesFinal();
+    
     /**
      * Método constructor de la clase.
      */
@@ -350,7 +352,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     private void lblConfiguracionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConfiguracionMouseReleased
         String[] Anterior = new String[3];
         Anterior[0] = String.valueOf(Pa.getCajas());
-        Anterior[1] = Pa.getFotoBanco();
+        Anterior[1] = Pa.getRutaFotoBanco();
         Anterior[2] = Pa.getNombreBanco();
         
         VentanaConfiguracion VC = new VentanaConfiguracion();
@@ -392,7 +394,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
      * @param evt 
      */
     private void lblTiqueteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTiqueteMouseReleased
-        VentanaRegistroClientes VRC = new VentanaRegistroClientes();
+        
         VRC.show();
         AplicarEnTabla();
     }//GEN-LAST:event_lblTiqueteMouseReleased

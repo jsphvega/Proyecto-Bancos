@@ -154,9 +154,41 @@ public class AdministradorPrincipal {
 
         colaPrioridad.add(nuevoCliente);
         listaClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
-        totalClientesAdultoMayor++;
+        totalClientesMujeresEmbarazadas++;
         totalClientes++;
     }
+    
+    public void agregarClienteCategoriaCorporativos(String Nombre, String Correo, String codigo, String Fecha, String Hora) {
+
+        ClienteComparable nuevoCliente = new ClienteComparable(
+                Constantes.PRIORIDAD_CLIENTE_CORPORATIVO, totalClientes,
+                Nombre,
+                Correo,
+                codigo,
+                Fecha,
+                Hora);
+
+        colaPrioridad.add(nuevoCliente);
+        listaClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
+        totalClientesCorporativos++;
+        totalClientes++;
+    }
+    
+    public void agregarClienteCategoriaRegulares(String Nombre, String Correo, String codigo, String Fecha, String Hora) {
+
+        ClienteComparable nuevoCliente = new ClienteComparable(
+                Constantes.PRIORIDAD_CLIENTE_REGULAR, totalClientes,
+                Nombre,
+                Correo,
+                codigo,
+                Fecha,
+                Hora);
+
+        colaPrioridad.add(nuevoCliente);
+        listaClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
+        totalClientesRegulares++;
+        totalClientes++;
+    }    
 
     public ListaSimplementeEnlazadaGenerica<ClienteComparable> getListaClientes() {
         return listaClientes;

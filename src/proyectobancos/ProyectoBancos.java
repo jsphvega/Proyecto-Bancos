@@ -1,7 +1,6 @@
 package proyectobancos;
 
 import proyectobancos.Administradores.AdministradorPrincipal;
-import proyectobancos.Administradores.Clientes;
 import proyectobancos.Administradores.estructuras.ClienteComparable;
 import proyectobancos.Administradores.estructuras.ListaSimplementeEnlazadaGenerica;
 import proyectobancos.Administradores.estructuras.NodoGenericoSimple;

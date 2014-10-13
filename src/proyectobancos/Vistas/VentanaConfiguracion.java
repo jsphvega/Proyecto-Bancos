@@ -24,14 +24,14 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         
         lblSubtitulo.setText(Pa.getNombreBanco());
         //Convierte la imagen
-        ImageIcon fot = new ImageIcon(Pa.getFotoBanco()); 
+        ImageIcon fot = new ImageIcon(Pa.getRutaFotoBanco()); 
         Icon icono = new ImageIcon(fot.getImage().getScaledInstance(400, 
                 400, Image.SCALE_DEFAULT));
 
         //Asigna la imagen
         lblLogo.setIcon(icono); 
         
-        Direccion = Pa.getFotoBanco();
+        Direccion = Pa.getRutaFotoBanco();
     }
     
     /**

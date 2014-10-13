@@ -48,7 +48,7 @@ public class Parametros {
      * Retorna la variable FotoBanco. 
      * @return String
      */
-    public String getFotoBanco() {
+    public static String getRutaFotoBanco() {
         return FotoBanco;
     }
     
@@ -81,7 +81,7 @@ public class Parametros {
      * @return Image
      */
     public Image getIcon(){
-        ImageIcon icon = new ImageIcon(getFotoBanco());
+        ImageIcon icon = new ImageIcon(getRutaFotoBanco());
         return icon.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT);
     }
     
