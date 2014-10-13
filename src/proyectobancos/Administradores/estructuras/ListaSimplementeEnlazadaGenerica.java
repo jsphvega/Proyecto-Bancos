@@ -60,6 +60,9 @@ public class ListaSimplementeEnlazadaGenerica<E> {
      * @param NodoGenericoSimple
      */
     public void agregarAlFinal(NodoGenericoSimple<E> NodoGenericoSimple) {
+        
+        
+        
         NodoGenericoSimple.setNext(null);
         cola.setNext(NodoGenericoSimple);
         cola = NodoGenericoSimple;

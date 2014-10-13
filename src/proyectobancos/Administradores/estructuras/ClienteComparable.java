@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package proyectobancos.Administradores.estructuras;
 
 /**
  *
- * @author Lucia
- * Con base en el ejemplo de: http://www.mkyong.com/java/java-object-sorting-example-comparable-and-comparator/ 
+ * @author Lucia Con base en el ejemplo de:
+ * http://www.mkyong.com/java/java-object-sorting-example-comparable-and-comparator/
  */
-public class ClienteComparable implements Comparable<ClienteComparable>{
-    
+public class ClienteComparable implements Comparable<ClienteComparable> {
+
     private int prioridad;
     private int posicion;
     private String nombre, correo, codigo, fecha, hora;
-
 
     public ClienteComparable(int prioridad, int posicion, String nombre, String correo, String codigo, String fecha, String hora) {
         this.prioridad = prioridad;
@@ -27,12 +25,27 @@ public class ClienteComparable implements Comparable<ClienteComparable>{
         this.fecha = fecha;
         this.hora = hora;
     }
-    
-    
-    
-    
 
+    @Override
+    public String toString() {
+        String resultado = "";
+        resultado += "Nombre: \n";
+        resultado += nombre + "\n";
+        resultado += "Prioridad: \n";
+        resultado += prioridad + "\n";
+        resultado += "Codigo asignado: \n";
+        resultado += codigo + "\n";
+        resultado += "Correo: \n";
+        resultado += correo + "\n";
+        resultado += "Posicion en la cola original: \n";
+        resultado += posicion + "\n";
+        resultado += "Fecha: \n";
+        resultado += fecha + "\n";
+        resultado += "Hora: \n";
+        resultado += hora + "\n";
 
+        return resultado;
+    }
 
     public int getPrioridad() {
         return prioridad;
@@ -57,21 +70,18 @@ public class ClienteComparable implements Comparable<ClienteComparable>{
     public void setPosicion(int posicion) {
         this.posicion = posicion;
     }
-    
-    
-    
 
     @Override
     public int compareTo(ClienteComparable pCliente) {
         int resultadoComparacion = 0;
         int valorAComparar = pCliente.getPrioridad();
         int comparacionPrioridad = this.prioridad - valorAComparar;
-        if (comparacionPrioridad == 0){
+        if (comparacionPrioridad == 0) {
             resultadoComparacion = posicion - pCliente.getPosicion();
-        }else{
+        } else {
             resultadoComparacion = comparacionPrioridad;
         }
         return resultadoComparacion;
     }
-    
+
 }

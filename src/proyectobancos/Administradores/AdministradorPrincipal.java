@@ -9,6 +9,7 @@ import java.util.PriorityQueue;
 import static proyectobancos.Administradores.AdministradorCorreo.generateAndSendEmail;
 import proyectobancos.Administradores.estructuras.ClienteComparable;
 import proyectobancos.Administradores.estructuras.ListaSimplementeEnlazadaGenerica;
+import proyectobancos.Administradores.estructuras.NodoGenericoSimple;
 import proyectobancos.Constantes.Constantes;
 
 /**
@@ -17,9 +18,9 @@ import proyectobancos.Constantes.Constantes;
  */
 public class AdministradorPrincipal {
 
-    ListaSimplementeEnlazadaGenerica<Clientes> listaClientes;
+    private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaClientes;
     private AdministradorCorreo administradorCorreo;
-    PriorityQueue<ClienteComparable> colaPrioridad;
+    private PriorityQueue<ClienteComparable> colaPrioridad;
 
     private int totalClientesDiscapacitados;
     private int totalClientesAdultoMayor;
@@ -30,7 +31,7 @@ public class AdministradorPrincipal {
 
     private static AdministradorPrincipal INSTANCE = null;
 
-    private AdministradorPrincipal() {
+    public AdministradorPrincipal() {
         crearEstructuras();
         iniciarContadores();
 
@@ -51,7 +52,7 @@ public class AdministradorPrincipal {
     }
 
     private void crearEstructuras() {
-        listaClientes = new ListaSimplementeEnlazadaGenerica<>();
+        listaClientes = new ListaSimplementeEnlazadaGenerica<ClienteComparable>();
         administradorCorreo = new AdministradorCorreo();
         colaPrioridad = new PriorityQueue();
     }
@@ -110,7 +111,7 @@ public class AdministradorPrincipal {
     }
 
     public void agregarClienteCategoriaDiscapacitado(String Nombre, String Correo, String codigo, String Fecha, String Hora) {
-        
+
         ClienteComparable nuevoCliente = new ClienteComparable(
                 Constantes.PRIORIDAD_DISCAPACITADO, totalClientes,
                 Nombre,
@@ -120,6 +121,32 @@ public class AdministradorPrincipal {
                 Hora);
 
         colaPrioridad.add(nuevoCliente);
+        listaClientes.agregarAlInicio(new NodoGenericoSimple<ClienteComparable>(nuevoCliente,null));
+        totalClientesDiscapacitados++;
         totalClientes++;
     }
+
+    public void agregarClienteCategoriaAdultoMayor(String Nombre, String Correo, String codigo, String Fecha, String Hora) {
+
+        ClienteComparable nuevoCliente = new ClienteComparable(
+                Constantes.PRIORIDAD_ADULTO_MAYOR, totalClientes,
+                Nombre,
+                Correo,
+                codigo,
+                Fecha,
+                Hora);
+
+        colaPrioridad.add(nuevoCliente);
+        totalClientes++;
+    }
+
+    public ListaSimplementeEnlazadaGenerica<ClienteComparable> getListaClientes() {
+        return listaClientes;
+    }
+    
+    //Para recorer la lista
+    
+    
+    
+
 }
