@@ -60,7 +60,6 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         lblHoraFechaFondo = new javax.swing.JLabel();
         btnLogo = new javax.swing.JButton();
         lblLogo = new javax.swing.JLabel();
-        lblCantidad = new javax.swing.JLabel();
         jspCantidad = new javax.swing.JSpinner();
         btnNombre = new javax.swing.JButton();
         BarraNombre = new javax.swing.JScrollPane();
@@ -81,7 +80,6 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         lblSubtitulo.setFont(new java.awt.Font("Candara", 1, 28)); // NOI18N
         lblSubtitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblSubtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSubtitulo.setText("...");
         getContentPane().add(lblSubtitulo);
         lblSubtitulo.setBounds(10, 10, 680, 33);
 
@@ -124,14 +122,6 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         lblLogo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(lblLogo);
         lblLogo.setBounds(380, 50, 300, 300);
-
-        lblCantidad.setBackground(new java.awt.Color(255, 255, 255));
-        lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCantidad.setText("Cambiar Numero de Cajas");
-        lblCantidad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        lblCantidad.setOpaque(true);
-        getContentPane().add(lblCantidad);
-        lblCantidad.setBounds(20, 230, 200, 24);
 
         jspCantidad.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
         jspCantidad.setToolTipText("");
@@ -238,10 +228,10 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         } else {
             
             if (JOptionPane.showConfirmDialog(null,
-                    "¿Desea Guardar los siguientes elementos?\n"
-                    + "Nombre: " + lblSubtitulo.getText()
-                    + "Logo: " + Direccion
-                    + "Cajas: " + jspCantidad.getValue()) == JOptionPane.OK_OPTION){
+                    "¿Desea Guardar los siguientes elementos?"
+                    + "\nNombre: " + lblSubtitulo.getText()
+                    + "\nLogo: " + Direccion
+                    + "\nCajas: " + jspCantidad.getValue()) == JOptionPane.OK_OPTION){
 
                 Pa.setCajas((int) jspCantidad.getValue());
                 Pa.setNombreBanco(txtNombre.getText());
@@ -295,7 +285,6 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
     private javax.swing.JButton btnLogo;
     private javax.swing.JButton btnNombre;
     private javax.swing.JSpinner jspCantidad;
-    private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblFecha1;
     private javax.swing.JLabel lblFecha2;
     private javax.swing.JLabel lblFondoMenu;

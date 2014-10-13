@@ -8,7 +8,7 @@ public class Parametros {
     private static String tipoBusqueda = "Nombre";
     
     //Variables
-    private static int Cajas = 0;
+    private static int Cajas = 1;
     private static String NombreBanco = "";
     private static String FotoBanco = "";
 

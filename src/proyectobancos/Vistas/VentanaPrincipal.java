@@ -356,6 +356,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         VentanaConfiguracion VC = new VentanaConfiguracion();
         VC.show();
         
+        this.dispose();
         this.repaint();
     }//GEN-LAST:event_lblConfiguracionMouseReleased
 
