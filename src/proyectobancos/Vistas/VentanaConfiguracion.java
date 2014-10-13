@@ -11,10 +11,6 @@ import proyectobancos.Administradores.Reloj;
 import proyectobancos.Constantes.Parametros;
 
 public class VentanaConfiguracion extends javax.swing.JFrame {
-    private static final FileNameExtensionFilter jpg = new FileNameExtensionFilter("Archivo JPG","jpg");
-    private static final FileNameExtensionFilter png = new FileNameExtensionFilter("Archivo PNG","png");
-    private static final FileNameExtensionFilter gif = new FileNameExtensionFilter("Archivo GIF","gif");
-    
     JFileChooser elemento = new JFileChooser();  //Crea un objeto de dialogo JFileChooser
     
     Parametros PA = new Parametros();
@@ -22,207 +18,229 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
     public VentanaConfiguracion() {     
         initComponents();
         
-        Reloj hora = new Reloj(jLabel1);
-        hora.start();
-        
+        setVentana();
+    }
+    
+    /**
+     * Método que controla la fecha y la hora del sistema en tiempo real.
+     */
+    private void setVentana(){
+        //Procesos de calculo de la fecha
         Calendar Cal= Calendar.getInstance();
-        String fec= Cal.get(Cal.DATE)+"/"+(Cal.get(Cal.MONTH)+1)+"/"+Cal.get(Cal.YEAR);
-        jLabel2.setText(fec);
+        lblFecha1.setText(Cal.get(Calendar.DATE) + "/" + (Cal.get(Calendar.MONTH)+1)
+                + "/" + Cal.get(Calendar.YEAR));
+        
+        //Procesos de calculo de la hora en tiempo real
+        Reloj hora = new Reloj(lblHora2);
+        hora.start();
     }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        NombreVentana = new javax.swing.JLabel();
-        BtncambiarLogo = new javax.swing.JButton();
-        Logo = new javax.swing.JLabel();
-        EtiquetaCantidadDeCajas = new javax.swing.JLabel();
-        CantidadCajas = new javax.swing.JSpinner();
-        BtnCambiarNombre = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TxtNombre = new javax.swing.JTextPane();
-        BtnAceptar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblSubtitulo = new javax.swing.JLabel();
+        lblHora2 = new javax.swing.JLabel();
+        lblHora1 = new javax.swing.JLabel();
+        lblFecha2 = new javax.swing.JLabel();
+        lblFecha1 = new javax.swing.JLabel();
+        lblHoraFechaFondo = new javax.swing.JLabel();
+        btnLogo = new javax.swing.JButton();
+        lblLogo = new javax.swing.JLabel();
+        lblCantidad = new javax.swing.JLabel();
+        jspCantidad = new javax.swing.JSpinner();
+        btnNombre = new javax.swing.JButton();
+        BarraNombre = new javax.swing.JScrollPane();
+        txtNombre = new javax.swing.JTextPane();
+        btnAceptar = new javax.swing.JButton();
+        lblFondoMenu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("BAC San Jose");
         setBackground(new java.awt.Color(242, 36, 36));
         setFocusCycleRoot(false);
+        setMaximumSize(new java.awt.Dimension(700, 440));
+        setMinimumSize(new java.awt.Dimension(700, 440));
+        setPreferredSize(new java.awt.Dimension(700, 440));
+        setResizable(false);
+        getContentPane().setLayout(null);
 
-        NombreVentana.setBackground(new java.awt.Color(255, 255, 255));
-        NombreVentana.setFont(new java.awt.Font("Candara", 1, 28)); // NOI18N
-        NombreVentana.setForeground(new java.awt.Color(229, 55, 55));
-        NombreVentana.setText("Atención a Clientes BAC");
+        lblSubtitulo.setBackground(new java.awt.Color(255, 255, 255));
+        lblSubtitulo.setFont(new java.awt.Font("Candara", 1, 28)); // NOI18N
+        lblSubtitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblSubtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSubtitulo.setText("...");
+        getContentPane().add(lblSubtitulo);
+        lblSubtitulo.setBounds(10, 10, 680, 33);
 
-        BtncambiarLogo.setText("Cambiar Logo");
-        BtncambiarLogo.addActionListener(new java.awt.event.ActionListener() {
+        lblHora2.setForeground(new java.awt.Color(255, 255, 255));
+        lblHora2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblHora2.setText("hora");
+        getContentPane().add(lblHora2);
+        lblHora2.setBounds(70, 55, 70, 20);
+
+        lblHora1.setForeground(new java.awt.Color(255, 255, 255));
+        lblHora1.setText("HORA:");
+        getContentPane().add(lblHora1);
+        lblHora1.setBounds(30, 55, 40, 20);
+
+        lblFecha2.setForeground(new java.awt.Color(255, 255, 255));
+        lblFecha2.setText("FECHA:");
+        getContentPane().add(lblFecha2);
+        lblFecha2.setBounds(30, 80, 40, 20);
+
+        lblFecha1.setForeground(new java.awt.Color(255, 255, 255));
+        lblFecha1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblFecha1.setText("fecha");
+        getContentPane().add(lblFecha1);
+        lblFecha1.setBounds(70, 80, 70, 20);
+
+        lblHoraFechaFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
+        getContentPane().add(lblHoraFechaFondo);
+        lblHoraFechaFondo.setBounds(20, 50, 123, 56);
+
+        btnLogo.setBackground(new java.awt.Color(255, 255, 255));
+        btnLogo.setText("Cambiar Logo del Bando");
+        btnLogo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtncambiarLogoActionPerformed(evt);
+                btnLogoActionPerformed(evt);
             }
         });
+        getContentPane().add(btnLogo);
+        btnLogo.setBounds(380, 360, 300, 23);
 
-        EtiquetaCantidadDeCajas.setForeground(new java.awt.Color(254, 254, 254));
-        EtiquetaCantidadDeCajas.setText("Numero de Cajas:");
+        lblLogo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(lblLogo);
+        lblLogo.setBounds(380, 50, 300, 300);
 
-        CantidadCajas.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
-        CantidadCajas.setToolTipText("");
+        lblCantidad.setBackground(new java.awt.Color(255, 255, 255));
+        lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCantidad.setText("Cambiar Numero de Cajas");
+        lblCantidad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lblCantidad.setOpaque(true);
+        getContentPane().add(lblCantidad);
+        lblCantidad.setBounds(20, 230, 200, 24);
 
-        BtnCambiarNombre.setText("Cambiar Nombre");
-        BtnCambiarNombre.addActionListener(new java.awt.event.ActionListener() {
+        jspCantidad.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+        jspCantidad.setToolTipText("");
+        jspCantidad.setRequestFocusEnabled(false);
+        getContentPane().add(jspCantidad);
+        jspCantidad.setBounds(20, 260, 200, 20);
+        jspCantidad.getAccessibleContext().setAccessibleParent(jspCantidad);
+
+        btnNombre.setBackground(new java.awt.Color(255, 255, 255));
+        btnNombre.setText("Cambiar Nombre del Banco");
+        btnNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCambiarNombreActionPerformed(evt);
+                btnNombreActionPerformed(evt);
             }
         });
+        getContentPane().add(btnNombre);
+        btnNombre.setBounds(20, 140, 200, 23);
 
-        jScrollPane1.setViewportView(TxtNombre);
+        BarraNombre.setViewportView(txtNombre);
 
-        BtnAceptar.setText("Confirmar");
-        BtnAceptar.addActionListener(new java.awt.event.ActionListener() {
+        getContentPane().add(BarraNombre);
+        BarraNombre.setBounds(20, 170, 350, 50);
+
+        btnAceptar.setBackground(new java.awt.Color(0, 0, 0));
+        btnAceptar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAceptar.setText("Confirmar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAceptarActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnAceptar);
+        btnAceptar.setBounds(20, 350, 160, 40);
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel1.setText("Hora:");
+        lblFondoMenu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblFondoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/bgPrincipal.png"))); // NOI18N
+        lblFondoMenu.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        lblFondoMenu.setIconTextGap(0);
+        getContentPane().add(lblFondoMenu);
+        lblFondoMenu.setBounds(0, -5, 700, 430);
 
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel3.setText("Hora:");
-
-        jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel2.setText("fecha");
-
-        jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel4.setText("Fecha:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(EtiquetaCantidadDeCajas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CantidadCajas))
-                        .addGap(85, 85, 85))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnCambiarNombre)
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(NombreVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BtncambiarLogo)
-                                .addGap(10, 10, 10)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(284, 284, 284)
-                .addComponent(BtnAceptar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(Logo, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(NombreVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(BtncambiarLogo))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)))
-                .addComponent(EtiquetaCantidadDeCajas, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(CantidadCajas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BtnCambiarNombre)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(BtnAceptar)
-                .addContainerGap(78, Short.MAX_VALUE))
-        );
-
-        CantidadCajas.getAccessibleContext().setAccessibleParent(CantidadCajas);
-
-        setBounds(0, 0, 718, 459);
+        pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnCambiarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCambiarNombreActionPerformed
-        if(!"".equals(TxtNombre.getText())){
-            NombreVentana.setText(TxtNombre.getText());
-            this.setTitle(TxtNombre.getText());
+    /**
+     * Método que permite cambiar el nombre del Banco
+     * @param evt 
+     */
+    private void btnNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNombreActionPerformed
+        //Valida que el nombre no este vacío
+        if(!"".equals(txtNombre.getText())){
+            lblSubtitulo.setText(txtNombre.getText());
+            this.setTitle(txtNombre.getText());
         }
-    }//GEN-LAST:event_BtnCambiarNombreActionPerformed
+    }//GEN-LAST:event_btnNombreActionPerformed
 
-    private void BtncambiarLogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtncambiarLogoActionPerformed
+    /**
+     * Método que permite asignar un logo a la empresa.
+     * @param evt 
+     */
+    private void btnLogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoActionPerformed
+        //Formatos de los iconos
+        elemento.setFileFilter(new FileNameExtensionFilter("Archivo JPG","jpg"));
+        elemento.setFileFilter(new FileNameExtensionFilter("Archivo PNG","png"));
+        elemento.setFileFilter(new FileNameExtensionFilter("Archivo GIF","gif"));
         
-        elemento.setFileFilter(png);
-        elemento.setFileFilter(gif);
-        elemento.setFileFilter(jpg);
+        //Variable que va a buscar la foto y almacenar la direccion
+        int option = elemento.showOpenDialog(this);
         
-        int option = elemento.showOpenDialog(this);  // Abre la ventana en dialogo
+        //Valida si se seleccionó alguna imagen
         if (option == JFileChooser.APPROVE_OPTION){
             try {
-                String file = elemento.getSelectedFile().getPath();  //Obtener ruta y nombre al hacer click
+                //Obtener ruta y nombre al hacer click
+                String file = elemento.getSelectedFile().getPath();  
+                
+                //Convierte la imagen
                 ImageIcon fot = new ImageIcon(file); 
-                Icon icono = new ImageIcon(fot.getImage().getScaledInstance(Logo.getWidth(), Logo.getHeight(), Image.SCALE_DEFAULT)); 
-                Logo.setIcon(icono); 
+                Icon icono = new ImageIcon(fot.getImage().getScaledInstance(400, 
+                        400, Image.SCALE_DEFAULT));
+                
+                //Asigna la imagen
+                lblLogo.setIcon(icono); 
             } catch (Exception ex) {}
         }
         this.repaint();                                  
-    }//GEN-LAST:event_BtncambiarLogoActionPerformed
+    }//GEN-LAST:event_btnLogoActionPerformed
 
-    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
-        if (CantidadCajas.getValue().equals(0)){
-            JOptionPane.showMessageDialog(null,"Seleccione una cantidad de cajas permitida");   
-        } else{
-            int cantidadCajas = (int) CantidadCajas.getValue();
+    /**
+     * Método que va a confirmar los datos que se seleccionaron
+     * @param evt 
+     */
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        if (jspCantidad.getValue().equals(0)){
+            JOptionPane.showMessageDialog(null,"Debe haber más de 1 caja");   
+        } else if (lblSubtitulo.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Nombre incorrecto");   
+        } else if (elemento.getSelectedFile().toPath().equals("")) {
+            JOptionPane.showMessageDialog(null,"Logo incorrecto");
+        } else {
             
-            PA.setCajas(cantidadCajas);
-            PA.setNombreBanco(TxtNombre.getText());
-            PA.setFotoBanco(elemento.getSelectedFile().getPath());
-            
-            VentanaPrincipal VT = new VentanaPrincipal();
-            VT.show();
-            this.dispose();
+            if (JOptionPane.showConfirmDialog(null,
+                    "¿Desea Guardar los siguientes elementos?\n"
+                    + "Nombre: " + lblSubtitulo.getText()
+                    + "Logo: " + elemento.getSelectedFile().toPath()
+                    + "Cajas: " + jspCantidad.getValue()) == JOptionPane.OK_OPTION){
+
+                PA.setCajas((int) jspCantidad.getValue());
+                PA.setNombreBanco(txtNombre.getText());
+                PA.setFotoBanco(elemento.getSelectedFile().getPath());
+
+                VentanaPrincipal VT = new VentanaPrincipal();
+                VT.show();
+                this.dispose();
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Reintente su modificación "
+                        + "de datos");
+            }
         }
-    }//GEN-LAST:event_BtnAceptarActionPerformed
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -258,18 +276,20 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnAceptar;
-    private javax.swing.JButton BtnCambiarNombre;
-    private javax.swing.JButton BtncambiarLogo;
-    private javax.swing.JSpinner CantidadCajas;
-    private javax.swing.JLabel EtiquetaCantidadDeCajas;
-    private javax.swing.JLabel Logo;
-    private javax.swing.JLabel NombreVentana;
-    private javax.swing.JTextPane TxtNombre;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane BarraNombre;
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnLogo;
+    private javax.swing.JButton btnNombre;
+    private javax.swing.JSpinner jspCantidad;
+    private javax.swing.JLabel lblCantidad;
+    private javax.swing.JLabel lblFecha1;
+    private javax.swing.JLabel lblFecha2;
+    private javax.swing.JLabel lblFondoMenu;
+    private javax.swing.JLabel lblHora1;
+    private javax.swing.JLabel lblHora2;
+    private javax.swing.JLabel lblHoraFechaFondo;
+    private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblSubtitulo;
+    private javax.swing.JTextPane txtNombre;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,8 +4,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Parametros {
-    
-
     //Constantes
     private static String tipoBusqueda = "Nombre";
     
