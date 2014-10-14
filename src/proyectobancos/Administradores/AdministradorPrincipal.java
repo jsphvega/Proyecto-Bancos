@@ -5,7 +5,7 @@ import proyectobancos.Administradores.estructuras.ClienteComparable;
 import proyectobancos.Administradores.estructuras.HiloSimulacionCajero;
 import proyectobancos.Administradores.estructuras.ListaSimplementeEnlazadaGenerica;
 import proyectobancos.Administradores.estructuras.NodoGenericoSimple;
-import proyectobancos.Administradores.estructuras.colas.PriorityQueuePropia;
+import proyectobancos.Administradores.estructuras.colas.ColaPrioridad;
 import proyectobancos.Constantes.Constantes;
 import proyectobancos.Constantes.Parametros;
 import proyectobancos.Vistas.Graficos;
@@ -23,7 +23,7 @@ public class AdministradorPrincipal {
 
     private ListaSimplementeEnlazadaGenerica<Cajero> listaCajerosActivos;
     private AdministradorCorreo administradorCorreo;
-    private PriorityQueuePropia<ClienteComparable> colaPrioridad;
+    private ColaPrioridad<ClienteComparable> colaPrioridad;
 
     private VentanaPrincipal ventanaPrincipal;
 
@@ -70,7 +70,7 @@ public class AdministradorPrincipal {
         listaTotalClientes = new ListaSimplementeEnlazadaGenerica<ClienteComparable>();
         listaCajerosActivos = new ListaSimplementeEnlazadaGenerica<Cajero>();
         administradorCorreo = new AdministradorCorreo();
-        colaPrioridad = new PriorityQueuePropia<ClienteComparable>();
+        colaPrioridad = new ColaPrioridad<ClienteComparable>();
         hiloSimulacionCajero = new HiloSimulacionCajero(colaPrioridad, listaCajerosActivos);
         hiloSimulacionCajero.start();
 

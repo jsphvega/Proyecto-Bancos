@@ -8,7 +8,7 @@ package proyectobancos.Administradores.estructuras;
 import java.io.IOException;
 import proyectobancos.Administradores.AdministradorPrincipal;
 import proyectobancos.Administradores.Cajero;
-import proyectobancos.Administradores.estructuras.colas.PriorityQueuePropia;
+import proyectobancos.Administradores.estructuras.colas.ColaPrioridad;
 import proyectobancos.Constantes.Constantes;
 import proyectobancos.Constantes.Parametros;
 
@@ -21,10 +21,10 @@ public class HiloSimulacionCajero extends Thread {
     private volatile boolean blinker = true;
     final long interval = 500;
     private volatile boolean threadSuspended = false;
-    private PriorityQueuePropia<ClienteComparable> colaPrioridad;
+    private ColaPrioridad<ClienteComparable> colaPrioridad;
     private ListaSimplementeEnlazadaGenerica<Cajero> listaCajerosActivos;
 
-    public HiloSimulacionCajero(PriorityQueuePropia<ClienteComparable> colaPrioridad,
+    public HiloSimulacionCajero(ColaPrioridad<ClienteComparable> colaPrioridad,
             ListaSimplementeEnlazadaGenerica<Cajero> listaCajerosActivos) {
         this.colaPrioridad = colaPrioridad;
         this.listaCajerosActivos = listaCajerosActivos;

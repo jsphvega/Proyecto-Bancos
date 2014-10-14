@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  * Clase que permitirá ordenar los datos en la cola según su prioridad.
  * @param <E> tipo de dato
  */
-public class PriorityQueuePropia <E> extends AbstractCollection <E> 
+public class ColaPrioridad <E> extends AbstractCollection <E> 
                     implements QueuePropia<E> {
     
     private int TamañoArbol;   // Numero de elementos en el arbol
@@ -21,7 +21,7 @@ public class PriorityQueuePropia <E> extends AbstractCollection <E>
     /**
      * Método contructor de la clase
      */
-    public PriorityQueuePropia() {
+    public ColaPrioridad() {
         TamañoArbol = 0;
         Arreglo = (E[]) new Object[TamFijo + 1];
         
@@ -32,7 +32,7 @@ public class PriorityQueuePropia <E> extends AbstractCollection <E>
      * Método constructor de la clase
      * @param CMP 
      */
-    public PriorityQueuePropia(Comparator <? super E> CMP ) {
+    public ColaPrioridad(Comparator <? super E> CMP ) {
         TamañoArbol = 0;
         Arreglo = (E[]) new Object[TamFijo + 1];
         
@@ -43,7 +43,7 @@ public class PriorityQueuePropia <E> extends AbstractCollection <E>
      * Método constructor de la clase 
      * @param CMP
      */
-    public PriorityQueuePropia(Collection <? extends E> CMP) {
+    public ColaPrioridad(Collection <? extends E> CMP) {
         TamañoArbol = CMP.size( );
         Arreglo = (E[]) new Object[(TamañoArbol + 2) * 11 / 10 ];
         
@@ -77,7 +77,7 @@ public class PriorityQueuePropia <E> extends AbstractCollection <E>
     }
     
     /**
-     * Adds an item to this PriorityQueuePropia.
+     * Adds an item to this ColaPrioridad.
      * @param x any object.
      * @return true.
      */
@@ -99,8 +99,8 @@ public class PriorityQueuePropia <E> extends AbstractCollection <E>
     }
     
     /**
-     * Returns the number of items in this PriorityQueuePropia.
-     * @return the number of items in this PriorityQueuePropia.
+     * Returns the number of items in this ColaPrioridad.
+     * @return the number of items in this ColaPrioridad.
      */
     @Override
     public int size( )
@@ -109,7 +109,7 @@ public class PriorityQueuePropia <E> extends AbstractCollection <E>
     }
     
     /**
-     * Make this PriorityQueuePropia empty.
+     * Make this ColaPrioridad empty.
      */
     @Override
     public void clear( )
@@ -118,7 +118,7 @@ public class PriorityQueuePropia <E> extends AbstractCollection <E>
     }
     
     /**
-     * Returns an iterator over the elements in this PriorityQueuePropia.
+     * Returns an iterator over the elements in this ColaPrioridad.
      * The iterator does not view the elements in any particular order.
      */
     @Override
