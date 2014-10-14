@@ -48,17 +48,17 @@ public final class VentanaTabla extends javax.swing.JFrame {
      */
     public void Asignar(){
         
-        Object[] Ob = new Object[5];
-        NodoGenericoSimple <ClienteComparable> NGS = LSE.getListaClientes().obtenerPrimero();
-        
-        while(NGS != null){
-            Ob[0] = NGS.getElement().getNombre();
-            Ob[1] = NGS.getElement().getCorreo();
-            Ob[2] = NGS.getElement().getPrioridad();
-            Ob[3] = NGS.getElement().getFecha();
-            Ob[4] = NGS.getElement().getHora();
-            Ordenamientos.addRow(Ob);
-        }    
+//        Object[] Ob = new Object[5];
+////        NodoGenericoSimple <ClienteComparable> NGS = LSE.getListaClientes().obtenerPrimero();
+//        
+//        while(NGS != null){
+//            Ob[0] = NGS.getElement().getNombre();
+//            Ob[1] = NGS.getElement().getCorreo();
+//            Ob[2] = NGS.getElement().getPrioridad();
+//            Ob[3] = NGS.getElement().getFecha();
+//            Ob[4] = NGS.getElement().getHora();
+//            Ordenamientos.addRow(Ob);
+//        }    
     }
     
     /**
