@@ -48,27 +48,27 @@ public class HiloSimulacionCajero extends Thread {
             //
             System.out.println("Trabajando");
 
-            
-            
             NodoGenericoSimple<Cajero> obtenerPrimerCajero = listaCajerosActivos.obtenerPrimero();
 
             if (obtenerPrimerCajero != null) {
-                
-                while (obtenerPrimerCajero.next != null) {
-                    
-                    Cajero cajero = obtenerPrimerCajero.next.getElement();
+
+                while (obtenerPrimerCajero != null) {
+
+                    Cajero cajero = obtenerPrimerCajero.getElement();
                     int estado = cajero.getEstado();
-                    if (estado==Constantes.ESTADO_CAJERO_DISPONIBLE){
+                    if (estado == Constantes.ESTADO_CAJERO_DISPONIBLE) {
                         System.out.println("Asignando cliente al cajero #:");
                         System.out.println(cajero.getNumeroCajero());
+                        ClienteComparable clienteParaAtender = colaPrioridad.remove();
+                        cajero.setClienteActual(clienteParaAtender);
+                        cajero.setEstado(Constantes.ESTADO_CAJERO_OCUPADO);
+                        
                     }
 
-                    
                     obtenerPrimerCajero = obtenerPrimerCajero.next;
                 }
                 System.out.println();
-            }
-            else{
+            } else {
                 System.out.println("Lista de cajeros vacia");
             }
 

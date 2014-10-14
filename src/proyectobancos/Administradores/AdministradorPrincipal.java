@@ -257,9 +257,14 @@ public class AdministradorPrincipal {
         if (obtenerPrimero != null) {
             
             while (obtenerPrimero != null) {
-                Cajero cliente = obtenerPrimero.next.getElement();
-                cliente.setEstado(Constantes.ESTADO_CLIENTE_ATENDIDO);
+                Cajero cajero = obtenerPrimero.getElement();
+                if (cajero.getEstado()==Constantes.ESTADO_CAJERO_OCUPADO){
+                    cajero.setEstado(Constantes.ESTADO_CAJERO_DISPONIBLE);
+                    
+                }
+                
                 obtenerPrimero = obtenerPrimero.next;
+                
             }
             System.out.println();
         }
