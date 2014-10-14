@@ -398,6 +398,8 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         Anterior[2] = Pa.getNombreBanco();
 
         ventanaConfiguracion.setVisible(true);
+        modoSimulacion = Constantes.MODO_SIMULACION_PAUSADA;
+        AdministradorPrincipal.getInstance().pausarSimulacion();
 
         this.setVisible(false);
         this.repaint();

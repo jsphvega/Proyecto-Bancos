@@ -37,7 +37,7 @@ public class AdministradorPrincipal {
     private int totalClientes;
 
     private int modoSimulacion;
-    
+
     private Parametros parametros;
 
     private static AdministradorPrincipal INSTANCE = null;
@@ -65,7 +65,7 @@ public class AdministradorPrincipal {
     }
 
     private void crearEstructuras() {
-        
+
         parametros = new Parametros();
         listaClientes = new ListaSimplementeEnlazadaGenerica<ClienteComparable>();
         listaCajerosActivos = new ListaSimplementeEnlazadaGenerica<Cajero>();
@@ -73,7 +73,7 @@ public class AdministradorPrincipal {
         colaPrioridad = new PriorityQueue();
         hiloSimulacionCajero = new HiloSimulacionCajero(colaPrioridad, listaCajerosActivos);
         hiloSimulacionCajero.start();
-        
+
     }
 
     public static AdministradorPrincipal getInstance() {
@@ -119,7 +119,7 @@ public class AdministradorPrincipal {
         System.out.println("DETENIENDO SIMULACION");
         System.out.println("---");
         hiloSimulacionCajero.detener();
-        
+
     }
 
     public boolean enviarCorreoConfirmacion(String correoDestino, String nombre, String tiquete, String rutaImagen) {
@@ -238,11 +238,19 @@ public class AdministradorPrincipal {
     public void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
         this.ventanaPrincipal = ventanaPrincipal;
     }
-    
-    public void actualizarCajeros(){
-        if (ventanaPrincipal!=null){
+
+    public void actualizarCajeros() {
+        if (ventanaPrincipal != null) {
             int totalCajas = parametros.getCajas();
-            
+//            if (listaCajerosActivos.getSize()){
+//                
+//            }
+            //listaCajerosActivos.
         }
     }
+    
+    public void liberarTodosCajeros(){
+        
+    }
+
 }

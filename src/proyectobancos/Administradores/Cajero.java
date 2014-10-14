@@ -17,6 +17,7 @@ public class Cajero {
     private ClienteComparable clienteActual;
     private int estado;
     private int numeroCajero;
+    
 
     public Cajero(int numeroCajero) {
         this.numeroCajero = numeroCajero;

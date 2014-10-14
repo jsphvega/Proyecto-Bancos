@@ -8,77 +8,74 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import proyectobancos.Administradores.AdministradorPrincipal;
 import proyectobancos.Administradores.Reloj;
 import proyectobancos.Constantes.Parametros;
 
 public class VentanaConfiguracion extends javax.swing.JFrame {
+
     String Direccion;
-    
+
     private Parametros Pa = new Parametros();
     private VentanaPrincipal ventanaPrincipal;
-    
-    public VentanaConfiguracion(VentanaPrincipal ventanaPrincipal) {     
+
+    public VentanaConfiguracion(VentanaPrincipal ventanaPrincipal) {
         initComponents();
-        
-        
+
         this.ventanaPrincipal = ventanaPrincipal;
         setVentana();
-        
+
         jspCantidad.setValue(Pa.getCajas());
-        
+
         lblSubtitulo.setText(Pa.getNombreBanco());
         //Convierte la imagen
-        ImageIcon fot = new ImageIcon(Pa.getRutaFotoBanco()); 
-        Icon icono = new ImageIcon(fot.getImage().getScaledInstance(400, 
+        ImageIcon fot = new ImageIcon(Pa.getRutaFotoBanco());
+        Icon icono = new ImageIcon(fot.getImage().getScaledInstance(400,
                 400, Image.SCALE_DEFAULT));
 
         //Asigna la imagen
-        lblLogo.setIcon(icono); 
-        
+        lblLogo.setIcon(icono);
+
         Direccion = Pa.getRutaFotoBanco();
     }
 
     public VentanaConfiguracion() throws HeadlessException {
-        
+
         initComponents();
-        
+
         ventanaPrincipal = null;
-        
+
         setVentana();
-        
-        
-        
+
         jspCantidad.setValue(Pa.getCajas());
-        
+
         lblSubtitulo.setText(Pa.getNombreBanco());
         //Convierte la imagen
-        ImageIcon fot = new ImageIcon(Pa.getRutaFotoBanco()); 
-        Icon icono = new ImageIcon(fot.getImage().getScaledInstance(400, 
+        ImageIcon fot = new ImageIcon(Pa.getRutaFotoBanco());
+        Icon icono = new ImageIcon(fot.getImage().getScaledInstance(400,
                 400, Image.SCALE_DEFAULT));
 
         //Asigna la imagen
-        lblLogo.setIcon(icono); 
-        
+        lblLogo.setIcon(icono);
+
         Direccion = Pa.getRutaFotoBanco();
-        
+
     }
-    
-    
-    
+
     /**
      * Método que controla la fecha y la hora del sistema en tiempo real.
      */
-    private void setVentana(){
+    private void setVentana() {
         //Procesos de calculo de la fecha
-        Calendar Cal= Calendar.getInstance();
-        lblFecha1.setText(Cal.get(Calendar.DATE) + "/" + (Cal.get(Calendar.MONTH)+1)
+        Calendar Cal = Calendar.getInstance();
+        lblFecha1.setText(Cal.get(Calendar.DATE) + "/" + (Cal.get(Calendar.MONTH) + 1)
                 + "/" + Cal.get(Calendar.YEAR));
-        
+
         //Procesos de calculo de la hora en tiempo real
         Reloj hora = new Reloj(lblHora2);
         hora.start();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -211,11 +208,12 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
 
     /**
      * Método que permite cambiar el nombre del Banco
-     * @param evt 
+     *
+     * @param evt
      */
     private void btnNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNombreActionPerformed
         //Valida que el nombre no este vacío
-        if(!"".equals(txtNombre.getText())){
+        if (!"".equals(txtNombre.getText())) {
             lblSubtitulo.setText(txtNombre.getText());
             this.setTitle(txtNombre.getText());
         }
@@ -223,67 +221,73 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
 
     /**
      * Método que permite asignar un logo a la empresa.
-     * @param evt 
+     *
+     * @param evt
      */
     private void btnLogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoActionPerformed
         JFileChooser elemento = new JFileChooser();  //Crea un objeto de dialogo JFileChooser
 
         //Formatos de los iconos
-        elemento.setFileFilter(new FileNameExtensionFilter("Archivo JPG","jpg"));
-        elemento.setFileFilter(new FileNameExtensionFilter("Archivo PNG","png"));
-        elemento.setFileFilter(new FileNameExtensionFilter("Archivo GIF","gif"));
-        
+        elemento.setFileFilter(new FileNameExtensionFilter("Archivo JPG", "jpg"));
+        elemento.setFileFilter(new FileNameExtensionFilter("Archivo PNG", "png"));
+        elemento.setFileFilter(new FileNameExtensionFilter("Archivo GIF", "gif"));
+
         //Variable que va a buscar la foto y almacenar la direccion
         int option = elemento.showOpenDialog(this);
-        
+
         //Valida si se seleccionó alguna imagen
-        if (option == JFileChooser.APPROVE_OPTION){
+        if (option == JFileChooser.APPROVE_OPTION) {
             try {
                 //Obtener ruta y nombre al hacer click
-                String file = elemento.getSelectedFile().getPath();  
+                String file = elemento.getSelectedFile().getPath();
                 Direccion = file;
-                
+
                 //Convierte la imagen
-                ImageIcon fot = new ImageIcon(file); 
-                Icon icono = new ImageIcon(fot.getImage().getScaledInstance(400, 
+                ImageIcon fot = new ImageIcon(file);
+                Icon icono = new ImageIcon(fot.getImage().getScaledInstance(400,
                         400, Image.SCALE_DEFAULT));
-                
+
                 //Asigna la imagen
-                lblLogo.setIcon(icono); 
-            } catch (Exception ex) {}
+                lblLogo.setIcon(icono);
+            } catch (Exception ex) {
+            }
         }
-        this.repaint();                                  
+        this.repaint();
     }//GEN-LAST:event_btnLogoActionPerformed
 
     /**
      * Método que va a confirmar los datos que se seleccionaron
-     * @param evt 
+     *
+     * @param evt
      */
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        if (jspCantidad.getValue().equals(0)){
-            JOptionPane.showMessageDialog(null,"Debe haber más de 1 caja");   
-        } else if (lblSubtitulo.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Nombre incorrecto");   
+        if (jspCantidad.getValue().equals(0)) {
+            JOptionPane.showMessageDialog(null, "Debe haber más de 1 caja");
+        } else if (lblSubtitulo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nombre incorrecto");
         } else if (Direccion.equals("")) {
-            JOptionPane.showMessageDialog(null,"Logo incorrecto");
+            JOptionPane.showMessageDialog(null, "Logo incorrecto");
         } else {
-            
+
             if (JOptionPane.showConfirmDialog(null,
                     "¿Desea Guardar los siguientes elementos?"
                     + "\nNombre: " + lblSubtitulo.getText()
                     + "\nLogo: " + Direccion
-                    + "\nCajas: " + jspCantidad.getValue()) == JOptionPane.OK_OPTION){
+                    + "\nCajas: " + jspCantidad.getValue()) == JOptionPane.OK_OPTION) {
 
                 Pa.setCajas((int) jspCantidad.getValue());
                 Pa.setNombreBanco(txtNombre.getText());
                 Pa.setFotoBanco(Direccion);
 
                 ventanaPrincipal.actulizarCajas();
-                
+
                 setVisible(false);
                 ventanaPrincipal.setVisible(true);
-                
-                
+
+                AdministradorPrincipal.getInstance().activarSimulacion();
+                AdministradorPrincipal.getInstance().liberarTodosCajeros();
+                AdministradorPrincipal.getInstance().actualizarCajeros();
+
             } else {
                 JOptionPane.showMessageDialog(null, "Reintente su modificación "
                         + "de datos");
