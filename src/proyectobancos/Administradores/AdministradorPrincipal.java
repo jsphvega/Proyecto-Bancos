@@ -124,9 +124,10 @@ public class AdministradorPrincipal {
         return administradorCorreo.enviarCorreoConfirmacion(correoDestino, nombre, tiquete, rutaImagen);
     }
 
-    public boolean enviarCorreoTurno(String correoDestino, String rutaImagen) {
+    public boolean enviarCorreoTurno(String correoDestino, String rutaImagen, int numeroCajero) {
         return administradorCorreo.enviarCorreoTurno(correoDestino, rutaImagen);
     }
+    
 
     public String getNextCodigoDiscapacitados() {
         return Constantes.CATEGORIA_DISCAPACITADO + totalClientesDiscapacitados;

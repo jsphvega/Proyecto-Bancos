@@ -60,7 +60,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
             public void tableChanged(TableModelEvent e) {
 
                 if (escucharCambios) {
-                    System.out.println(e);
+                    //System.out.println(e);
 
                     int row = e.getFirstRow();
                     int column = e.getColumn();

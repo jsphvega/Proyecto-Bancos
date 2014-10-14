@@ -39,19 +39,21 @@ public class AdministradorCorreo {
     private String cuerpoCorreoConfirmacionParte1;
     private String cuerpoCorreoConfirmacionParte2;
     private String cuerpoCorreoConfirmacionParte3;
-    
+
     private String rutaImagen = getClass().getResource("/proyectobancos/Imagenes/bgPrincipal.png").getPath();
     
+    
+
     private String cuerpoCorreoTurno;
 
     public AdministradorCorreo() {
         //System.out.println("1. Propiedades del servidor de correos");
 
         asuntoConfirmacion = "Confirmación de tiquete";
-        asuntoTurno = "Es su turno";
+        asuntoTurno = "Es su turno en el cajero #: ";
 
         cuerpoCorreoConfirmacionParte1 = "Buenas estimado cliente,<br><br>";
-        cuerpoCorreoConfirmacionParte2= "Se le informa que se le ha asignado el siguiente tiquete para ser atendido<br><br> ";
+        cuerpoCorreoConfirmacionParte2 = "Se le informa que se le ha asignado el siguiente tiquete para ser atendido<br><br> ";
         cuerpoCorreoConfirmacionParte3 = "Saludos, <br><br>Favor espere su turno, pronto se le notificará.";
 
         sourceEmail = "malusoce96@gmail.com"; // requires valid Gmail id
@@ -89,6 +91,12 @@ public class AdministradorCorreo {
 
     public boolean enviarCorreoTurno(String correoDestino, String rutaImagen) {
         this.toEmail = correoDestino;
+        return generateAndSendEmail(session, toEmail, asuntoTurno, cuerpoCorreoTurno, rutaImagen);
+    }
+
+    boolean enviarCorreoTurno(String correoDestino, String rutaFotoBanco, int numeroCajero) {
+        this.toEmail = correoDestino;
+        asuntoConfirmacion  += numeroCajero;
         return generateAndSendEmail(session, toEmail, asuntoTurno, cuerpoCorreoTurno, rutaImagen);
     }
 
@@ -152,6 +160,11 @@ public class AdministradorCorreo {
             System.out.println("Error en el envio de correo");
             return false;
         } catch (UnsupportedEncodingException e) {
+            //e.printStackTrace();
+            //Error al enviar correo
+            System.out.println("Error en el envio de correo");
+            return false;
+        }catch (Exception e) {
             //e.printStackTrace();
             //Error al enviar correo
             System.out.println("Error en el envio de correo");

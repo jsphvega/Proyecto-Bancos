@@ -10,6 +10,7 @@ import proyectobancos.Administradores.AdministradorPrincipal;
 import proyectobancos.Administradores.Cajero;
 import proyectobancos.Administradores.estructuras.colas.PriorityQueuePropia;
 import proyectobancos.Constantes.Constantes;
+import proyectobancos.Constantes.Parametros;
 
 /**
  *
@@ -63,16 +64,21 @@ public class HiloSimulacionCajero extends Thread {
 
                         if (colaPrioridad.size() > 0) {
 
-                            System.out.println("Asignando cliente al cajero #:");
-                            System.out.println(cajero.getNumeroCajero());
+                            //System.out.println("Asignando cliente al cajero #:");
+                            //System.out.println(cajero.getNumeroCajero());
 
                             ClienteComparable clienteParaAtender = colaPrioridad.remove();
                             cajero.setClienteActual(clienteParaAtender);
                             cajero.setEstado(Constantes.ESTADO_CAJERO_OCUPADO);
                             clienteParaAtender.setEstado(Constantes.ESTADO_CLIENTE_EN_CAJA);
                             
-                            AdministradorPrincipal.getInstance().mostrarMensaje("El usuario: " + clienteParaAtender.getNombre()+
-                                    ", ficha: "+ colaPrioridad);
+                            AdministradorPrincipal.getInstance().mostrarMensaje("El usuario: " + clienteParaAtender.getNombre()+"\n"+
+                                    "Ficha: "+ clienteParaAtender.getCodigo()+"\n"+"Ha sido asignando al cajero #: "+cajero.getNumeroCajero());
+                            
+                            AdministradorPrincipal.getInstance().enviarCorreoTurno(clienteParaAtender.getCorreo(), Parametros.getRutaFotoBanco(), cajero.getNumeroCajero());
+                            AdministradorPrincipal.getInstance().mostrarMensaje("Se le ha notificado que le "
+                                    + "corresponde su turno al cliente con la ficha: " + 
+                                    clienteParaAtender.getCodigo());
                         }
 
                     }
