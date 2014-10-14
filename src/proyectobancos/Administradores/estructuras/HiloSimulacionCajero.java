@@ -6,6 +6,7 @@
 package proyectobancos.Administradores.estructuras;
 
 import java.io.IOException;
+import proyectobancos.Administradores.AdministradorPrincipal;
 import proyectobancos.Administradores.Cajero;
 import proyectobancos.Administradores.estructuras.colas.PriorityQueuePropia;
 import proyectobancos.Constantes.Constantes;
@@ -69,6 +70,9 @@ public class HiloSimulacionCajero extends Thread {
                             cajero.setClienteActual(clienteParaAtender);
                             cajero.setEstado(Constantes.ESTADO_CAJERO_OCUPADO);
                             clienteParaAtender.setEstado(Constantes.ESTADO_CLIENTE_EN_CAJA);
+                            
+                            AdministradorPrincipal.getInstance().mostrarMensaje("El usuario: " + clienteParaAtender.getNombre()+
+                                    ", ficha: "+ colaPrioridad);
                         }
 
                     }

@@ -48,7 +48,10 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         agregarEventoTabla();
 
         modoSimulacion = Constantes.MODO_SIMULACION_PAUSADA;
+        
+        mostrarEvento("Inicio del Sistema");
 
+                
     }
 
     private void agregarEventoTabla() {
@@ -70,6 +73,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
                         boolean valor = (boolean)data;
                         if (valor == true){
                             AdministradorPrincipal.getInstance().liberarCajero(row);
+                            model.setValueAt(false, row, column);
                         }
                     }
                     
@@ -156,6 +160,8 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
      * usuarios.
      */
     private void AplicarEnTabla() {
+        
+        System.out.println("APLICANDO CAMBIO");
 
         //Ciclo que revisa cada campo de la tabla para comprobar si lo libera.
         for (int i = 0; i < Pa.getCajas(); i++) {
@@ -534,5 +540,11 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
 
     public void setVentanaRegistroCliente(VentanaRegistroClientesFinal ventanaRegistroClientesFinal) {
         this.ventanaRegistroCliente = ventanaRegistroClientesFinal;
+    }
+    
+    public void mostrarEvento(String evento){
+        txtListaClientes.setText(txtListaClientes.getText()+"\n");
+        txtListaClientes.setText(txtListaClientes.getText()+"---\n");
+        txtListaClientes.setText(txtListaClientes.getText()+evento+"\n");
     }
 }

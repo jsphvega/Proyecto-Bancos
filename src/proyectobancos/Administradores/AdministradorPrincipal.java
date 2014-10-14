@@ -340,5 +340,11 @@ public class AdministradorPrincipal {
             System.out.println();
         }
     }
+    
+    public void mostrarMensaje(String mensaje){
+        if (ventanaPrincipal != null){
+            ventanaPrincipal.mostrarEvento(mensaje);
+        }
+    }
 
 }

@@ -290,6 +290,7 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
                 AdministradorPrincipal.getInstance().liberarTodosCajeros();
                 AdministradorPrincipal.getInstance().actualizarCajeros();
                 AdministradorPrincipal.getInstance().activarSimulacion();
+                AdministradorPrincipal.getInstance().mostrarMensaje("Configuración cambiada");
 
             } else {
                 JOptionPane.showMessageDialog(null, "Reintente su modificación "

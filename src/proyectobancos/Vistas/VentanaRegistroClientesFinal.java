@@ -330,7 +330,10 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
         }
 
         AdministradorPrincipal.getInstance().enviarCorreoConfirmacion(Correo, Nombre, codigo, Parametros.getRutaFotoBanco());
-
+        AdministradorPrincipal.getInstance().mostrarMensaje("Nuevo cliente ingresado, correo de confirmación enviado a: " + Correo+
+                "\n"+"Usuario: " + Nombre+ "\n"+"Ficha: " + codigo);
+        
+        
         //EnviarEmail.sendMail(Nombre, Correo, Fecha, Hora);
         //System.out.println("se mando un correo");
         JOptionPane.showMessageDialog(null, "Cliente asignado");
