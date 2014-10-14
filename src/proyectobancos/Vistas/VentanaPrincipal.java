@@ -428,7 +428,9 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
      */
     private void lblGraficosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGraficosMouseReleased
         //JOptionPane.showMessageDialog(null, "Abre la ventana de Graficos");
-        AdministradorPrincipal.getInstance().mostrarGraficos();
+        VentanaEscogerGraficos ventanaEscogerGraficos = new VentanaEscogerGraficos();
+        ventanaEscogerGraficos.setVisible(true);
+                
         
     }//GEN-LAST:event_lblGraficosMouseReleased
 

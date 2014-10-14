@@ -55,7 +55,7 @@ public class Graficos {
         graficador.setLabelGenerator(gen);
 
         // Mostrar Grafico
-        ChartFrame frame = new ChartFrame("Estadisticas del banco", chart);
+        ChartFrame frame = new ChartFrame("Estadísticas del banco", chart);
         frame.pack();
         frame.setVisible(true);
 

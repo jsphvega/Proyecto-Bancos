@@ -24,7 +24,7 @@ public class VentanaGraficosBarrasPorTipoCliente extends JFrame {
     JPanel panel;
 
     public VentanaGraficosBarrasPorTipoCliente(int numeroDiscapacitados, int numeroAdultoMayor, int numeroEmbarazadas, int numeroClienteCorporativo, int numeroClientesRegular) {
-        setTitle("Estadisticas del banco");
+        setTitle("Estadísticas del banco");
         setSize(800, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

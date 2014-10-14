@@ -344,7 +344,49 @@ public class AdministradorPrincipal {
         }
     }
 
-    public void mostrarGraficos() {
+    public void mostrarGraficosBarrasTipoCliente() {
+
+        System.out.println("Mostrando graficos");
+
+        NodoGenericoSimple<ClienteComparable> obtenerPrimero = listaTotalClientes.obtenerPrimero();
+
+        int totalDiscapacitados = 0;
+        int totalAdultoMayor = 0;
+        int totalMujeresEnbarazadas = 0;
+        int totalCoporativos = 0;
+        int totalRegulares = 0;
+
+        if (obtenerPrimero != null) {
+
+            while (obtenerPrimero != null) {
+                ClienteComparable clienteActual = obtenerPrimero.getElement();
+
+                if ((Integer.valueOf(clienteActual.getPrioridad())) == Constantes.PRIORIDAD_DISCAPACITADO) {
+                    totalDiscapacitados++;
+                } else if ((Integer.valueOf(clienteActual.getPrioridad())) == Constantes.PRIORIDAD_ADULTO_MAYOR) {
+                    totalAdultoMayor++;
+                } else if ((Integer.valueOf(clienteActual.getPrioridad())) == Constantes.PRIORIDAD_MUJER_EMBARAZADA) {
+                    totalMujeresEnbarazadas++;
+                } else if ((Integer.valueOf(clienteActual.getPrioridad())) == Constantes.PRIORIDAD_CLIENTE_CORPORATIVO) {
+                    totalCoporativos++;
+                } else if ((Integer.valueOf(clienteActual.getPrioridad())) == Constantes.PRIORIDAD_CLIENTE_REGULAR) {
+                    totalRegulares++;
+                }
+
+                //String situacionCliente = clienteActual.toString();
+                //System.out.println(situacionCliente);
+                obtenerPrimero = obtenerPrimero.next;
+
+            }
+
+            //System.out.println();
+        }
+
+        
+        new VentanaGraficosBarrasPorTipoCliente(totalDiscapacitados, totalAdultoMayor, totalMujeresEnbarazadas, totalCoporativos, totalRegulares).setVisible(true);
+    }
+    
+    public void mostrarGraficosPieTipoCliente() {
 
         System.out.println("Mostrando graficos");
 
@@ -383,7 +425,8 @@ public class AdministradorPrincipal {
         }
 
         Graficos.generarGraficoPastelCantindadClientesPorTipo(totalDiscapacitados, totalAdultoMayor, totalMujeresEnbarazadas, totalCoporativos, totalRegulares);
-        new VentanaGraficosBarrasPorTipoCliente(totalDiscapacitados, totalAdultoMayor, totalMujeresEnbarazadas, totalCoporativos, totalRegulares).setVisible(true);
+        
     }
+
 
 }
