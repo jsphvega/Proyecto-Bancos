@@ -75,7 +75,8 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
 
                             AdministradorPrincipal.getInstance().liberarCajero(row);
                             model.setValueAt(false, row, column);
-
+                            
+                            
                             //AdministradorPrincipal.getInstance().liberarCajero(row);
 
                         }

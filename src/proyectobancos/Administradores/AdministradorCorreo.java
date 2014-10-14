@@ -30,8 +30,8 @@ import javax.mail.internet.MimeMultipart;
  */
 public class AdministradorCorreo {
 
-    private final String sourceEmail; // requires valid Gmail id
-    private final String password; // correct password for Gmail id
+    private  String sourceEmail; // requires valid Gmail id
+    private  String password; // correct password for Gmail id
     private String toEmail; // any destination email id
     private Session session;
     private String asuntoConfirmacion;
@@ -49,8 +49,15 @@ public class AdministradorCorreo {
     public AdministradorCorreo() {
         //System.out.println("1. Propiedades del servidor de correos");
 
+        reiniciarValores();
+
+    }
+    
+    public void reiniciarValores(){
         asuntoConfirmacion = "Confirmación de tiquete";
-        asuntoTurno = "Es su turno en el cajero #: ";
+        asuntoTurno = "Es su turno";
+        
+        cuerpoCorreoTurno = "Se le notifica que es su turno en el cajero #: ";
 
         cuerpoCorreoConfirmacionParte1 = "Buenas estimado cliente,<br><br>";
         cuerpoCorreoConfirmacionParte2 = "Se le informa que se le ha asignado el siguiente tiquete para ser atendido<br><br> ";
@@ -79,7 +86,6 @@ public class AdministradorCorreo {
             }
         };
         session = Session.getInstance(props, authentication);
-
     }
 
     public boolean enviarCorreoConfirmacion(String correoDestino, String nombre, String tiquete, String rutaImagen) {
@@ -89,15 +95,13 @@ public class AdministradorCorreo {
         return generateAndSendEmail(session, toEmail, asuntoConfirmacion, cuerpoCorreoConfirmacionParte1, rutaImagen);
     }
 
-    public boolean enviarCorreoTurno(String correoDestino, String rutaImagen) {
-        this.toEmail = correoDestino;
-        return generateAndSendEmail(session, toEmail, asuntoTurno, cuerpoCorreoTurno, rutaImagen);
-    }
 
     boolean enviarCorreoTurno(String correoDestino, String rutaFotoBanco, int numeroCajero) {
+        reiniciarValores();
         this.toEmail = correoDestino;
-        asuntoConfirmacion  += numeroCajero;
-        return generateAndSendEmail(session, toEmail, asuntoTurno, cuerpoCorreoTurno, rutaImagen);
+        cuerpoCorreoTurno  += numeroCajero;
+        
+        return generateAndSendEmail(session, toEmail, asuntoTurno, cuerpoCorreoTurno, rutaFotoBanco);
     }
 
     public static boolean generateAndSendEmail(Session session, String toEmail, String subject,
@@ -165,8 +169,9 @@ public class AdministradorCorreo {
             System.out.println("Error en el envio de correo");
             return false;
         }catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             //Error al enviar correo
+            
             System.out.println("Error en el envio de correo");
             return false;
         }

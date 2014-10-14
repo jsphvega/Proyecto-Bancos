@@ -44,6 +44,8 @@ public class ClienteComparable implements Comparable<ClienteComparable> {
         } else if (estado == Constantes.ESTADO_CLIENTE_EN_CAJA) {
             resultado += "Estado: \n";
             resultado += "EN CAJA" + "\n";
+            
+        }else if (estado == Constantes.ESTADO_CLIENTE_ATENDIDO) {
             resultado += "Estado: \n";
             resultado += "ATENDIDO" + "\n";
         }

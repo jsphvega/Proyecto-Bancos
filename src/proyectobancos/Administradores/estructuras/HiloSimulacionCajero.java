@@ -75,6 +75,10 @@ public class HiloSimulacionCajero extends Thread {
                             AdministradorPrincipal.getInstance().mostrarMensaje("El usuario: " + clienteParaAtender.getNombre()+"\n"+
                                     "Ficha: "+ clienteParaAtender.getCodigo()+"\n"+"Ha sido asignando al cajero #: "+cajero.getNumeroCajero());
                             
+                            System.out.println("$$$Correo: "+clienteParaAtender.getCorreo());
+                            System.out.println("$$$Ruta foto: "+Parametros.getRutaFotoBanco());
+                            System.out.println("$$$Cajero: "+cajero.getNumeroCajero());
+                            
                             AdministradorPrincipal.getInstance().enviarCorreoTurno(clienteParaAtender.getCorreo(), Parametros.getRutaFotoBanco(), cajero.getNumeroCajero());
                             AdministradorPrincipal.getInstance().mostrarMensaje("Se le ha notificado que le "
                                     + "corresponde su turno al cliente con la ficha: " + 

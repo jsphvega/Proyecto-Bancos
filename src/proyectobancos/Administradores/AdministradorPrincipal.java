@@ -125,7 +125,7 @@ public class AdministradorPrincipal {
     }
 
     public boolean enviarCorreoTurno(String correoDestino, String rutaImagen, int numeroCajero) {
-        return administradorCorreo.enviarCorreoTurno(correoDestino, rutaImagen);
+        return administradorCorreo.enviarCorreoTurno(correoDestino, rutaImagen, numeroCajero);
     }
     
 
@@ -268,6 +268,7 @@ public class AdministradorPrincipal {
                 if (cajero.getEstado() == Constantes.ESTADO_CAJERO_OCUPADO) {
                     cajero.setEstado(Constantes.ESTADO_CAJERO_DISPONIBLE);
                     cajero.getClienteActual().setEstado(Constantes.ESTADO_CLIENTE_ATENDIDO);
+                    AdministradorPrincipal.getInstance().mostrarMensaje("Se ha liberado al cajero #: " + cajero.getNumeroCajero());
                 }
 
                 obtenerPrimero = obtenerPrimero.next;
@@ -324,6 +325,7 @@ public class AdministradorPrincipal {
                     if (cajero.getEstado() == Constantes.ESTADO_CAJERO_OCUPADO) {
                         cajero.setEstado(Constantes.ESTADO_CAJERO_DISPONIBLE);
                         cajero.getClienteActual().setEstado(Constantes.ESTADO_CLIENTE_ATENDIDO);
+                        AdministradorPrincipal.getInstance().mostrarMensaje("Se ha liberado al cajero #: " + row);
                     }
                     break;
                 }
