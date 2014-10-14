@@ -24,7 +24,7 @@ public class AdministradorPrincipal {
 
     private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaTotalClientes;
     //private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaClientesAtendidos;
-    
+
     private ListaSimplementeEnlazadaGenerica<Cajero> listaCajerosActivos;
     private AdministradorCorreo administradorCorreo;
     private PriorityQueuePropia<ClienteComparable> colaPrioridad;
@@ -163,7 +163,7 @@ public class AdministradorPrincipal {
                 codigo,
                 Fecha,
                 Hora);
-        
+
         nuevoCliente.setEstado(Constantes.ESTADO_CLIENTE_EN_ESPERA);
 
         colaPrioridad.add(nuevoCliente);
@@ -181,7 +181,7 @@ public class AdministradorPrincipal {
                 codigo,
                 Fecha,
                 Hora);
-        
+
         nuevoCliente.setEstado(Constantes.ESTADO_CLIENTE_EN_ESPERA);
 
         colaPrioridad.add(nuevoCliente);
@@ -199,7 +199,7 @@ public class AdministradorPrincipal {
                 codigo,
                 Fecha,
                 Hora);
-        
+
         nuevoCliente.setEstado(Constantes.ESTADO_CLIENTE_EN_ESPERA);
 
         colaPrioridad.add(nuevoCliente);
@@ -217,7 +217,7 @@ public class AdministradorPrincipal {
                 codigo,
                 Fecha,
                 Hora);
-        
+
         nuevoCliente.setEstado(Constantes.ESTADO_CLIENTE_EN_ESPERA);
 
         colaPrioridad.add(nuevoCliente);
@@ -235,9 +235,9 @@ public class AdministradorPrincipal {
                 codigo,
                 Fecha,
                 Hora);
-        
+
         nuevoCliente.setEstado(Constantes.ESTADO_CLIENTE_EN_ESPERA);
-        
+
         nuevoCliente.toString();
 
         colaPrioridad.add(nuevoCliente);
@@ -267,16 +267,16 @@ public class AdministradorPrincipal {
         NodoGenericoSimple<Cajero> obtenerPrimero = listaCajerosActivos.obtenerPrimero();
 
         if (obtenerPrimero != null) {
-            
+
             while (obtenerPrimero != null) {
                 Cajero cajero = obtenerPrimero.getElement();
-                if (cajero.getEstado()==Constantes.ESTADO_CAJERO_OCUPADO){
+                if (cajero.getEstado() == Constantes.ESTADO_CAJERO_OCUPADO) {
                     cajero.setEstado(Constantes.ESTADO_CAJERO_DISPONIBLE);
                     cajero.getClienteActual().setEstado(Constantes.ESTADO_CLIENTE_ATENDIDO);
                 }
-                
+
                 obtenerPrimero = obtenerPrimero.next;
-                
+
             }
             System.out.println();
         }
@@ -300,16 +300,42 @@ public class AdministradorPrincipal {
         NodoGenericoSimple<ClienteComparable> obtenerPrimero = listaTotalClientes.obtenerPrimero();
 
         if (obtenerPrimero != null) {
-            
+
             while (obtenerPrimero != null) {
                 ClienteComparable clienteActual = obtenerPrimero.getElement();
 
                 String situacionCliente = clienteActual.toString();
-                
+
                 System.out.println(situacionCliente);
-                
+
                 obtenerPrimero = obtenerPrimero.next;
-                
+
+            }
+            System.out.println();
+        }
+    }
+
+    public void liberarCajero(int row) {
+        NodoGenericoSimple<Cajero> obtenerPrimero = listaCajerosActivos.obtenerPrimero();
+
+        
+        int contador = 0;
+        if (obtenerPrimero != null) {
+
+            while (obtenerPrimero != null) {
+
+                if (contador == row) {
+                    Cajero cajero = obtenerPrimero.getElement();
+                    if (cajero.getEstado() == Constantes.ESTADO_CAJERO_OCUPADO) {
+                        cajero.setEstado(Constantes.ESTADO_CAJERO_DISPONIBLE);
+                        cajero.getClienteActual().setEstado(Constantes.ESTADO_CLIENTE_ATENDIDO);
+                    }
+                    break;
+                }
+
+                obtenerPrimero = obtenerPrimero.next;
+                contador++;
+
             }
             System.out.println();
         }

@@ -8,22 +8,22 @@ import proyectobancos.Administradores.estructuras.*;
 import proyectobancos.Constantes.Parametros;
 
 /**
- * Clase que va a mostrar la ventana de tablas y permite ordenarlo según lo 
+ * Clase que va a mostrar la ventana de tablas y permite ordenarlo según lo
  * desee el usuario.
+ *
  * @author Joseph Vega
  * @author Lucia Solis
  * @author Miller Ruiz
  */
 public final class VentanaTabla extends javax.swing.JFrame {
-    
+
     //Permite crear una tabla generica para modificar datos facilmente
     DefaultTableModel Ordenamientos = new DefaultTableModel();
-    
+
     //Clase que contiene los parámetros de la clase
     Parametros Pa = new Parametros();
-    
+
     //AdministradorPrincipal LSE = new AdministradorPrincipal();
-    
     /**
      * Método constructor de la clase.
      */
@@ -37,87 +37,95 @@ public final class VentanaTabla extends javax.swing.JFrame {
     /**
      * Método que asigna el titulo y el logo.
      */
-    private void setInfoBancos(){
+    private void setInfoBancos() {
         this.setTitle(Pa.getTitle());
         this.setIconImage(Pa.getIcon());
     }
-    
+
     /**
-     * Método que permite asignar los datos de la lista en la tabla para su 
+     * Método que permite asignar los datos de la lista en la tabla para su
      * visualización.
      */
-    public void Asignar(){
+    public void Asignar() {
+
+        Object[] Ob = new Object[5];
+        NodoGenericoSimple<ClienteComparable> NGS
+                = AdministradorPrincipal.getInstance().getListaClientes().obtenerPrimero();
+
+        System.out.println("Actualizando tabla");
         
-//        Object[] Ob = new Object[5];
-////        NodoGenericoSimple <ClienteComparable> NGS = LSE.getListaClientes().obtenerPrimero();
-//        
-//        while(NGS != null){
-//            Ob[0] = NGS.getElement().getNombre();
-//            Ob[1] = NGS.getElement().getCorreo();
-//            Ob[2] = NGS.getElement().getPrioridad();
-//            Ob[3] = NGS.getElement().getFecha();
-//            Ob[4] = NGS.getElement().getHora();
-//            Ordenamientos.addRow(Ob);
-//        }    
+        while (NGS != null) {
+            
+            System.out.println(NGS.getElement().toString());
+            
+            Ob[0] = NGS.getElement().getNombre();
+            Ob[1] = NGS.getElement().getCorreo();
+            Ob[2] = NGS.getElement().getPrioridad();
+            Ob[3] = NGS.getElement().getFecha();
+            Ob[4] = NGS.getElement().getHora();
+            Ordenamientos.addRow(Ob);
+            NGS = NGS.getNext();
+        }
     }
-    
+
     /**
      * Método que controla la fecha y la hora del sistema en tiempo real.
      */
-    private void setVentana(){
+    private void setVentana() {
         //Procesos de calculo de la fecha
-        Calendar Cal= Calendar.getInstance();
-        lblFecha1.setText(Cal.get(Calendar.DATE) + "/" + (Cal.get(Calendar.MONTH)+1)
+        Calendar Cal = Calendar.getInstance();
+        lblFecha1.setText(Cal.get(Calendar.DATE) + "/" + (Cal.get(Calendar.MONTH) + 1)
                 + "/" + Cal.get(Calendar.YEAR));
-        
+
         //Procesos de calculo de la hora en tiempo real
         Reloj hora = new Reloj(lblHora2);
         hora.start();
-        
+
         //Se modifica la Tabla
         BarraTablaEstadistica.setOpaque(false);
         BarraTablaEstadistica.getViewport().setOpaque(false);
-        tblTablaEstadistica.setBackground(new Color(0,0,0,100));
+        tblTablaEstadistica.setBackground(new Color(0, 0, 0, 100));
     }
-    
+
     /**
-     * Método que va a extraer los datos de la tabla, los ordena y los vuelve a 
+     * Método que va a extraer los datos de la tabla, los ordena y los vuelve a
      * asignar en la misma tabla.
+     *
      * @param Titulo = lleva el tipo de busqueda que se va a realizar
      * @param Columna = lleva el numero de la columna de la tabla por ordenar
      */
-    public void Ordenamiento(String Titulo, int Columna){
+    public void Ordenamiento(String Titulo, int Columna) {
         //Asigna en la tabla generica para modificar datos facilmente
         Ordenamientos = (DefaultTableModel) tblTablaEstadistica.getModel();
-        
+
         //Asigna la columna de ordenamineto
         Parametros.setTipoBusqueda(Titulo);
         lblBusqueda.setText(Titulo);
-        
+
         //Arreglo que va a contener todos los datos de la tabla
         Object[][] Tabla = new String[tblTablaEstadistica.getRowCount()][5];
-        
+
         //Ciclo que almacena los datos de la tabla en la lista
-        for(int i=0; i<Tabla.length; i++){
-            for(int j=0; j<5; j++){
+        for (int i = 0; i < Tabla.length; i++) {
+            for (int j = 0; j < 5; j++) {
                 Tabla[i][j] = tblTablaEstadistica.getValueAt(i, j);
             }
         }
-        
+
         //llama al metodo de ordenamiento
-        MergeSort mg = new MergeSort(Tabla,Columna);
+        MergeSort mg = new MergeSort(Tabla, Columna);
         Tabla = mg.getArreglo();
-        
+
         //Ciclo qur asigna cada campo a la tabla
         for (Object[] Order : Tabla) {
             Ordenamientos.removeRow(0);
-            Ordenamientos.addRow(Order);       
+            Ordenamientos.addRow(Order);
         }
-        
+
         //asigna la tabla generica a la tabla original
         tblTablaEstadistica.setModel(Ordenamientos);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -248,7 +256,8 @@ public final class VentanaTabla extends javax.swing.JFrame {
 
     /**
      * Método que permite volver al menú principal.
-     * @param evt 
+     *
+     * @param evt
      */
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
@@ -256,28 +265,29 @@ public final class VentanaTabla extends javax.swing.JFrame {
 
     /**
      * Método que permite revisar cual columna se necesita ordenar
-     * @param evt 
+     *
+     * @param evt
      */
     private void lblCambioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCambioMouseReleased
         //Condicion que valida se se ordena por Nombre
         if (Pa.getTipoBusqueda().equals("Hora")) {
-            Ordenamiento("Nombre",0);
-            
-        //Condicion que valida se se ordena por Correo
+            Ordenamiento("Nombre", 0);
+
+            //Condicion que valida se se ordena por Correo
         } else if (Pa.getTipoBusqueda().equals("Nombre")) {
-            Ordenamiento("Correo",1);
-            
-        //Condicion que valida se se ordena por Prioridad   
+            Ordenamiento("Correo", 1);
+
+            //Condicion que valida se se ordena por Prioridad   
         } else if (Pa.getTipoBusqueda().equals("Correo")) {
-            Ordenamiento("Prioridad",2);
-            
-        //Condicion que valida se se ordena por Fecha   
+            Ordenamiento("Prioridad", 2);
+
+            //Condicion que valida se se ordena por Fecha   
         } else if (Pa.getTipoBusqueda().equals("Prioridad")) {
-            Ordenamiento("Fecha",3);
-            
-        //Condicion que valida se se ordena por Hora
+            Ordenamiento("Fecha", 3);
+
+            //Condicion que valida se se ordena por Hora
         } else if (Pa.getTipoBusqueda().equals("Fecha")) {
-            Ordenamiento("Hora",4);
+            Ordenamiento("Hora", 4);
         }
     }//GEN-LAST:event_lblCambioMouseReleased
 
@@ -298,7 +308,7 @@ public final class VentanaTabla extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VentanaTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */

@@ -16,7 +16,7 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
 
     String Direccion;
 
-    private Parametros Pa = new Parametros();
+    private Parametros parametros = new Parametros();
     private VentanaPrincipal ventanaPrincipal;
 
     public VentanaConfiguracion(VentanaPrincipal ventanaPrincipal) {
@@ -25,18 +25,18 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         this.ventanaPrincipal = ventanaPrincipal;
         setVentana();
 
-        jspCantidad.setValue(Pa.getCajas());
+        jspCantidad.setValue(parametros.getCajas());
 
-        lblSubtitulo.setText(Pa.getNombreBanco());
+        lblSubtitulo.setText(parametros.getNombreBanco());
         //Convierte la imagen
-        ImageIcon fot = new ImageIcon(Pa.getRutaFotoBanco());
+        ImageIcon fot = new ImageIcon(parametros.getRutaFotoBanco());
         Icon icono = new ImageIcon(fot.getImage().getScaledInstance(400,
                 400, Image.SCALE_DEFAULT));
 
         //Asigna la imagen
         lblLogo.setIcon(icono);
 
-        Direccion = Pa.getRutaFotoBanco();
+        Direccion = parametros.getRutaFotoBanco();
     }
 
     public VentanaConfiguracion() throws HeadlessException {
@@ -47,18 +47,18 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
 
         setVentana();
 
-        jspCantidad.setValue(Pa.getCajas());
+        jspCantidad.setValue(parametros.getCajas());
 
-        lblSubtitulo.setText(Pa.getNombreBanco());
+        lblSubtitulo.setText(parametros.getNombreBanco());
         //Convierte la imagen
-        ImageIcon fot = new ImageIcon(Pa.getRutaFotoBanco());
+        ImageIcon fot = new ImageIcon(parametros.getRutaFotoBanco());
         Icon icono = new ImageIcon(fot.getImage().getScaledInstance(400,
                 400, Image.SCALE_DEFAULT));
 
         //Asigna la imagen
         lblLogo.setIcon(icono);
 
-        Direccion = Pa.getRutaFotoBanco();
+        Direccion = parametros.getRutaFotoBanco();
 
     }
 
@@ -241,6 +241,8 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
                 //Obtener ruta y nombre al hacer click
                 String file = elemento.getSelectedFile().getPath();
                 Direccion = file;
+                
+                parametros.setFotoBanco(file);
 
                 //Convierte la imagen
                 ImageIcon fot = new ImageIcon(file);
@@ -275,9 +277,9 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
                     + "\nLogo: " + Direccion
                     + "\nCajas: " + jspCantidad.getValue()) == JOptionPane.OK_OPTION) {
 
-                Pa.setCajas((int) jspCantidad.getValue());
-                Pa.setNombreBanco(txtNombre.getText());
-                Pa.setFotoBanco(Direccion);
+                parametros.setCajas((int) jspCantidad.getValue());
+                parametros.setNombreBanco(txtNombre.getText());
+                parametros.setFotoBanco(Direccion);
 
                 ventanaPrincipal.actulizarCajas();
 

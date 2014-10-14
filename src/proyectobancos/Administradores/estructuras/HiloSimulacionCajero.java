@@ -58,7 +58,7 @@ public class HiloSimulacionCajero extends Thread {
                     int estado = cajero.getEstado();
                     if (estado == Constantes.ESTADO_CAJERO_DISPONIBLE) {
                         
-                        System.out.println("Cajero #: " + cajero.getNumeroCajero()+ " DISPONIBLE");
+                        //System.out.println("Cajero #: " + cajero.getNumeroCajero()+ " DISPONIBLE");
 
                         if (colaPrioridad.size() > 0) {
 

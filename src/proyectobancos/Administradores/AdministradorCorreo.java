@@ -84,7 +84,7 @@ public class AdministradorCorreo {
         this.toEmail = correoDestino;
         cuerpoCorreoConfirmacionParte1 += nombre + "<br><br>";
         cuerpoCorreoConfirmacionParte1 += cuerpoCorreoConfirmacionParte2 + tiquete + "<br><br>" + cuerpoCorreoConfirmacionParte3;
-        return generateAndSendEmail(session, toEmail, asuntoConfirmacion, cuerpoCorreoConfirmacionParte1, this.rutaImagen);
+        return generateAndSendEmail(session, toEmail, asuntoConfirmacion, cuerpoCorreoConfirmacionParte1, rutaImagen);
     }
 
     public boolean enviarCorreoTurno(String correoDestino, String rutaImagen) {

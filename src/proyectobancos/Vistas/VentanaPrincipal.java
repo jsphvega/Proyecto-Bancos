@@ -65,6 +65,15 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
                     String columnName = model.getColumnName(column);
                     System.out.println(columnName);
                     Object data = model.getValueAt(row, column);
+                    
+                    if (columnName == "Libre"){
+                        boolean valor = (boolean)data;
+                        if (valor == true){
+                            AdministradorPrincipal.getInstance().liberarCajero(row);
+                        }
+                    }
+                    
+                    //AdministradorPrincipal.getInstance().liberarCaja
 
                     System.out.println(data);
                 }
