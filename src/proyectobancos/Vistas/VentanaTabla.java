@@ -65,6 +65,7 @@ public final class VentanaTabla extends javax.swing.JFrame {
             Ob[2] = NGS.getElement().getPrioridad();
             Ob[3] = NGS.getElement().getFecha();
             Ob[4] = NGS.getElement().getHora();
+            
             Ordenamientos.addRow(Ob);
             NGS = NGS.getNext();
         }

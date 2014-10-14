@@ -34,43 +34,43 @@ public class ProyectoBancos {
         ventanaPrincipal.setVentanaConfiguracion(ventanaConfiguracion);
         ventanaPrincipal.setVentanaRegistroCliente(ventanaRegistroClientesFinal);
         
-//        ListaSimplementeEnlazadaGenerica<ClienteComparable> listaClientes = AdministradorPrincipal.getInstance().getListaClientes();
-//        
-//        String nextCodigoDiscapacitados = AdministradorPrincipal.getInstance().getNextCodigoDiscapacitados();
-//        AdministradorPrincipal.getInstance().agregarClienteCategoriaDiscapacitado(
-//                "Juan",
-//                "juan@gmail.com",
-//                nextCodigoDiscapacitados,
-//                "02/10/10", "10/10/10");
-//        
-//        nextCodigoDiscapacitados = AdministradorPrincipal.getInstance().getNextCodigoDiscapacitados();
-//        AdministradorPrincipal.getInstance().agregarClienteCategoriaDiscapacitado(
-//                "Lucia",
-//                "malu@gmail.com",
-//                nextCodigoDiscapacitados,
-//                "01/10/10", "10/10/10");
-//        
-//        nextCodigoDiscapacitados = AdministradorPrincipal.getInstance().getNextCodigoDiscapacitados();
-//        AdministradorPrincipal.getInstance().agregarClienteCategoriaDiscapacitado(
-//                "Pedro",
-//                "pedro@gmail.com",
-//                nextCodigoDiscapacitados,
-//                "12/10/10", "10/10/10");
-//        
-//        NodoGenericoSimple<ClienteComparable> obtenerPrimero = listaClientes.obtenerPrimero();
-//        
-//        if (obtenerPrimero != null) {
-//            
-//            while (obtenerPrimero != null) {
-//                ClienteComparable element = obtenerPrimero.getElement();
-//                String nombre = element.getNombre();
-//                System.out.println("Nombre: ");
-//                System.out.println(nombre);
-//                System.out.print(obtenerPrimero.getElement().toString() + " ");
-//                obtenerPrimero = obtenerPrimero.next;
-//            }
-//            System.out.println();
-//        }
+        ListaSimplementeEnlazadaGenerica<ClienteComparable> listaClientes = AdministradorPrincipal.getInstance().getListaClientes();
+        
+        String nextCodigoDiscapacitados = AdministradorPrincipal.getInstance().getNextCodigoDiscapacitados();
+        AdministradorPrincipal.getInstance().agregarClienteCategoriaDiscapacitado(
+                "Juan",
+                "juan@gmail.com",
+                nextCodigoDiscapacitados,
+                "02/10/10", "10/10/10");
+        
+        nextCodigoDiscapacitados = AdministradorPrincipal.getInstance().getNextCodigoDiscapacitados();
+        AdministradorPrincipal.getInstance().agregarClienteCategoriaDiscapacitado(
+                "Lucia",
+                "malu@gmail.com",
+                nextCodigoDiscapacitados,
+                "01/10/10", "10/10/10");
+        
+        nextCodigoDiscapacitados = AdministradorPrincipal.getInstance().getNextCodigoDiscapacitados();
+        AdministradorPrincipal.getInstance().agregarClienteCategoriaDiscapacitado(
+                "Pedro",
+                "pedro@gmail.com",
+                nextCodigoDiscapacitados,
+                "12/10/10", "10/10/10");
+        
+        NodoGenericoSimple<ClienteComparable> obtenerPrimero = listaClientes.obtenerPrimero();
+        
+        if (obtenerPrimero != null) {
+            
+            while (obtenerPrimero != null) {
+                ClienteComparable element = obtenerPrimero.getElement();
+                String nombre = element.getNombre();
+                System.out.println("Nombre: ");
+                System.out.println(nombre);
+                System.out.print(obtenerPrimero.getElement().toString() + " ");
+                obtenerPrimero = obtenerPrimero.next;
+            }
+            System.out.println();
+        }
         
     }
 }
