@@ -23,6 +23,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import proyectobancos.Constantes.Parametros;
 
 /**
  *
@@ -40,7 +41,7 @@ public class AdministradorCorreo {
     private String cuerpoCorreoConfirmacionParte2;
     private String cuerpoCorreoConfirmacionParte3;
 
-    private String rutaImagen = getClass().getResource("/proyectobancos/Imagenes/bgPrincipal.png").getPath();
+    private String rutaImagen = Parametros.getRutaFotoBanco();
     
     
 
@@ -54,10 +55,10 @@ public class AdministradorCorreo {
     }
     
     public void reiniciarValores(){
-        asuntoConfirmacion = "Confirmación de tiquete";
-        asuntoTurno = "Es su turno";
+        asuntoConfirmacion = "Confirmación de su tiquete".toUpperCase();
+        asuntoTurno = "Es su turno en la fila".toUpperCase();
         
-        cuerpoCorreoTurno = "Se le notifica que es su turno en el cajero #: ";
+        cuerpoCorreoTurno = "Se le notifica, su turno en el cajero #: ";
 
         cuerpoCorreoConfirmacionParte1 = "Buenas estimado cliente,<br><br>";
         cuerpoCorreoConfirmacionParte2 = "Se le informa que se le ha asignado el siguiente tiquete para ser atendido<br><br> ";
@@ -135,7 +136,7 @@ public class AdministradorCorreo {
             messageBodyPart = new MimeBodyPart();
 
             // Valid file location
-            String filename = rutaFoto; //"C:\\Users\\RUBEN\\Dropbox\\Horarios buses MUSOC.jpg";
+            String filename = rutaFoto;
             DataSource source = new FileDataSource(filename);
             messageBodyPart.setDataHandler(new DataHandler(source));
             messageBodyPart.setFileName(filename);
