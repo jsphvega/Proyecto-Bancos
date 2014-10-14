@@ -8,6 +8,8 @@ import proyectobancos.Administradores.estructuras.NodoGenericoSimple;
 import proyectobancos.Administradores.estructuras.colas.PriorityQueuePropia;
 import proyectobancos.Constantes.Constantes;
 import proyectobancos.Constantes.Parametros;
+import proyectobancos.Vistas.Graficos;
+import proyectobancos.Vistas.VentanaGraficosBarrasPorTipoCliente;
 import proyectobancos.Vistas.VentanaPrincipal;
 
 /**
@@ -127,7 +129,6 @@ public class AdministradorPrincipal {
     public boolean enviarCorreoTurno(String correoDestino, String rutaImagen, int numeroCajero) {
         return administradorCorreo.enviarCorreoTurno(correoDestino, rutaImagen, numeroCajero);
     }
-    
 
     public String getNextCodigoDiscapacitados() {
         return Constantes.CATEGORIA_DISCAPACITADO + totalClientesDiscapacitados;
@@ -307,14 +308,13 @@ public class AdministradorPrincipal {
                 obtenerPrimero = obtenerPrimero.next;
 
             }
-            System.out.println();
+            //System.out.println();
         }
     }
 
     public void liberarCajero(int row) {
         NodoGenericoSimple<Cajero> obtenerPrimero = listaCajerosActivos.obtenerPrimero();
 
-        
         int contador = 0;
         if (obtenerPrimero != null) {
 
@@ -337,11 +337,53 @@ public class AdministradorPrincipal {
             System.out.println();
         }
     }
-    
-    public void mostrarMensaje(String mensaje){
-        if (ventanaPrincipal != null){
+
+    public void mostrarMensaje(String mensaje) {
+        if (ventanaPrincipal != null) {
             ventanaPrincipal.mostrarEvento(mensaje);
         }
+    }
+
+    public void mostrarGraficos() {
+
+        System.out.println("Mostrando graficos");
+
+        NodoGenericoSimple<ClienteComparable> obtenerPrimero = listaTotalClientes.obtenerPrimero();
+
+        int totalDiscapacitados = 0;
+        int totalAdultoMayor = 0;
+        int totalMujeresEnbarazadas = 0;
+        int totalCoporativos = 0;
+        int totalRegulares = 0;
+
+        if (obtenerPrimero != null) {
+
+            while (obtenerPrimero != null) {
+                ClienteComparable clienteActual = obtenerPrimero.getElement();
+
+                if ((Integer.valueOf(clienteActual.getPrioridad())) == Constantes.PRIORIDAD_DISCAPACITADO) {
+                    totalDiscapacitados++;
+                } else if ((Integer.valueOf(clienteActual.getPrioridad())) == Constantes.PRIORIDAD_ADULTO_MAYOR) {
+                    totalAdultoMayor++;
+                } else if ((Integer.valueOf(clienteActual.getPrioridad())) == Constantes.PRIORIDAD_MUJER_EMBARAZADA) {
+                    totalMujeresEnbarazadas++;
+                } else if ((Integer.valueOf(clienteActual.getPrioridad())) == Constantes.PRIORIDAD_CLIENTE_CORPORATIVO) {
+                    totalCoporativos++;
+                } else if ((Integer.valueOf(clienteActual.getPrioridad())) == Constantes.PRIORIDAD_CLIENTE_REGULAR) {
+                    totalRegulares++;
+                }
+
+                //String situacionCliente = clienteActual.toString();
+                //System.out.println(situacionCliente);
+                obtenerPrimero = obtenerPrimero.next;
+
+            }
+
+            //System.out.println();
+        }
+
+        Graficos.generarGraficoPastelCantindadClientesPorTipo(totalDiscapacitados, totalAdultoMayor, totalMujeresEnbarazadas, totalCoporativos, totalRegulares);
+        new VentanaGraficosBarrasPorTipoCliente(totalDiscapacitados, totalAdultoMayor, totalMujeresEnbarazadas, totalCoporativos, totalRegulares).setVisible(true);
     }
 
 }
