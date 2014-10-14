@@ -48,8 +48,14 @@ public final class VentanaTabla extends javax.swing.JFrame {
      */
     public void Asignar(){
         
+        //Asigna en la tabla generica para modificar datos facilmente
+        Ordenamientos = (DefaultTableModel) tblTablaEstadistica.getModel();
+        
         Object[] Ob = new Object[5];
-        NodoGenericoSimple <ClienteComparable> NGS = LSE.getListaClientes().obtenerPrimero();
+        NodoGenericoSimple <ClienteComparable> NGS = 
+                AdministradorPrincipal.getInstance().getListaClientes().obtenerPrimero();
+        System.out.println(NGS);
+        //System.out.println(NGS.getElement());
         
         while(NGS != null){
             Ob[0] = NGS.getElement().getNombre();
@@ -57,8 +63,13 @@ public final class VentanaTabla extends javax.swing.JFrame {
             Ob[2] = NGS.getElement().getPrioridad();
             Ob[3] = NGS.getElement().getFecha();
             Ob[4] = NGS.getElement().getHora();
+            
             Ordenamientos.addRow(Ob);
+            NGS = NGS.getNext();
         }    
+        
+        //asigna la tabla generica a la tabla original
+        tblTablaEstadistica.setModel(Ordenamientos);
     }
     
     /**

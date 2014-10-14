@@ -22,7 +22,7 @@ import proyectobancos.Vistas.VentanaPrincipal;
  */
 public class AdministradorPrincipal {
 
-    private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaTotalClientes;
+    private static ListaSimplementeEnlazadaGenerica<ClienteComparable> listaTotalClientes;
     //private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaClientesAtendidos;
     
     private ListaSimplementeEnlazadaGenerica<Cajero> listaCajerosActivos;
@@ -46,7 +46,7 @@ public class AdministradorPrincipal {
 
     private static AdministradorPrincipal INSTANCE = null;
 
-    private AdministradorPrincipal() {
+    public AdministradorPrincipal() {
         crearEstructuras();
         iniciarContadores();
 
