@@ -23,50 +23,49 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
     private String Hora;
     private String Fecha;
 
-    public static final String PatronEmail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-    public static String imagen = System.getProperty("user.dir") + "/Imagenes/LogoBAC.jpg";
+    public static final String PatronEmail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9"
+            + "-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     
     private VentanaPrincipal ventanaPrincipal;
 
     /**
-     * Creates new form VentanaClientes
+     * Metodo Constructor de la clase.
+     * @param pVentanaPrincipal 
      */
     public VentanaRegistroClientesFinal(VentanaPrincipal pVentanaPrincipal) {
-
-        ventanaPrincipal = pVentanaPrincipal;
-
         initComponents();
-        getContentPane().setBackground(new java.awt.Color(255, 255, 255));
-        setResizable(false);
-        this.setLocationRelativeTo(null);
-        //setImagen();
-        Reloj hora = new Reloj(jLabelHora);
-        hora.start();
-        Calendar Cal = Calendar.getInstance();
-        String fecha = Cal.get(Cal.DATE) + "/" + (Cal.get(Cal.MONTH) + 1) + "/" + Cal.get(Cal.YEAR);
-        jLabelFecha.setText(fecha);
-
+        
+        setVentana();
         limpiarDatos();
-
+        ventanaPrincipal = pVentanaPrincipal;
     }
 
+    /**
+     * Metodo constructor de la clase
+     */
     public VentanaRegistroClientesFinal() {
-
-
         initComponents();
+        
+        setVentana();
+        limpiarDatos();
+    }
+    
+    /**
+     * Método que controla la fecha y la hora del sistema en tiempo real.
+     */
+    private void setVentana() {
         getContentPane().setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
         this.setLocationRelativeTo(null);
-        //setImagen();
+        
+        //Procesos de calculo de la fecha
+        Calendar Cal = Calendar.getInstance();
+        jLabelFecha.setText(Cal.get(Calendar.DATE) + "/" + (Cal.get(Calendar.MONTH) + 1)
+                + "/" + Cal.get(Calendar.YEAR));
+
+        //Procesos de calculo de la hora en tiempo real
         Reloj hora = new Reloj(jLabelHora);
         hora.start();
-        Calendar Cal = Calendar.getInstance();
-        String fecha = Cal.get(Cal.DATE) + "/" + (Cal.get(Cal.MONTH) + 1) + "/" + Cal.get(Cal.YEAR);
-        jLabelFecha.setText(fecha);
-
-        limpiarDatos();
-
     }
 
     /**
