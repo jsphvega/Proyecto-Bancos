@@ -2,7 +2,6 @@ package proyectobancos.Vistas;
 
 import java.awt.Color;
 import java.util.Calendar; //Importa el calendario
-import javax.swing.JOptionPane;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener; //Importa modelo genérico de tablas.
 import javax.swing.table.DefaultTableModel;
@@ -22,7 +21,7 @@ import proyectobancos.Constantes.Parametros;
 public final class VentanaPrincipal extends javax.swing.JFrame {
 
     //Clase que contiene los parámetros de la clase
-    private Parametros Pa = new Parametros();
+    private final Parametros Pa = new Parametros();
 
     //Permite crear una tabla generica para modificar datos facilmente
     private DefaultTableModel CajaEmpleados = new DefaultTableModel();
@@ -44,49 +43,37 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         setInfoBancos(); //Asigna el titulo y el logo 
 
         agregarEventoTabla();
-
         modoSimulacion = Constantes.MODO_SIMULACION_PAUSADA;
-        
-        mostrarEvento("Inicio del Sistema");
-
-                
+        mostrarEvento("Inicio del Sistema");      
     }
-
+    
+    /**
+     * 
+     */
     private void agregarEventoTabla() {
-        tblCajaEmpleados.getModel().addTableModelListener(new TableModelListener() {
-
-            public void tableChanged(TableModelEvent e) {
-
-                if (escucharCambios) {
-                    //System.out.println(e);
-
-                    int row = e.getFirstRow();
-                    int column = e.getColumn();
-                    DefaultTableModel model = (DefaultTableModel) e.getSource();
-                    String columnName = model.getColumnName(column);
-                    System.out.println(columnName);
-                    Object data = model.getValueAt(row, column);
-                    
-                    if (columnName == "Libre"){
-                        boolean valor = (boolean)data;
-                        if (valor == true){
-
-                            AdministradorPrincipal.getInstance().liberarCajero(row);
-                            model.setValueAt(false, row, column);
-                            
-                            
-                            //AdministradorPrincipal.getInstance().liberarCajero(row);
-
-                        }
+        tblCajaEmpleados.getModel().addTableModelListener((TableModelEvent e) -> {
+            if (escucharCambios) {
+                int row = e.getFirstRow();
+                int column = e.getColumn();
+                DefaultTableModel model = (DefaultTableModel) e.getSource();
+                String columnName = model.getColumnName(column);
+                System.out.println(columnName);
+                Object data = model.getValueAt(row, column);
+                
+                if ("Libre".equals(columnName)){
+                    boolean valor = (boolean)data;
+                    if (valor == true){
+                        
+                        AdministradorPrincipal.getInstance().liberarCajero(row);
+                        model.setValueAt(false, row, column);
+                        
                     }
-                    
-                    //AdministradorPrincipal.getInstance().liberarCaja
-
-                    System.out.println(data);
                 }
 
+                //AdministradorPrincipal.getInstance().liberarCaja
+                
+                System.out.println(data);
             }
-
         });
     }
 

@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package proyectobancos.Administradores.estructuras.colas;
 
 import java.util.AbstractCollection;
@@ -12,59 +6,74 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-
 /**
- * PriorityQueuePropia class implemented via the binary heap.
+ * Clase que permitirá ordenar los datos en la cola según su prioridad.
+ * @param <E> tipo de dato
  */
-public class PriorityQueuePropia<AnyType> extends AbstractCollection<AnyType>
-                                    implements QueuePropia<AnyType>
-{
+public class PriorityQueuePropia <E> extends AbstractCollection <E> 
+                    implements QueuePropia<E> {
+    
+    private int TamañoArbol;   // Numero de elementos en el arbol
+    private static final int TamFijo = 100; 
+    private Comparator <? super E> CMP;
+    private E[] Arreglo; // El arreglo de hojos del arbol
+    
     /**
-     * Construct an empty PriorityQueue.
+     * Método contructor de la clase
      */
-    public PriorityQueuePropia( )
-    {
-        currentSize = 0;
-        cmp = null;
-        array = (AnyType[]) new Object[ DEFAULT_CAPACITY + 1 ];
+    public PriorityQueuePropia() {
+        TamañoArbol = 0;
+        Arreglo = (E[]) new Object[TamFijo + 1];
+        
+        CMP = null;
     }
     
     /**
-     * Construct an empty PriorityQueue with a specified comparator.
+     * Método constructor de la clase
+     * @param CMP 
      */
-    public PriorityQueuePropia( Comparator<? super AnyType> c )
-    {
-        currentSize = 0;
-        cmp = c;
-        array = (AnyType[]) new Object[ DEFAULT_CAPACITY + 1 ];
+    public PriorityQueuePropia(Comparator <? super E> CMP ) {
+        TamañoArbol = 0;
+        Arreglo = (E[]) new Object[TamFijo + 1];
+        
+        this.CMP = CMP;
     }
     
-     
     /**
-     * Construct a PriorityQueue from another Collection.
+     * Método constructor de la clase 
+     * @param CMP
      */
-    public PriorityQueuePropia( Collection<? extends AnyType> coll )
-    {
-        cmp = null;
-        currentSize = coll.size( );
-        array = (AnyType[]) new Object[ ( currentSize + 2 ) * 11 / 10 ];
+    public PriorityQueuePropia(Collection <? extends E> CMP) {
+        TamañoArbol = CMP.size( );
+        Arreglo = (E[]) new Object[(TamañoArbol + 2) * 11 / 10 ];
+        
+        this.CMP = null;
         
         int i = 1;
-        for( AnyType item : coll )
-            array[ i++ ] = item;
+        for(E item: CMP )
+            Arreglo[i++] = item;
+        
         buildHeap( );
     }
     
+    
+    
+    
+    
+    
+     
+    
+    
     /**
      * Compares lhs and rhs using comparator if
-     * provided by cmp, or the default comparator.
+ provided by CMP, or the default comparator.
      */
-    private int compare( AnyType lhs, AnyType rhs )
+    private int compare( E lhs, E rhs )
     {
-        if( cmp == null )
+        if( CMP == null )
             return ((Comparable)lhs).compareTo( rhs );
         else
-            return cmp.compare( lhs, rhs );    
+            return CMP.compare( lhs, rhs );    
     }
     
     /**
@@ -72,18 +81,19 @@ public class PriorityQueuePropia<AnyType> extends AbstractCollection<AnyType>
      * @param x any object.
      * @return true.
      */
-    public synchronized boolean add( AnyType x )
+    @Override
+    public synchronized boolean add( E x )
     {
-        if( currentSize + 1 == array.length )
+        if( TamañoArbol + 1 == Arreglo.length )
             doubleArray( );
 
             // Percolate up
-        int hole = ++currentSize;
-        array[ 0 ] = x;
+        int hole = ++TamañoArbol;
+        Arreglo[ 0 ] = x;
         
-        for( ; compare( x, array[ hole / 2 ] ) < 0; hole /= 2 )
-            array[ hole ] = array[ hole / 2 ];
-        array[ hole ] = x;
+        for( ; compare(x, Arreglo[ hole / 2 ] ) < 0; hole /= 2 )
+            Arreglo[ hole ] = Arreglo[ hole / 2 ];
+        Arreglo[ hole ] = x;
         
         return true;
     }
@@ -92,42 +102,48 @@ public class PriorityQueuePropia<AnyType> extends AbstractCollection<AnyType>
      * Returns the number of items in this PriorityQueuePropia.
      * @return the number of items in this PriorityQueuePropia.
      */
+    @Override
     public int size( )
     {
-        return currentSize;
+        return TamañoArbol;
     }
     
     /**
      * Make this PriorityQueuePropia empty.
      */
+    @Override
     public void clear( )
     {
-        currentSize = 0;
+        TamañoArbol = 0;
     }
     
     /**
      * Returns an iterator over the elements in this PriorityQueuePropia.
      * The iterator does not view the elements in any particular order.
      */
-    public Iterator<AnyType> iterator( )
+    @Override
+    public Iterator<E> iterator( )
     {
-        return new Iterator<AnyType>( )
+        return new Iterator<E>( )
         {
             int current = 0;
             
+            @Override
             public boolean hasNext( )
             {
                 return current != size( );
             }
             
-            public AnyType next( )
+            @Override
+            public E next( )
             {
                 if( hasNext( ) )
-                    return array[ ++current ];
+                    return Arreglo[ ++current ];
                 else
                     throw new NoSuchElementException( );
             }
             
+            @Override
             public void remove( )
             {
                 throw new UnsupportedOperationException( );
@@ -140,11 +156,12 @@ public class PriorityQueuePropia<AnyType> extends AbstractCollection<AnyType>
      * @return the smallest item.
      * @throws NoSuchElementException if empty.
      */
-    public AnyType element( )
+    @Override
+    public E element( )
     {
         if( isEmpty( ) )
             throw new NoSuchElementException( );
-        return array[ 1 ];
+        return Arreglo[ 1 ];
     }
     
     /**
@@ -152,10 +169,11 @@ public class PriorityQueuePropia<AnyType> extends AbstractCollection<AnyType>
      * @return the smallest item.
      * @throws NoSuchElementException if empty.
      */
-    public synchronized AnyType remove( )
+    @Override
+    public synchronized E remove( )
     {
-        AnyType minItem = element( );
-        array[ 1 ] = array[ currentSize-- ];
+        E minItem = element( );
+        Arreglo[ 1 ] = Arreglo[ TamañoArbol-- ];
         percolateDown( 1 );
 
         return minItem;
@@ -168,15 +186,14 @@ public class PriorityQueuePropia<AnyType> extends AbstractCollection<AnyType>
      */
     private void buildHeap( )
     {
-        for( int i = currentSize / 2; i > 0; i-- )
+        for( int i = TamañoArbol / 2; i > 0; i-- )
             percolateDown( i );
     }
 
-    private static final int DEFAULT_CAPACITY = 100;
+    
 
-    private int currentSize;   // Number of elements in heap
-    private AnyType [ ] array; // The heap array
-    private Comparator<? super AnyType> cmp;
+    
+    
 
     /**
      * Internal method to percolate down in the heap.
@@ -185,32 +202,31 @@ public class PriorityQueuePropia<AnyType> extends AbstractCollection<AnyType>
     private void percolateDown( int hole )
     {
         int child;
-        AnyType tmp = array[ hole ];
+        E tmp = Arreglo[ hole ];
 
-        for( ; hole * 2 <= currentSize; hole = child )
+        for( ; hole * 2 <= TamañoArbol; hole = child )
         {
             child = hole * 2;
-            if( child != currentSize &&
-                    compare( array[ child + 1 ], array[ child ] ) < 0 )
+            if( child != TamañoArbol &&
+                    compare(Arreglo[ child + 1 ], Arreglo[ child ] ) < 0 )
                 child++;
-            if( compare( array[ child ], tmp ) < 0 )
-                array[ hole ] = array[ child ];
+            if( compare(Arreglo[ child ], tmp ) < 0 )
+                Arreglo[ hole ] = Arreglo[ child ];
             else
                 break;
         }
-        array[ hole ] = tmp;
+        Arreglo[ hole ] = tmp;
     }
     
     /**
-     * Internal method to extend array.
+     * Internal method to extend Arreglo.
      */
     private void doubleArray( )
     {
-        AnyType [ ] newArray;
+        E [ ] newArray;
 
-        newArray = (AnyType []) new Object[ array.length * 2 ];
-        for( int i = 0; i < array.length; i++ )
-            newArray[ i ] = array[ i ];
-        array = newArray;
+        newArray = (E []) new Object[ Arreglo.length * 2 ];
+        System.arraycopy(Arreglo, 0, newArray, 0, Arreglo.length);
+        Arreglo = newArray;
     }
 }
