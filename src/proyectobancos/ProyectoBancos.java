@@ -38,10 +38,10 @@ public class ProyectoBancos {
         
         String nextCodigoDiscapacitados = AdministradorPrincipal.getInstance().getNextCodigoDiscapacitados();
         AdministradorPrincipal.getInstance().agregarClienteCategoriaDiscapacitado(
-                "Juan",
-                "juan@gmail.com",
+                "Ana",
+                "ana@gmail.com",
                 nextCodigoDiscapacitados,
-                "02/10/10", "10/10/10");
+                "22/10/10", "10/11/10");
         
         nextCodigoDiscapacitados = AdministradorPrincipal.getInstance().getNextCodigoDiscapacitados();
         AdministradorPrincipal.getInstance().agregarClienteCategoriaDiscapacitado(
