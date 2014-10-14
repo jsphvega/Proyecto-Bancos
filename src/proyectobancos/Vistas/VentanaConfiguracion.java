@@ -230,7 +230,7 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         //Formatos de los iconos
         elemento.setFileFilter(new FileNameExtensionFilter("Archivo JPG", "jpg"));
         elemento.setFileFilter(new FileNameExtensionFilter("Archivo PNG", "png"));
-        elemento.setFileFilter(new FileNameExtensionFilter("Archivo GIF", "gif"));
+        //elemento.setFileFilter(new FileNameExtensionFilter("Archivo GIF", "gif"));
 
         //Variable que va a buscar la foto y almacenar la direccion
         int option = elemento.showOpenDialog(this);

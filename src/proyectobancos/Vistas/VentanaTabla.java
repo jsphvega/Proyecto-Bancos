@@ -22,7 +22,7 @@ public final class VentanaTabla extends javax.swing.JFrame {
     //Clase que contiene los parámetros de la clase
     Parametros Pa = new Parametros();
     
-    AdministradorPrincipal LSE = new AdministradorPrincipal();
+    //AdministradorPrincipal LSE = new AdministradorPrincipal();
     
     /**
      * Método constructor de la clase.
