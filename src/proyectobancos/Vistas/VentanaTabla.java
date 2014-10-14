@@ -59,6 +59,8 @@ public final class VentanaTabla extends javax.swing.JFrame {
             System.out.println(NGS.getElement().toString());
             
             Ob[0] = NGS.getElement().getNombre();
+            
+            System.out.println("NOMBRE: " + NGS.getElement().getNombre());
             Ob[1] = NGS.getElement().getCorreo();
             Ob[2] = NGS.getElement().getPrioridad();
             Ob[3] = NGS.getElement().getFecha();
