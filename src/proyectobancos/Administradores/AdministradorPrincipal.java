@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -22,7 +21,7 @@ import proyectobancos.Vistas.VentanaPrincipal;
  */
 public class AdministradorPrincipal {
 
-    private static ListaSimplementeEnlazadaGenerica<ClienteComparable> listaTotalClientes;
+    private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaTotalClientes;
     //private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaClientesAtendidos;
     
     private ListaSimplementeEnlazadaGenerica<Cajero> listaCajerosActivos;
@@ -46,7 +45,7 @@ public class AdministradorPrincipal {
 
     private static AdministradorPrincipal INSTANCE = null;
 
-    public AdministradorPrincipal() {
+    private AdministradorPrincipal() {
         crearEstructuras();
         iniciarContadores();
 
