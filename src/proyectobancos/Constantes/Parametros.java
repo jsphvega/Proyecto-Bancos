@@ -90,6 +90,6 @@ public class Parametros {
      * @return String
      */
     public String getTitle(){
-        return (getNombreBanco().toUpperCase() + ", Bienvenidos!!");
+        return (getNombreBanco() + ", Bienvenidos!!");
     }
 }

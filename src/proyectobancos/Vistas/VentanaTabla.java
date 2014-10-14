@@ -3,8 +3,8 @@ package proyectobancos.Vistas;
 import java.awt.Color;
 import java.util.Calendar;
 import javax.swing.table.DefaultTableModel;
-import proyectobancos.Administradores.MergeSort;
-import proyectobancos.Administradores.Reloj;
+import proyectobancos.Administradores.*;
+import proyectobancos.Administradores.estructuras.*;
 import proyectobancos.Constantes.Parametros;
 
 /**
@@ -14,12 +14,15 @@ import proyectobancos.Constantes.Parametros;
  * @author Lucia Solis
  * @author Miller Ruiz
  */
-public class VentanaTabla extends javax.swing.JFrame {
+public final class VentanaTabla extends javax.swing.JFrame {
+    
     //Permite crear una tabla generica para modificar datos facilmente
     DefaultTableModel Ordenamientos = new DefaultTableModel();
     
     //Clase que contiene los parámetros de la clase
     Parametros Pa = new Parametros();
+    
+    AdministradorPrincipal LSE = new AdministradorPrincipal();
     
     /**
      * Método constructor de la clase.
@@ -28,6 +31,7 @@ public class VentanaTabla extends javax.swing.JFrame {
         initComponents();
         setInfoBancos();
         setVentana();
+        Asignar();
     }
 
     /**
@@ -43,13 +47,18 @@ public class VentanaTabla extends javax.swing.JFrame {
      * visualización.
      */
     public void Asignar(){
-        /**
-         * LUUUUUUUUUUUUUCCCCCCCCCCIIIIIIIIIIIIIIIIIIIIIAAAAAAAAAAAAAA
-         * necesito que aqui se vaya a la lista 6 que es la que va a contener 
-         * todas las personas que ingresaron. y los empiece a llamar y asignar 
-         * en la lista. La forma de asignar datos ya la aplique en otro proceso, 
-         * entonces es solo copiar y pegar algunas cosas.
-         */
+        
+        Object[] Ob = new Object[5];
+        NodoGenericoSimple <ClienteComparable> NGS = LSE.getListaClientes().obtenerPrimero();
+        
+        while(NGS != null){
+            Ob[0] = NGS.getElement().getNombre();
+            Ob[1] = NGS.getElement().getCorreo();
+            Ob[2] = NGS.getElement().getPrioridad();
+            Ob[3] = NGS.getElement().getFecha();
+            Ob[4] = NGS.getElement().getHora();
+            Ordenamientos.addRow(Ob);
+        }    
     }
     
     /**
@@ -82,7 +91,7 @@ public class VentanaTabla extends javax.swing.JFrame {
         Ordenamientos = (DefaultTableModel) tblTablaEstadistica.getModel();
         
         //Asigna la columna de ordenamineto
-        Pa.setTipoBusqueda(Titulo);
+        Parametros.setTipoBusqueda(Titulo);
         lblBusqueda.setText(Titulo);
         
         //Arreglo que va a contener todos los datos de la tabla
@@ -202,8 +211,7 @@ public class VentanaTabla extends javax.swing.JFrame {
         tblTablaEstadistica.setForeground(new java.awt.Color(255, 255, 255));
         tblTablaEstadistica.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Nombre", "Correo", "Prioridad", "Fecha", "Hora"
