@@ -3,6 +3,13 @@ package proyectobancos.Constantes;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
+/**
+ * Clase que va a mostrar los parametros relacionados con el proyecto.
+ *
+ * @author Joseph Vega
+ * @author Lucia Solis
+ * @author Miller Ruiz
+ */
 public class Parametros {
     //Constantes
     private static String tipoBusqueda = "Nombre";

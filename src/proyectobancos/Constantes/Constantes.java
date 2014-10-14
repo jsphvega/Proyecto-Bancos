@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package proyectobancos.Constantes;
 
 /**
+ * Clase que va a mostrar las constantes relacionadas con el proyecto.
  *
- * @author LUCIA
+ * @author Joseph Vega
+ * @author Lucia Solis
+ * @author Miller Ruiz
  */
 public class Constantes {
     
@@ -21,18 +18,20 @@ public class Constantes {
     public static final int MODO_SIMULACION_PAUSADA = 1;
     public static final int MODO_SIMULACION_ACTIVADA=2;
     
+    //Cosntantes que controlan el estado del cliente
     public static final int ESTADO_CLIENTE_EN_ESPERA = 0;
     public static final int ESTADO_CLIENTE_EN_CAJA = 1;
     public static final int ESTADO_CLIENTE_ATENDIDO = 2;
     
+    //Constantes que controlan las cajas
     public static final int ESTADO_CAJERO_DISPONIBLE = 0;
     public static final int ESTADO_CAJERO_OCUPADO = 1;
     
+    //Consantes que controlan el tipo de categoria
     public static final String CATEGORIA_DISCAPACITADO = "D";
     public static final String CATEGORIA_ADULTO_MAYOR = "A";
     public static final String CATEGORIA_MUJER_EMBARAZADA= "M";
     public static final String CATEGORIA_CLIENTE_CORPORATIVO= "C";
     public static final String CATEGORIA_CLIENTE_REGULAR= "R";
     public static final String CATEGORIA_CLIENTE="T";
-   
 }

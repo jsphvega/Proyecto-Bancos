@@ -12,6 +12,14 @@ import proyectobancos.Administradores.AdministradorPrincipal;
 import proyectobancos.Administradores.Reloj;
 import proyectobancos.Constantes.Parametros;
 
+/**
+ * Clase que va a mostrar la ventana de configuracion y permite dar caracteristicas
+ * que el usuario desee.
+ *
+ * @author Joseph Vega
+ * @author Lucia Solis
+ * @author Miller Ruiz
+ */
 public class VentanaConfiguracion extends javax.swing.JFrame {
 
     String Direccion;
