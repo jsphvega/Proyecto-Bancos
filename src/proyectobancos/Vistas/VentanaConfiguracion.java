@@ -116,7 +116,6 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         lblInstrucciones.setText("Instrucciones:"); // NOI18N
         getContentPane().add(lblInstrucciones);
         lblInstrucciones.setBounds(25, 300, 80, 20);
-        lblInstrucciones.getAccessibleContext().setAccessibleName("Instrucciones:");
 
         lblInstrucciones1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblInstrucciones1.setForeground(new java.awt.Color(255, 255, 255));
@@ -126,7 +125,7 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
 
         lblInstrucciones2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblInstrucciones2.setForeground(new java.awt.Color(255, 255, 255));
-        lblInstrucciones2.setText("* El numero de cajas debe ser mayor a 1."); // NOI18N
+        lblInstrucciones2.setText("* El numero de cajas debe ser mayor a 0."); // NOI18N
         getContentPane().add(lblInstrucciones2);
         lblInstrucciones2.setBounds(25, 340, 231, 20);
 
@@ -313,8 +312,8 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
 
                 
                 ventanaPrincipal.actulizarCajas();
-                setVisible(false);
-                ventanaPrincipal.setVisible(true);
+                this.dispose();
+                ventanaPrincipal.show();
 
                 AdministradorPrincipal.getInstance().liberarTodosCajeros();
                 AdministradorPrincipal.getInstance().actualizarCajeros();
