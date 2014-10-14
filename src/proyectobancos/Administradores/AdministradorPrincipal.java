@@ -20,7 +20,9 @@ import proyectobancos.Vistas.VentanaPrincipal;
  */
 public class AdministradorPrincipal {
 
-    private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaClientes;
+    private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaTotalClientes;
+    private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaClientesAtendidos;
+    
     private ListaSimplementeEnlazadaGenerica<Cajero> listaCajerosActivos;
     private AdministradorCorreo administradorCorreo;
     private PriorityQueue<ClienteComparable> colaPrioridad;
@@ -67,7 +69,7 @@ public class AdministradorPrincipal {
     private void crearEstructuras() {
 
         parametros = new Parametros();
-        listaClientes = new ListaSimplementeEnlazadaGenerica<ClienteComparable>();
+        listaTotalClientes = new ListaSimplementeEnlazadaGenerica<ClienteComparable>();
         listaCajerosActivos = new ListaSimplementeEnlazadaGenerica<Cajero>();
         administradorCorreo = new AdministradorCorreo();
         colaPrioridad = new PriorityQueue();
@@ -161,7 +163,7 @@ public class AdministradorPrincipal {
                 Hora);
 
         colaPrioridad.add(nuevoCliente);
-        listaClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
+        listaTotalClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
         totalClientesDiscapacitados++;
         totalClientes++;
     }
@@ -177,7 +179,7 @@ public class AdministradorPrincipal {
                 Hora);
 
         colaPrioridad.add(nuevoCliente);
-        listaClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
+        listaTotalClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
         totalClientesAdultoMayor++;
         totalClientes++;
     }
@@ -193,7 +195,7 @@ public class AdministradorPrincipal {
                 Hora);
 
         colaPrioridad.add(nuevoCliente);
-        listaClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
+        listaTotalClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
         totalClientesMujeresEmbarazadas++;
         totalClientes++;
     }
@@ -209,7 +211,7 @@ public class AdministradorPrincipal {
                 Hora);
 
         colaPrioridad.add(nuevoCliente);
-        listaClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
+        listaTotalClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
         totalClientesCorporativos++;
         totalClientes++;
     }
@@ -225,13 +227,13 @@ public class AdministradorPrincipal {
                 Hora);
 
         colaPrioridad.add(nuevoCliente);
-        listaClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
+        listaTotalClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
         totalClientesRegulares++;
         totalClientes++;
     }
 
     public ListaSimplementeEnlazadaGenerica<ClienteComparable> getListaClientes() {
-        return listaClientes;
+        return listaTotalClientes;
     }
 
     //Para recorer la lista
@@ -248,9 +250,33 @@ public class AdministradorPrincipal {
             //listaCajerosActivos.
         }
     }
-    
-    public void liberarTodosCajeros(){
-        
+
+    public void liberarTodosCajeros() {
+        NodoGenericoSimple<Cajero> obtenerPrimero = listaCajerosActivos.obtenerPrimero();
+
+        if (obtenerPrimero != null) {
+            
+            while (obtenerPrimero != null) {
+                Cajero cliente = obtenerPrimero.next.getElement();
+                cliente.setEstado(Constantes.ESTADO_CLIENTE_ATENDIDO);
+                obtenerPrimero = obtenerPrimero.next;
+            }
+            System.out.println();
+        }
+    }
+
+    public void crearCajero() {
+        long totalCajeros = listaCajerosActivos.getSize() + 1;
+        Cajero nuevoCajero = new Cajero((int) totalCajeros);
+        listaCajerosActivos.agregarAlFinal(new NodoGenericoSimple<Cajero>(nuevoCajero, null));
+    }
+
+    public void crearCajero(int pCantidad) {
+        for (int i = 0; i < pCantidad; i++) {
+            long totalCajeros = listaCajerosActivos.getSize() + 1;
+            Cajero nuevoCajero = new Cajero((int) totalCajeros);
+            listaCajerosActivos.agregarAlFinal(new NodoGenericoSimple<Cajero>(nuevoCajero, null));
+        }
     }
 
 }

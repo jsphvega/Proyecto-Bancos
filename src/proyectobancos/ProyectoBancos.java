@@ -54,13 +54,13 @@ public class ProyectoBancos {
         NodoGenericoSimple<ClienteComparable> obtenerPrimero = listaClientes.obtenerPrimero();
         
         if (obtenerPrimero != null) {
-            System.out.print(obtenerPrimero.getElement() + " ");
-            while (obtenerPrimero.next != null) {
-                ClienteComparable element = obtenerPrimero.next.getElement();
+            
+            while (obtenerPrimero != null) {
+                ClienteComparable element = obtenerPrimero.getElement();
                 String nombre = element.getNombre();
                 System.out.println("Nombre: ");
                 System.out.println(nombre);
-                System.out.print(obtenerPrimero.next.getElement().toString() + " ");
+                System.out.print(obtenerPrimero.getElement().toString() + " ");
                 obtenerPrimero = obtenerPrimero.next;
             }
             System.out.println();
