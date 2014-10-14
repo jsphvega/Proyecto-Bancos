@@ -22,6 +22,8 @@ public class ProyectoBancos {
         VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
         ventanaPrincipal.setVisible(false);
         
+        AdministradorPrincipal.getInstance().setVentanaPrincipal(ventanaPrincipal);
+        
         VentanaConfiguracion ventanaConfiguracion = new VentanaConfiguracion(ventanaPrincipal);
         ventanaConfiguracion.setVisible(true);
         ventanaPrincipal.setVentanaConfiguracion(ventanaConfiguracion);

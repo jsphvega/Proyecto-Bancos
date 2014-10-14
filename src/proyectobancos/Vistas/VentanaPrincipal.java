@@ -8,7 +8,9 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener; //Importa modelo genérico de tablas.
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import proyectobancos.Administradores.AdministradorPrincipal;
 import proyectobancos.Administradores.Reloj;
+import proyectobancos.Constantes.Constantes;
 import proyectobancos.Constantes.Parametros;
 
 /**
@@ -27,10 +29,11 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     //Permite crear una tabla generica para modificar datos facilmente
     private DefaultTableModel CajaEmpleados = new DefaultTableModel();
 
-    private VentanaRegistroClientesFinal VRC;
+    private VentanaRegistroClientesFinal ventanaRegistroCliente;
     private VentanaConfiguracion ventanaConfiguracion;
 
     private boolean escucharCambios;
+    private int modoSimulacion;
 
     /**
      * Método constructor de la clase.
@@ -43,6 +46,10 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         setInfoBancos(); //Asigna el titulo y el logo 
 
         agregarEventoTabla();
+        
+        
+        modoSimulacion = Constantes.MODO_SIMULACION_PAUSADA;
+        
 
     }
 
@@ -224,7 +231,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
                 lblIniciarSimulacionMouseReleased(evt);
             }
         });
-        getContentPane().add(lblIniciarSimulacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 220, 115, 42));
+        getContentPane().add(lblIniciarSimulacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 215, 115, 42));
 
         lblFondoInicairSimulacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
         getContentPane().add(lblFondoInicairSimulacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, -1));
@@ -239,7 +246,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().add(lblFondoTiquete3, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 198, -1, 140));
 
         lblFondoTiquete4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/FondoTransparente.png"))); // NOI18N
-        getContentPane().add(lblFondoTiquete4, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 327, -1, 140));
+        getContentPane().add(lblFondoTiquete4, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 327, -1, 100));
 
         lblHora1.setForeground(new java.awt.Color(255, 255, 255));
         lblHora1.setText("HORA:");
@@ -433,13 +440,24 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
      */
     private void lblTiqueteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTiqueteMouseReleased
 
-        VRC.setVisible(true);
+        ventanaRegistroCliente.setVisible(true);
 
         AplicarEnTabla();
     }//GEN-LAST:event_lblTiqueteMouseReleased
 
     private void lblIniciarSimulacionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIniciarSimulacionMouseReleased
         // TODO add your handling code here:
+        if (modoSimulacion == Constantes.MODO_SIMULACION_PAUSADA){
+            AdministradorPrincipal.getInstance().activarSimulacion();
+            modoSimulacion = Constantes.MODO_SIMULACION_ACTIVADA;
+            lblIniciarSimulacion.setText("Pausar");
+        }
+        else{
+            AdministradorPrincipal.getInstance().pausarSimulacion();
+            modoSimulacion = Constantes.MODO_SIMULACION_PAUSADA;
+            lblIniciarSimulacion.setText("iniciar");
+        }
+        
     }//GEN-LAST:event_lblIniciarSimulacionMouseReleased
 
     public static void main(String args[]) {

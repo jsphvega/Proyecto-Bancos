@@ -7,9 +7,12 @@ package proyectobancos.Administradores;
 
 import java.util.PriorityQueue;
 import proyectobancos.Administradores.estructuras.ClienteComparable;
+import proyectobancos.Administradores.estructuras.HiloSimulacionCajero;
 import proyectobancos.Administradores.estructuras.ListaSimplementeEnlazadaGenerica;
 import proyectobancos.Administradores.estructuras.NodoGenericoSimple;
 import proyectobancos.Constantes.Constantes;
+import proyectobancos.Constantes.Parametros;
+import proyectobancos.Vistas.VentanaPrincipal;
 
 /**
  *
@@ -18,9 +21,13 @@ import proyectobancos.Constantes.Constantes;
 public class AdministradorPrincipal {
 
     private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaClientes;
+    private ListaSimplementeEnlazadaGenerica<Cajero> listaCajerosActivos;
     private AdministradorCorreo administradorCorreo;
     private PriorityQueue<ClienteComparable> colaPrioridad;
-    
+
+    private VentanaPrincipal ventanaPrincipal;
+
+    private HiloSimulacionCajero hiloSimulacionCajero;
 
     private int totalClientesDiscapacitados;
     private int totalClientesAdultoMayor;
@@ -28,8 +35,10 @@ public class AdministradorPrincipal {
     private int totalClientesCorporativos;
     private int totalClientesRegulares;
     private int totalClientes;
-    
+
     private int modoSimulacion;
+    
+    private Parametros parametros;
 
     private static AdministradorPrincipal INSTANCE = null;
 
@@ -46,7 +55,8 @@ public class AdministradorPrincipal {
         totalClientesCorporativos = 0;
         totalClientesRegulares = 0;
         totalClientes = 0;
-        modoSimulacion = Constantes.MODO_SIMULACION_DETENIDA;
+        modoSimulacion = Constantes.MODO_SIMULACION_PAUSADA;
+        hiloSimulacionCajero.pausar();
     }
 
     @Override
@@ -55,9 +65,15 @@ public class AdministradorPrincipal {
     }
 
     private void crearEstructuras() {
+        
+        parametros = new Parametros();
         listaClientes = new ListaSimplementeEnlazadaGenerica<ClienteComparable>();
+        listaCajerosActivos = new ListaSimplementeEnlazadaGenerica<Cajero>();
         administradorCorreo = new AdministradorCorreo();
         colaPrioridad = new PriorityQueue();
+        hiloSimulacionCajero = new HiloSimulacionCajero(colaPrioridad, listaCajerosActivos);
+        hiloSimulacionCajero.start();
+        
     }
 
     public static AdministradorPrincipal getInstance() {
@@ -80,9 +96,30 @@ public class AdministradorPrincipal {
             }
         }
     }
-    
-    public void activarSimulacion(){
+
+    public void activarSimulacion() {
         modoSimulacion = Constantes.MODO_SIMULACION_ACTIVADA;
+        System.out.println("---");
+        System.out.println("ACTIVANDO SIMULACION");
+        System.out.println("---");
+        hiloSimulacionCajero.continuar();
+    }
+
+    public void pausarSimulacion() {
+        modoSimulacion = Constantes.MODO_SIMULACION_PAUSADA;
+        System.out.println("---");
+        System.out.println("Pausando SIMULACION");
+        System.out.println("---");
+        hiloSimulacionCajero.pausar();
+    }
+
+    public void detenerSimulacion() {
+        modoSimulacion = Constantes.MODO_SIMULACION_DETENIDA;
+        System.out.println("---");
+        System.out.println("DETENIENDO SIMULACION");
+        System.out.println("---");
+        hiloSimulacionCajero.detener();
+        
     }
 
     public boolean enviarCorreoConfirmacion(String correoDestino, String nombre, String tiquete, String rutaImagen) {
@@ -91,10 +128,6 @@ public class AdministradorPrincipal {
 
     public boolean enviarCorreoTurno(String correoDestino, String rutaImagen) {
         return administradorCorreo.enviarCorreoTurno(correoDestino, rutaImagen);
-    }
-
-    public void agregarClienteCategoriaDiscapacitado() {
-
     }
 
     public String getNextCodigoDiscapacitados() {
@@ -164,7 +197,7 @@ public class AdministradorPrincipal {
         totalClientesMujeresEmbarazadas++;
         totalClientes++;
     }
-    
+
     public void agregarClienteCategoriaCorporativos(String Nombre, String Correo, String codigo, String Fecha, String Hora) {
 
         ClienteComparable nuevoCliente = new ClienteComparable(
@@ -180,7 +213,7 @@ public class AdministradorPrincipal {
         totalClientesCorporativos++;
         totalClientes++;
     }
-    
+
     public void agregarClienteCategoriaRegulares(String Nombre, String Correo, String codigo, String Fecha, String Hora) {
 
         ClienteComparable nuevoCliente = new ClienteComparable(
@@ -195,11 +228,21 @@ public class AdministradorPrincipal {
         listaClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
         totalClientesRegulares++;
         totalClientes++;
-    }    
+    }
 
     public ListaSimplementeEnlazadaGenerica<ClienteComparable> getListaClientes() {
         return listaClientes;
     }
 
     //Para recorer la lista
+    public void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
+        this.ventanaPrincipal = ventanaPrincipal;
+    }
+    
+    public void actualizarCajeros(){
+        if (ventanaPrincipal!=null){
+            int totalCajas = parametros.getCajas();
+            
+        }
+    }
 }

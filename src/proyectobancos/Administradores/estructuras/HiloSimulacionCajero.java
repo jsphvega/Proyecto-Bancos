@@ -6,6 +6,9 @@
 package proyectobancos.Administradores.estructuras;
 
 import java.io.IOException;
+import java.util.PriorityQueue;
+import proyectobancos.Administradores.Cajero;
+import proyectobancos.Constantes.Constantes;
 
 /**
  *
@@ -16,12 +19,17 @@ public class HiloSimulacionCajero extends Thread {
     private volatile boolean blinker = true;
     final long interval = 500;
     private volatile boolean threadSuspended = false;
+    private PriorityQueue<ClienteComparable> colaPrioridad;
+    private ListaSimplementeEnlazadaGenerica<Cajero> listaCajerosActivos;
 
-    public HiloSimulacionCajero() {
+    public HiloSimulacionCajero(PriorityQueue<ClienteComparable> colaPrioridad,
+            ListaSimplementeEnlazadaGenerica<Cajero> listaCajerosActivos) {
+        this.colaPrioridad = colaPrioridad;
+        this.listaCajerosActivos = listaCajerosActivos;
     }
 
     /**
-     * 
+     *
      */
     public void run() {
         while (blinker == true) {
@@ -39,6 +47,31 @@ public class HiloSimulacionCajero extends Thread {
             }
             //
             System.out.println("Trabajando");
+
+            
+            
+            NodoGenericoSimple<Cajero> obtenerPrimerCajero = listaCajerosActivos.obtenerPrimero();
+
+            if (obtenerPrimerCajero != null) {
+                
+                while (obtenerPrimerCajero.next != null) {
+                    
+                    Cajero cajero = obtenerPrimerCajero.next.getElement();
+                    int estado = cajero.getEstado();
+                    if (estado==Constantes.ESTADO_CAJERO_DISPONIBLE){
+                        System.out.println("Asignando cliente al cajero #:");
+                        System.out.println(cajero.getNumeroCajero());
+                    }
+
+                    
+                    obtenerPrimerCajero = obtenerPrimerCajero.next;
+                }
+                System.out.println();
+            }
+            else{
+                System.out.println("Lista de cajeros vacia");
+            }
+
         }
 
         //
