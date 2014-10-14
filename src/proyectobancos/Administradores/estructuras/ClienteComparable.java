@@ -19,6 +19,9 @@ public class ClienteComparable implements Comparable<ClienteComparable> {
     private String nombre, correo, codigo, fecha, hora;
     private int estado;
 
+    private String fechaAtencion = "";
+    private String horaAtencion = "";
+
     public ClienteComparable(int prioridad, int posicion, String nombre, String correo, String codigo, String fecha, String hora) {
         this.prioridad = prioridad;
         this.posicion = posicion;
@@ -35,18 +38,32 @@ public class ClienteComparable implements Comparable<ClienteComparable> {
         String resultado = "";
         resultado += "Nombre: \n";
         resultado += nombre + "\n";
+        if (estado == Constantes.ESTADO_CLIENTE_EN_ESPERA) {
+            resultado += "Estado: \n";
+            resultado += "EN ESPERA" + "\n";
+        } else if (estado == Constantes.ESTADO_CLIENTE_EN_CAJA) {
+            resultado += "Estado: \n";
+            resultado += "EN CAJA" + "\n";
+            resultado += "Estado: \n";
+            resultado += "ATENDIDO" + "\n";
+        }
         resultado += "Prioridad: \n";
         resultado += prioridad + "\n";
         resultado += "Codigo asignado: \n";
         resultado += codigo + "\n";
         resultado += "Correo: \n";
         resultado += correo + "\n";
-        resultado += "Posicion en la cola original: \n";
+        resultado += "Posión en la cola principal: \n";
         resultado += posicion + "\n";
-        resultado += "Fecha: \n";
+        resultado += "Fecha ingreso: \n";
         resultado += fecha + "\n";
-        resultado += "Hora: \n";
+        resultado += "Hora ingreso: \n";
         resultado += hora + "\n";
+
+        resultado += "Fecha de atención: \n";
+        resultado += fechaAtencion + "\n";
+        resultado += "Hora de atención: \n";
+        resultado += horaAtencion + "\n";
 
         return resultado;
     }
@@ -114,8 +131,22 @@ public class ClienteComparable implements Comparable<ClienteComparable> {
     public void setHora(String hora) {
         this.hora = hora;
     }
-    
-    
+
+    public String getFechaAtencion() {
+        return fechaAtencion;
+    }
+
+    public void setFechaAtencion(String fechaAtencion) {
+        this.fechaAtencion = fechaAtencion;
+    }
+
+    public String getHoraAtencion() {
+        return horaAtencion;
+    }
+
+    public void setHoraAtencion(String horaAtencion) {
+        this.horaAtencion = horaAtencion;
+    }
 
     @Override
     public int compareTo(ClienteComparable pCliente) {

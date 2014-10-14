@@ -10,6 +10,7 @@ import proyectobancos.Administradores.estructuras.ClienteComparable;
 import proyectobancos.Administradores.estructuras.HiloSimulacionCajero;
 import proyectobancos.Administradores.estructuras.ListaSimplementeEnlazadaGenerica;
 import proyectobancos.Administradores.estructuras.NodoGenericoSimple;
+import proyectobancos.Administradores.estructuras.colas.PriorityQueuePropia;
 import proyectobancos.Constantes.Constantes;
 import proyectobancos.Constantes.Parametros;
 import proyectobancos.Vistas.VentanaPrincipal;
@@ -21,11 +22,11 @@ import proyectobancos.Vistas.VentanaPrincipal;
 public class AdministradorPrincipal {
 
     private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaTotalClientes;
-    private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaClientesAtendidos;
+    //private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaClientesAtendidos;
     
     private ListaSimplementeEnlazadaGenerica<Cajero> listaCajerosActivos;
     private AdministradorCorreo administradorCorreo;
-    private PriorityQueue<ClienteComparable> colaPrioridad;
+    private PriorityQueuePropia<ClienteComparable> colaPrioridad;
 
     private VentanaPrincipal ventanaPrincipal;
 
@@ -72,7 +73,7 @@ public class AdministradorPrincipal {
         listaTotalClientes = new ListaSimplementeEnlazadaGenerica<ClienteComparable>();
         listaCajerosActivos = new ListaSimplementeEnlazadaGenerica<Cajero>();
         administradorCorreo = new AdministradorCorreo();
-        colaPrioridad = new PriorityQueue();
+        colaPrioridad = new PriorityQueuePropia<ClienteComparable>();
         hiloSimulacionCajero = new HiloSimulacionCajero(colaPrioridad, listaCajerosActivos);
         hiloSimulacionCajero.start();
 
@@ -161,6 +162,8 @@ public class AdministradorPrincipal {
                 codigo,
                 Fecha,
                 Hora);
+        
+        nuevoCliente.setEstado(Constantes.ESTADO_CLIENTE_EN_ESPERA);
 
         colaPrioridad.add(nuevoCliente);
         listaTotalClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
@@ -177,6 +180,8 @@ public class AdministradorPrincipal {
                 codigo,
                 Fecha,
                 Hora);
+        
+        nuevoCliente.setEstado(Constantes.ESTADO_CLIENTE_EN_ESPERA);
 
         colaPrioridad.add(nuevoCliente);
         listaTotalClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
@@ -193,6 +198,8 @@ public class AdministradorPrincipal {
                 codigo,
                 Fecha,
                 Hora);
+        
+        nuevoCliente.setEstado(Constantes.ESTADO_CLIENTE_EN_ESPERA);
 
         colaPrioridad.add(nuevoCliente);
         listaTotalClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
@@ -209,6 +216,8 @@ public class AdministradorPrincipal {
                 codigo,
                 Fecha,
                 Hora);
+        
+        nuevoCliente.setEstado(Constantes.ESTADO_CLIENTE_EN_ESPERA);
 
         colaPrioridad.add(nuevoCliente);
         listaTotalClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
@@ -225,6 +234,10 @@ public class AdministradorPrincipal {
                 codigo,
                 Fecha,
                 Hora);
+        
+        nuevoCliente.setEstado(Constantes.ESTADO_CLIENTE_EN_ESPERA);
+        
+        nuevoCliente.toString();
 
         colaPrioridad.add(nuevoCliente);
         listaTotalClientes.agregarAlFinal(new NodoGenericoSimple<ClienteComparable>(nuevoCliente, null));
@@ -243,11 +256,9 @@ public class AdministradorPrincipal {
 
     public void actualizarCajeros() {
         if (ventanaPrincipal != null) {
+            listaCajerosActivos.vaciarLista();
             int totalCajas = parametros.getCajas();
-//            if (listaCajerosActivos.getSize()){
-//                
-//            }
-            //listaCajerosActivos.
+            crearCajero(totalCajas);
         }
     }
 
@@ -260,7 +271,7 @@ public class AdministradorPrincipal {
                 Cajero cajero = obtenerPrimero.getElement();
                 if (cajero.getEstado()==Constantes.ESTADO_CAJERO_OCUPADO){
                     cajero.setEstado(Constantes.ESTADO_CAJERO_DISPONIBLE);
-                    
+                    cajero.getClienteActual().setEstado(Constantes.ESTADO_CLIENTE_ATENDIDO);
                 }
                 
                 obtenerPrimero = obtenerPrimero.next;
@@ -281,6 +292,25 @@ public class AdministradorPrincipal {
             long totalCajeros = listaCajerosActivos.getSize() + 1;
             Cajero nuevoCajero = new Cajero((int) totalCajeros);
             listaCajerosActivos.agregarAlFinal(new NodoGenericoSimple<Cajero>(nuevoCajero, null));
+        }
+    }
+
+    public void getEstadoBanco() {
+        NodoGenericoSimple<ClienteComparable> obtenerPrimero = listaTotalClientes.obtenerPrimero();
+
+        if (obtenerPrimero != null) {
+            
+            while (obtenerPrimero != null) {
+                ClienteComparable clienteActual = obtenerPrimero.getElement();
+
+                String situacionCliente = clienteActual.toString();
+                
+                System.out.println(situacionCliente);
+                
+                obtenerPrimero = obtenerPrimero.next;
+                
+            }
+            System.out.println();
         }
     }
 

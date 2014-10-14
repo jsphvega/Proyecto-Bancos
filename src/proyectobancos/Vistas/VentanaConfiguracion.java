@@ -284,9 +284,10 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
                 setVisible(false);
                 ventanaPrincipal.setVisible(true);
 
-                AdministradorPrincipal.getInstance().activarSimulacion();
+                
                 AdministradorPrincipal.getInstance().liberarTodosCajeros();
                 AdministradorPrincipal.getInstance().actualizarCajeros();
+                AdministradorPrincipal.getInstance().activarSimulacion();
 
             } else {
                 JOptionPane.showMessageDialog(null, "Reintente su modificación "

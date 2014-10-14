@@ -6,8 +6,8 @@
 package proyectobancos.Administradores.estructuras;
 
 import java.io.IOException;
-import java.util.PriorityQueue;
 import proyectobancos.Administradores.Cajero;
+import proyectobancos.Administradores.estructuras.colas.PriorityQueuePropia;
 import proyectobancos.Constantes.Constantes;
 
 /**
@@ -19,10 +19,10 @@ public class HiloSimulacionCajero extends Thread {
     private volatile boolean blinker = true;
     final long interval = 500;
     private volatile boolean threadSuspended = false;
-    private PriorityQueue<ClienteComparable> colaPrioridad;
+    private PriorityQueuePropia<ClienteComparable> colaPrioridad;
     private ListaSimplementeEnlazadaGenerica<Cajero> listaCajerosActivos;
 
-    public HiloSimulacionCajero(PriorityQueue<ClienteComparable> colaPrioridad,
+    public HiloSimulacionCajero(PriorityQueuePropia<ClienteComparable> colaPrioridad,
             ListaSimplementeEnlazadaGenerica<Cajero> listaCajerosActivos) {
         this.colaPrioridad = colaPrioridad;
         this.listaCajerosActivos = listaCajerosActivos;
@@ -35,7 +35,7 @@ public class HiloSimulacionCajero extends Thread {
         while (blinker == true) {
             try {
                 Thread.sleep(interval);
-                System.out.println("Descansado");
+                //System.out.println("Descansado");
 
                 synchronized (this) {
                     while (threadSuspended && blinker == true) {
@@ -46,7 +46,7 @@ public class HiloSimulacionCajero extends Thread {
             } catch (InterruptedException e) {
             }
             //
-            System.out.println("Trabajando");
+            //System.out.println("Trabajando");
 
             NodoGenericoSimple<Cajero> obtenerPrimerCajero = listaCajerosActivos.obtenerPrimero();
 
@@ -57,17 +57,24 @@ public class HiloSimulacionCajero extends Thread {
                     Cajero cajero = obtenerPrimerCajero.getElement();
                     int estado = cajero.getEstado();
                     if (estado == Constantes.ESTADO_CAJERO_DISPONIBLE) {
-                        System.out.println("Asignando cliente al cajero #:");
-                        System.out.println(cajero.getNumeroCajero());
-                        ClienteComparable clienteParaAtender = colaPrioridad.remove();
-                        cajero.setClienteActual(clienteParaAtender);
-                        cajero.setEstado(Constantes.ESTADO_CAJERO_OCUPADO);
                         
+                        //System.out.println("Cajero #: " + cajero.getNumeroCajero()+ " DISPONIBLE");
+
+                        if (colaPrioridad.size() > 0) {
+
+                            //System.out.println("Asignando cliente al cajero #:");
+                            //System.out.println(cajero.getNumeroCajero());
+
+                            ClienteComparable clienteParaAtender = colaPrioridad.remove();
+                            cajero.setClienteActual(clienteParaAtender);
+                            cajero.setEstado(Constantes.ESTADO_CAJERO_OCUPADO);
+                        }
+
                     }
 
                     obtenerPrimerCajero = obtenerPrimerCajero.next;
                 }
-                System.out.println();
+
             } else {
                 System.out.println("Lista de cajeros vacia");
             }

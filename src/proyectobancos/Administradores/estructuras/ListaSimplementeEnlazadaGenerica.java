@@ -23,6 +23,12 @@ public class ListaSimplementeEnlazadaGenerica<E> {
         size = 0;
     }
 
+    public void vaciarLista() {
+        cabeza = null;
+        cola = null;
+        size = 0;
+    }
+
     /**
      *
      * @param NodoGenericoSimple Este metodo agrega al inicio el elemento a

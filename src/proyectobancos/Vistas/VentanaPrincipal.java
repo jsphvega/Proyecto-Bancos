@@ -46,10 +46,8 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         setInfoBancos(); //Asigna el titulo y el logo 
 
         agregarEventoTabla();
-        
-        
+
         modoSimulacion = Constantes.MODO_SIMULACION_PAUSADA;
-        
 
     }
 
@@ -67,7 +65,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
                     String columnName = model.getColumnName(column);
                     System.out.println(columnName);
                     Object data = model.getValueAt(row, column);
-                    
+
                     System.out.println(data);
                 }
 
@@ -125,8 +123,8 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
      * Método que inicializa la tabla con las cajas correspondientes.
      */
     private void InicioTablaClientes() {
-        
-         escucharCambios = false;
+
+        escucharCambios = false;
 
         ((DefaultTableModel) tblCajaEmpleados.getModel()).setRowCount(0);
         CajaEmpleados = (DefaultTableModel) tblCajaEmpleados.getModel();
@@ -224,7 +222,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
         lblIniciarSimulacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblIniciarSimulacion.setForeground(new java.awt.Color(255, 255, 255));
         lblIniciarSimulacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIniciarSimulacion.setText("Iniciar");
+        lblIniciarSimulacion.setText("Mostrar estado");
         lblIniciarSimulacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblIniciarSimulacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -449,17 +447,18 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
 
     private void lblIniciarSimulacionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIniciarSimulacionMouseReleased
         // TODO add your handling code here:
-        if (modoSimulacion == Constantes.MODO_SIMULACION_PAUSADA){
-            AdministradorPrincipal.getInstance().activarSimulacion();
-            modoSimulacion = Constantes.MODO_SIMULACION_ACTIVADA;
-            lblIniciarSimulacion.setText("Pausar");
-        }
-        else{
-            AdministradorPrincipal.getInstance().pausarSimulacion();
-            modoSimulacion = Constantes.MODO_SIMULACION_PAUSADA;
-            lblIniciarSimulacion.setText("iniciar");
-        }
+//        if (modoSimulacion == Constantes.MODO_SIMULACION_PAUSADA) {
+//            AdministradorPrincipal.getInstance().activarSimulacion();
+//            modoSimulacion = Constantes.MODO_SIMULACION_ACTIVADA;
+//            lblIniciarSimulacion.setText("Pausar");
+//        } else {
+//            AdministradorPrincipal.getInstance().pausarSimulacion();
+//            modoSimulacion = Constantes.MODO_SIMULACION_PAUSADA;
+//            lblIniciarSimulacion.setText("iniciar");
+//        }
         
+        AdministradorPrincipal.getInstance().getEstadoBanco();
+
     }//GEN-LAST:event_lblIniciarSimulacionMouseReleased
 
     public static void main(String args[]) {
@@ -518,9 +517,13 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     void actulizarCajas() {
-        
+
         InicioTablaClientes();
-        
+
         escucharCambios = true;
+    }
+
+    public void setVentanaRegistroCliente(VentanaRegistroClientesFinal ventanaRegistroClientesFinal) {
+        this.ventanaRegistroCliente = ventanaRegistroClientesFinal;
     }
 }

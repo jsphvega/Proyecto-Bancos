@@ -18,13 +18,33 @@ import proyectobancos.Constantes.Parametros;
  * @author Miller Ruiz
  */
 public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
-    
-    
+
+    private VentanaPrincipal ventanaPrincipal;
 
     /**
      * Creates new form VentanaClientes
      */
+    public VentanaRegistroClientesFinal(VentanaPrincipal pVentanaPrincipal) {
+
+        ventanaPrincipal = pVentanaPrincipal;
+
+        initComponents();
+        getContentPane().setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
+        this.setLocationRelativeTo(null);
+        //setImagen();
+        Reloj hora = new Reloj(jLabelHora);
+        hora.start();
+        Calendar Cal = Calendar.getInstance();
+        String fecha = Cal.get(Cal.DATE) + "/" + (Cal.get(Cal.MONTH) + 1) + "/" + Cal.get(Cal.YEAR);
+        jLabelFecha.setText(fecha);
+
+        limpiarDatos();
+
+    }
+
     public VentanaRegistroClientesFinal() {
+
 
         initComponents();
         getContentPane().setBackground(new java.awt.Color(255, 255, 255));
@@ -282,8 +302,8 @@ public final class VentanaRegistroClientesFinal extends javax.swing.JFrame {
         } else if (Nombre.trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite su nombre por favor");
             return;
-        }else if (!jCheckClienteCorporativo.isSelected() & !jCheckClienteDiscapacitado.isSelected() & 
-                !jCheckClienteEmbarazada.isSelected() & !jCheckClienteMayor.isSelected() & !jCheckClienteRegular.isSelected()){
+        } else if (!jCheckClienteCorporativo.isSelected() & !jCheckClienteDiscapacitado.isSelected()
+                & !jCheckClienteEmbarazada.isSelected() & !jCheckClienteMayor.isSelected() & !jCheckClienteRegular.isSelected()) {
             JOptionPane.showMessageDialog(null, "Elija una categoría por favor");
             return;
         }
