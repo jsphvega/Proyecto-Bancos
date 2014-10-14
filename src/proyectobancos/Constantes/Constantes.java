@@ -33,5 +33,6 @@ public class Constantes {
     public static final String CATEGORIA_MUJER_EMBARAZADA= "M";
     public static final String CATEGORIA_CLIENTE_CORPORATIVO= "C";
     public static final String CATEGORIA_CLIENTE_REGULAR= "R";
+    public static final String CATEGORIA_CLIENTE="T";
    
 }

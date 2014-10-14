@@ -20,8 +20,16 @@ import proyectobancos.Vistas.VentanaPrincipal;
  */
 public class AdministradorPrincipal {
 
-    private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaTotalClientes;
+    private static ListaSimplementeEnlazadaGenerica<ClienteComparable> listaTotalClientes;
     private ListaSimplementeEnlazadaGenerica<ClienteComparable> listaClientesAtendidos;
+
+    public ListaSimplementeEnlazadaGenerica<ClienteComparable> getListaTotalClientes() {
+        return listaTotalClientes;
+    }
+
+    public ListaSimplementeEnlazadaGenerica<ClienteComparable> getListaClientesAtendidos() {
+        return listaClientesAtendidos;
+    }
     
     private ListaSimplementeEnlazadaGenerica<Cajero> listaCajerosActivos;
     private AdministradorCorreo administradorCorreo;
@@ -44,12 +52,13 @@ public class AdministradorPrincipal {
 
     private static AdministradorPrincipal INSTANCE = null;
 
-    private AdministradorPrincipal() {
+    public AdministradorPrincipal() {
         crearEstructuras();
         iniciarContadores();
 
     }
 
+    
     private void iniciarContadores() {
         totalClientesDiscapacitados = 0;
         totalClientesAdultoMayor = 0;
