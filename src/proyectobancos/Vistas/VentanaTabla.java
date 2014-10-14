@@ -23,7 +23,6 @@ public final class VentanaTabla extends javax.swing.JFrame {
     //Clase que contiene los parámetros de la clase
     Parametros Pa = new Parametros();
 
-    //AdministradorPrincipal LSE = new AdministradorPrincipal();
     /**
      * Método constructor de la clase.
      */
@@ -47,28 +46,41 @@ public final class VentanaTabla extends javax.swing.JFrame {
      * visualización.
      */
     public void Asignar() {
+        //Asigna en la tabla generica para modificar datos facilmente
+        Ordenamientos = (DefaultTableModel) tblTablaEstadistica.getModel();
 
+        //VAriables para la recuperacion y almacenamiento de datos
         Object[] Ob = new Object[5];
         NodoGenericoSimple<ClienteComparable> NGS
                 = AdministradorPrincipal.getInstance().getListaClientes().obtenerPrimero();
-
-        System.out.println("Actualizando tabla");
         
-        while (NGS != null) {
+        //Ciclo que revisa la cola de prioridad
+        while (NGS != null) {     
             
-            System.out.println(NGS.getElement().toString());
-            
+            //Asisna los datos en el arreglo
             Ob[0] = NGS.getElement().getNombre();
-            
-            System.out.println("NOMBRE: " + NGS.getElement().getNombre());
             Ob[1] = NGS.getElement().getCorreo();
-            Ob[2] = NGS.getElement().getPrioridad();
             Ob[3] = NGS.getElement().getFecha();
             Ob[4] = NGS.getElement().getHora();
             
+            if (NGS.getElement().getPrioridad() == 1)
+                Ob[2] = "DISCAPACITADO";
+            else if (NGS.getElement().getPrioridad() == 2)
+                Ob[2] = "ADULTO MAYOR";
+            else if (NGS.getElement().getPrioridad() == 3) 
+                Ob[2] = "MUJER EMBARAZADA";
+            else if (NGS.getElement().getPrioridad() == 4)
+                Ob[2] = "CLIENTE CORPORATIVO";
+            else
+                Ob[2] = "CLIENTE REGULAR";
+            
+            //Añade el arreglo a la tabla
             Ordenamientos.addRow(Ob);
             NGS = NGS.getNext();
         }
+
+        //asigna la tabla generica a la tabla original
+        tblTablaEstadistica.setModel(Ordenamientos);
     }
 
     /**
@@ -259,7 +271,6 @@ public final class VentanaTabla extends javax.swing.JFrame {
 
     /**
      * Método que permite volver al menú principal.
-     *
      * @param evt
      */
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -268,7 +279,6 @@ public final class VentanaTabla extends javax.swing.JFrame {
 
     /**
      * Método que permite revisar cual columna se necesita ordenar
-     *
      * @param evt
      */
     private void lblCambioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCambioMouseReleased

@@ -45,10 +45,9 @@ public class AdministradorPrincipal {
 
     private static AdministradorPrincipal INSTANCE = null;
 
-    private AdministradorPrincipal() {
+    public AdministradorPrincipal() {
         crearEstructuras();
         iniciarContadores();
-
     }
 
     private void iniciarContadores() {

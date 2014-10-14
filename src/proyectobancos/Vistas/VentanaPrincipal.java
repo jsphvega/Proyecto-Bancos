@@ -69,7 +69,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
                     if (columnName == "Libre"){
                         boolean valor = (boolean)data;
                         if (valor == true){
-                            AdministradorPrincipal.getInstance().liberarCajero(row);
+                            //AdministradorPrincipal.getInstance().liberarCajero(row);
                         }
                     }
                     
