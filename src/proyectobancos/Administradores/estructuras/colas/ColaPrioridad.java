@@ -50,53 +50,59 @@ public class ColaPrioridad <E> extends AbstractCollection <E>
         this.CMP = null;
         
         int i = 1;
+        //Ciclo que va a ir asignando los datos en el arreglo
         for(E item: CMP )
             Arreglo[i++] = item;
         
-        buildHeap( );
+        ConstruyeArbol();
     }
     
-    
-    
-    
-    
-    
-     
-    
-    
     /**
-     * Compares lhs and rhs using comparator if
- provided by CMP, or the default comparator.
+     * Establece propiedades de orden de objetos. Se ejecuta en tiempo lineal.
      */
-    private int compare( E lhs, E rhs )
-    {
-        if( CMP == null )
-            return ((Comparable)lhs).compareTo( rhs );
-        else
-            return CMP.compare( lhs, rhs );    
+    private void ConstruyeArbol( ){
+        for (int i = TamañoArbol / 2; i>0; i--)
+            percolateDown(i);
     }
     
     /**
-     * Adds an item to this ColaPrioridad.
-     * @param x any object.
+     * Compara el Arbol de la Izquierda y el Arbol de la Derecha usando 
+     * comparaciones
+     */
+    private int ComparaArboles(E ArbolIzq, E ArbolDer) {
+        if (CMP == null)
+            return ((Comparable) ArbolIzq).compareTo(ArbolDer);
+        else
+            return CMP.compare(ArbolIzq, ArbolDer);    
+    }
+    
+    /**
+     * Añade datos a ColaPrioridad.
+     * @param Dato
      * @return true.
      */
     @Override
-    public synchronized boolean add( E x )
+    public synchronized boolean add(E Dato)
     {
         if( TamañoArbol + 1 == Arreglo.length )
-            doubleArray( );
+            DobleArreglo( );
 
-            // Percolate up
         int hole = ++TamañoArbol;
-        Arreglo[ 0 ] = x;
+        Arreglo[0] = Dato;
         
-        for( ; compare(x, Arreglo[ hole / 2 ] ) < 0; hole /= 2 )
+        for( ; ComparaArboles(Dato, Arreglo[ hole / 2 ] ) < 0; hole /= 2 )
             Arreglo[ hole ] = Arreglo[ hole / 2 ];
-        Arreglo[ hole ] = x;
+        
+        Arreglo[ hole ] = Dato;
         
         return true;
     }
+     
+    
+    
+    
+    
+    
     
     /**
      * Returns the number of items in this ColaPrioridad.
@@ -180,15 +186,7 @@ public class ColaPrioridad <E> extends AbstractCollection <E>
     }
 
 
-    /**
-     * Establish heap order property from an arbitrary
-     * arrangement of items. Runs in linear time.
-     */
-    private void buildHeap( )
-    {
-        for( int i = TamañoArbol / 2; i > 0; i-- )
-            percolateDown( i );
-    }
+    
 
     
 
@@ -208,9 +206,9 @@ public class ColaPrioridad <E> extends AbstractCollection <E>
         {
             child = hole * 2;
             if( child != TamañoArbol &&
-                    compare(Arreglo[ child + 1 ], Arreglo[ child ] ) < 0 )
+                    ComparaArboles(Arreglo[ child + 1 ], Arreglo[ child ] ) < 0 )
                 child++;
-            if( compare(Arreglo[ child ], tmp ) < 0 )
+            if( ComparaArboles(Arreglo[ child ], tmp ) < 0 )
                 Arreglo[ hole ] = Arreglo[ child ];
             else
                 break;
@@ -221,7 +219,7 @@ public class ColaPrioridad <E> extends AbstractCollection <E>
     /**
      * Internal method to extend Arreglo.
      */
-    private void doubleArray( )
+    private void DobleArreglo( )
     {
         E [ ] newArray;
 
