@@ -64,8 +64,8 @@ public class AdministradorCorreo {
         cuerpoCorreoConfirmacionParte2 = "Se le informa que se le ha asignado el siguiente tiquete para ser atendido<br><br> ";
         cuerpoCorreoConfirmacionParte3 = "Saludos, <br><br>Favor espere su turno, pronto se le notificará.";
 
-        sourceEmail = "malusoce96@gmail.com"; // requires valid Gmail id
-        password = "luciasolis"; // correct password for Gmail id
+        sourceEmail = "tecnologico.ati@gmail.com"; // requires valid Gmail id
+        password = "ati123456789"; // correct password for Gmail id
 
         Properties props = new Properties();
 
