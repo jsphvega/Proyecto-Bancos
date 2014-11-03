@@ -194,7 +194,7 @@ public final class VentanaTabla extends javax.swing.JFrame {
 
         lblSubTitulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblSubTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        lblSubTitulo.setText("Tabla de Estadisticas");
+        lblSubTitulo.setText("Tabla de Estadísticas");
         getContentPane().add(lblSubTitulo);
         lblSubTitulo.setBounds(160, 15, 331, 44);
 
