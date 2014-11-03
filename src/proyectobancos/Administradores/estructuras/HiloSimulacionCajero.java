@@ -67,7 +67,7 @@ public class HiloSimulacionCajero extends Thread {
                             //System.out.println("Asignando cliente al cajero #:");
                             //System.out.println(cajero.getNumeroCajero());
 
-                            ClienteComparable clienteParaAtender = colaPrioridad.remove();
+                            ClienteComparable clienteParaAtender = colaPrioridad.EliminaNodo();
                             cajero.setClienteActual(clienteParaAtender);
                             cajero.setEstado(Constantes.ESTADO_CAJERO_OCUPADO);
                             clienteParaAtender.setEstado(Constantes.ESTADO_CLIENTE_EN_CAJA);

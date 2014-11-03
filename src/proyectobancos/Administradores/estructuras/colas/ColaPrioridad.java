@@ -62,7 +62,7 @@ public class ColaPrioridad <E> extends AbstractCollection <E>
      */
     private void ConstruyeArbol( ){
         for (int i = TamañoArbol / 2; i>0; i--)
-            percolateDown(i);
+            HaciaAbajo(i);
     }
     
     /**
@@ -84,147 +84,120 @@ public class ColaPrioridad <E> extends AbstractCollection <E>
     @Override
     public synchronized boolean add(E Dato)
     {
-        if( TamañoArbol + 1 == Arreglo.length )
-            DobleArreglo( );
+        if (TamañoArbol+1 == Arreglo.length)
+            DobleArreglo();
 
-        int hole = ++TamañoArbol;
+        int Arbolito = ++TamañoArbol;
         Arreglo[0] = Dato;
         
-        for( ; ComparaArboles(Dato, Arreglo[ hole / 2 ] ) < 0; hole /= 2 )
-            Arreglo[ hole ] = Arreglo[ hole / 2 ];
+        for(;ComparaArboles(Dato, Arreglo[Arbolito/2]) < 0; Arbolito/=2)
+            Arreglo[Arbolito] = Arreglo[Arbolito/2];
         
-        Arreglo[ hole ] = Dato;
+        Arreglo[Arbolito] = Dato;
         
         return true;
     }
-     
-    
-    
-    
-    
-    
-    
+
     /**
-     * Returns the number of items in this ColaPrioridad.
+     * Retorna el número de items in la cola.
      * @return the number of items in this ColaPrioridad.
      */
     @Override
-    public int size( )
-    {
+    public int size(){
         return TamañoArbol;
     }
     
     /**
-     * Make this ColaPrioridad empty.
+     * Limpia la el tamaño de la cola
      */
     @Override
-    public void clear( )
-    {
+    public void clear(){
         TamañoArbol = 0;
     }
     
     /**
-     * Returns an iterator over the elements in this ColaPrioridad.
-     * The iterator does not view the elements in any particular order.
+     * Permite recorrer la estructura sin que sea necesario conocerla.
      */
     @Override
-    public Iterator<E> iterator( )
-    {
-        return new Iterator<E>( )
-        {
-            int current = 0;
+    public Iterator <E> iterator(){
+        
+        return new Iterator <E>(){
+            int IteradorComun = 0;
             
             @Override
-            public boolean hasNext( )
-            {
-                return current != size( );
+            public boolean hasNext(){
+                return IteradorComun != size();
             }
             
             @Override
-            public E next( )
-            {
-                if( hasNext( ) )
-                    return Arreglo[ ++current ];
+            public E next(){
+                if (hasNext())
+                    return Arreglo[++IteradorComun];
                 else
-                    throw new NoSuchElementException( );
+                    throw new NoSuchElementException();
             }
             
             @Override
-            public void remove( )
-            {
+            public void remove(){
                 throw new UnsupportedOperationException( );
             }
         };
     }
      
     /**
-     * Returns the smallest item in the priority queue.
-     * @return the smallest item.
-     * @throws NoSuchElementException if empty.
+     * Retorna el primer elemento
+     * @return int
      */
     @Override
-    public E element( )
-    {
-        if( isEmpty( ) )
-            throw new NoSuchElementException( );
-        return Arreglo[ 1 ];
+    public E element(){
+        if (isEmpty())
+            throw new NoSuchElementException();
+        return Arreglo[1];
     }
     
     /**
-     * Removes the smallest item in the priority queue.
-     * @return the smallest item.
-     * @throws NoSuchElementException if empty.
+     * Eimina el primer elemento
+     * @return int
      */
     @Override
-    public synchronized E remove( )
-    {
-        E minItem = element( );
-        Arreglo[ 1 ] = Arreglo[ TamañoArbol-- ];
-        percolateDown( 1 );
+    public synchronized E EliminaNodo() {
+        E Minimo = element();
+        Arreglo[1] = Arreglo[TamañoArbol--];
+        HaciaAbajo(1);
 
-        return minItem;
+        return Minimo;
     }
 
-
-    
-
-    
-
-    
-    
-
     /**
-     * Internal method to percolate down in the heap.
-     * @param hole the index at which the percolate begins.
+     * Método que revisa los demas datos de la cola
      */
-    private void percolateDown( int hole )
-    {
-        int child;
-        E tmp = Arreglo[ hole ];
+    private void HaciaAbajo(int Arbolito){
+        
+        int Hijo;
+        E Temp = Arreglo[ Arbolito ];
 
-        for( ; hole * 2 <= TamañoArbol; hole = child )
-        {
-            child = hole * 2;
-            if( child != TamañoArbol &&
-                    ComparaArboles(Arreglo[ child + 1 ], Arreglo[ child ] ) < 0 )
-                child++;
-            if( ComparaArboles(Arreglo[ child ], tmp ) < 0 )
-                Arreglo[ hole ] = Arreglo[ child ];
+        for (; Arbolito*2 <= TamañoArbol; Arbolito=Hijo){
+            Hijo = Arbolito*2;
+            
+            if (Hijo!=TamañoArbol && ComparaArboles(Arreglo[Hijo+1], Arreglo[Hijo])<0)
+                Hijo++;
+            
+            if (ComparaArboles(Arreglo[Hijo],Temp)<0)
+                Arreglo[Arbolito] = Arreglo[Hijo];
             else
                 break;
         }
-        Arreglo[ hole ] = tmp;
+        Arreglo[Arbolito] = Temp;
     }
     
     /**
-     * Internal method to extend Arreglo.
+     * Método que extiende el arreglo
      */
-    private void DobleArreglo( )
-    {
-        E [ ] newArray;
+    private void DobleArreglo(){
+        E[] NuevoArreglo;
 
-        newArray = (E []) new Object[ Arreglo.length * 2 ];
-        System.arraycopy(Arreglo, 0, newArray, 0, Arreglo.length);
-        Arreglo = newArray;
+        NuevoArreglo = (E[]) new Object[Arreglo.length*2];
+        System.arraycopy(Arreglo, 0, NuevoArreglo, 0, Arreglo.length);
+        Arreglo = NuevoArreglo;
     }
 }

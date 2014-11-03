@@ -14,8 +14,8 @@ import java.util.Collection;
 public interface QueuePropia<AnyType> extends Collection<AnyType>
 {
     /**
-     * Returns but does not remove the item at the "front"
-     * of the queue.
+     * Returns but does not EliminaNodo the item at the "front"
+ of the queue.
      * @return the front item of null if the queue is empty.
      * @throws NoSuchElementException if the queue is empty.
      */
@@ -27,5 +27,5 @@ public interface QueuePropia<AnyType> extends Collection<AnyType>
      * @return the front item.
      * @throws NoSuchElementException if the queue is empty.
      */
-    AnyType remove( );
+    AnyType EliminaNodo( );
 }
