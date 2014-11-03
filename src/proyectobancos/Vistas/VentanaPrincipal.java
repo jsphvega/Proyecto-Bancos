@@ -253,7 +253,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
 
         lblHora1.setForeground(new java.awt.Color(255, 255, 255));
         lblHora1.setText("HORA:");
-        getContentPane().add(lblHora1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 10, 40, 20));
+        getContentPane().add(lblHora1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 10, 60, 20));
 
         lblHora2.setForeground(new java.awt.Color(255, 255, 255));
         lblHora2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -267,7 +267,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
 
         lblFecha2.setForeground(new java.awt.Color(255, 255, 255));
         lblFecha2.setText("FECHA:");
-        getContentPane().add(lblFecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 35, 40, 20));
+        getContentPane().add(lblFecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 35, 60, 20));
 
         lblHoraFechaFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobancos/Imagenes/tipoBusqueda.fw.png"))); // NOI18N
         getContentPane().add(lblHoraFechaFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 5, -1, -1));

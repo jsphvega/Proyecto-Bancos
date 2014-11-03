@@ -175,12 +175,12 @@ public final class VentanaTabla extends javax.swing.JFrame {
         lblHora1.setForeground(new java.awt.Color(255, 255, 255));
         lblHora1.setText("HORA:");
         getContentPane().add(lblHora1);
-        lblHora1.setBounds(15, 15, 40, 20);
+        lblHora1.setBounds(15, 15, 70, 20);
 
         lblFecha2.setForeground(new java.awt.Color(255, 255, 255));
         lblFecha2.setText("FECHA:");
         getContentPane().add(lblFecha2);
-        lblFecha2.setBounds(15, 40, 40, 20);
+        lblFecha2.setBounds(15, 40, 70, 20);
 
         lblFecha1.setForeground(new java.awt.Color(255, 255, 255));
         lblFecha1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -229,7 +229,7 @@ public final class VentanaTabla extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSalir);
-        btnSalir.setBounds(570, 410, 120, 23);
+        btnSalir.setBounds(550, 410, 140, 29);
 
         tblTablaEstadistica.setForeground(new java.awt.Color(255, 255, 255));
         tblTablaEstadistica.setModel(new javax.swing.table.DefaultTableModel(

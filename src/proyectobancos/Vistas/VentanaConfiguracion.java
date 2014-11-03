@@ -113,9 +113,7 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         setTitle("Menú de Ajustes Inicial");
         setBackground(new java.awt.Color(242, 36, 36));
         setFocusCycleRoot(false);
-        setMaximumSize(new java.awt.Dimension(700, 440));
         setMinimumSize(new java.awt.Dimension(700, 440));
-        setPreferredSize(new java.awt.Dimension(700, 440));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -127,13 +125,13 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
 
         lblInstrucciones1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblInstrucciones1.setForeground(new java.awt.Color(255, 255, 255));
-        lblInstrucciones1.setText("* Escriba un nombre valido en el cuadro de arriba."); // NOI18N
+        lblInstrucciones1.setText("* Escriba un nombre válido en el cuadro de arriba."); // NOI18N
         getContentPane().add(lblInstrucciones1);
         lblInstrucciones1.setBounds(25, 320, 280, 20);
 
         lblInstrucciones2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblInstrucciones2.setForeground(new java.awt.Color(255, 255, 255));
-        lblInstrucciones2.setText("* El numero de cajas debe ser mayor a 0."); // NOI18N
+        lblInstrucciones2.setText("* El número de cajas debe ser mayor a 0."); // NOI18N
         getContentPane().add(lblInstrucciones2);
         lblInstrucciones2.setBounds(25, 340, 231, 20);
 
@@ -160,12 +158,12 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         lblHora1.setForeground(new java.awt.Color(255, 255, 255));
         lblHora1.setText("HORA:");
         getContentPane().add(lblHora1);
-        lblHora1.setBounds(30, 55, 40, 20);
+        lblHora1.setBounds(30, 55, 70, 20);
 
         lblFecha2.setForeground(new java.awt.Color(255, 255, 255));
         lblFecha2.setText("FECHA:");
         getContentPane().add(lblFecha2);
-        lblFecha2.setBounds(30, 80, 40, 20);
+        lblFecha2.setBounds(30, 80, 70, 20);
 
         lblFecha1.setForeground(new java.awt.Color(255, 255, 255));
         lblFecha1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -185,7 +183,7 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLogo);
-        btnLogo.setBounds(380, 360, 300, 23);
+        btnLogo.setBounds(380, 360, 300, 29);
 
         lblLogo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(lblLogo);
@@ -197,13 +195,13 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
         lblNombre.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         lblNombre.setOpaque(true);
         getContentPane().add(lblNombre);
-        lblNombre.setBounds(20, 130, 170, 24);
+        lblNombre.setBounds(20, 130, 240, 24);
 
         jspCantidad.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
         jspCantidad.setToolTipText("");
         jspCantidad.setRequestFocusEnabled(false);
         getContentPane().add(jspCantidad);
-        jspCantidad.setBounds(200, 230, 170, 24);
+        jspCantidad.setBounds(260, 230, 110, 24);
         jspCantidad.getAccessibleContext().setAccessibleParent(jspCantidad);
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -218,11 +216,11 @@ public class VentanaConfiguracion extends javax.swing.JFrame {
 
         lblCantidad.setBackground(new java.awt.Color(255, 255, 255));
         lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCantidad.setText("Cambiar Numero de Cajas");
+        lblCantidad.setText("Cambiar Número de Cajas");
         lblCantidad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         lblCantidad.setOpaque(true);
         getContentPane().add(lblCantidad);
-        lblCantidad.setBounds(20, 230, 170, 24);
+        lblCantidad.setBounds(20, 230, 210, 24);
 
         btnAceptar.setBackground(new java.awt.Color(0, 0, 0));
         btnAceptar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
